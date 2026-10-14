@@ -30,15 +30,15 @@ html {
   align-items: center;
   gap: var(--gap);
   margin: var(--stack) 0 0;
-  font-size: var(--fs-label);
+  font-size: var(--fs-body);
   line-height: 1.5;
   color: var(--c-ink-2);
 }
 .aside::before {
   content: "";
   flex: none;
-  width: max(34px, calc(var(--av) * .8));
-  height: max(34px, calc(var(--av) * .8));
+  width: max(40px, var(--av));
+  height: max(40px, var(--av));
   border-radius: 50%;
   background: center / cover no-repeat url("../assets/generated-2026-10-14/avatars/whale-serious.png");
 }
