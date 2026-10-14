@@ -19,6 +19,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 TOKENS = ROOT / "templates" / "tokens.css"
+VIDEO = ROOT / "templates" / "video.css"
 SVG = ROOT / "docs" / "palette.svg"
 README = ROOT / "README.md"
 HANDOUT = ROOT / "examples" / "handout.html"
@@ -50,6 +51,11 @@ def read_tokens():
     for medium, step, value, note in re.findall(r"--(doc|deck)-([a-z]+):\s*([\d.]+pt);\s*/\*\s*(.+?)\s*\*/", css):
         sizes[medium].append((step, value, note))
     leading = dict(re.findall(r"--(doc|deck)-leading:\s*([\d.]+);", css))
+    # 視頻不是新的一組變數，是「覆寫簡報」——同一個名字、不同的數字，放在 video.css。
+    # 另外讀一份併進 sizes，字級表就還是由這裡產生，不用手寫、也不會走鐘。
+    sizes["video"] = [(step, value, note) for step, value, note in re.findall(
+        r"--deck-([a-z]+):\s*([\d.]+pt);\s*/\*\s*(.+?)\s*\*/", VIDEO.read_text(encoding="utf-8"))]
+    leading["video"] = leading["deck"]
     return colors, sizes, leading
 
 
@@ -148,7 +154,8 @@ def palette_md(colors) -> str:
 
 def type_md(sizes, leading) -> str:
     return (f"- **A4 文件**　{size_line(sizes, leading, 'doc')}\n"
-            f"- **16:9 簡報**　{size_line(sizes, leading, 'deck')}")
+            f"- **16:9 簡報**　{size_line(sizes, leading, 'deck')}\n"
+            f"- **視頻**　{size_line(sizes, leading, 'video')}")
 
 
 def palette_html(colors) -> str:
@@ -162,7 +169,8 @@ def palette_html(colors) -> str:
 
 def type_html(sizes, leading) -> str:
     return (f'  <ul class="scale">\n    <li>A4　{html.escape(size_line(sizes, leading, "doc"))}</li>\n'
-            f'    <li>簡報　{html.escape(size_line(sizes, leading, "deck"))}</li>\n  </ul>')
+            f'    <li>簡報　{html.escape(size_line(sizes, leading, "deck"))}</li>\n'
+            f'    <li>視頻　{html.escape(size_line(sizes, leading, "video"))}</li>\n  </ul>')
 
 
 def splice(text: str, key: str, body: str) -> str:

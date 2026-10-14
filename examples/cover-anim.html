@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>大肥魚視覺語言庫 ｜ 動態封面</title>
+<link rel="stylesheet" href="../templates/video.css">
+<style>
+/* 6 秒的動態封面。畫布 1280×720（＝ section.slide 的尺寸，剛好 16:9）。
+ *
+ * 每一層都是一個獨立的 CSS animation，沒有一個跟著 wall clock 跑——
+ * 所以 render 腳本可以「跳到第 t 秒」並拿到正確的畫面（seekable）。
+ * 加減動畫只要改下面的 --dur 和每個 animation 的 delay，不用改渲染器。
+ */
+
+:root {
+  --dur: 6s;                                  /* 整支影片的長度 */
+  --eo: cubic-bezier(.16, 1, .3, 1);          /* expo out：快起慢收 */
+}
+
+/* 逐格掃過去時，縮放中的圖不要溢出畫布 */
+.slide.cover { overflow: hidden; }
+
+@keyframes kb      { from { transform: scale(1.07); } to { transform: scale(1); } }
+@keyframes rise    { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slidein { from { opacity: 0; transform: translateX(44px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes grow    { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes pop     { from { opacity: 0; transform: scale(.5); } to { opacity: 1; transform: scale(1); } }
+@keyframes drift   { from { opacity: 0; transform: translateY(24px) scale(.85); }
+                     30%  { opacity: .5; }
+                     to   { opacity: 0; transform: translateY(-104px) scale(1.15); } }
+
+/* 背景：前 4.5 秒緩慢推進（Ken Burns），之後定格——留 1.5 秒讓人讀字 */
+.slide.cover .bg { animation: kb 4.5s linear both; }
+
+.kicker          { animation: rise    .7s  var(--eo) .20s both; color: var(--c-primary); }
+.slide.cover h1  { animation: rise    .95s var(--eo) .50s both; }
+.overlay .rule   { animation: grow    .75s var(--eo) 1.15s both; transform-origin: left center; }
+.slide.cover .sub    { animation: rise .8s var(--eo) 1.40s both; }
+.slide.cover .credit { animation: rise .8s var(--eo) 1.75s both; }
+.aside           { animation: slidein .85s var(--eo) 2.50s both; }
+.aside .av       { animation: pop     .5s  var(--eo) 2.85s both; }
+
+/* 泡泡：深色底的裝飾，慢慢浮上去然後消失。
+ * 最晚的一個要落在 --dur 之內（3.70 + 2.2 = 5.9 秒），不然會被硬切掉。 */
+.bubbles { position: absolute; inset: 0; pointer-events: none; }
+.bubbles i {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  border: 2px solid var(--c-accent-soft);
+  opacity: 0;
+  animation: drift 2.2s var(--eo) both;
+}
+.bubbles i:nth-child(1) { left: 70%; top: 62%; width: 26px; height: 26px; animation-delay: 3.10s; }
+.bubbles i:nth-child(2) { left: 78%; top: 74%; width: 14px; height: 14px; animation-delay: 3.40s; }
+.bubbles i:nth-child(3) { left: 63%; top: 80%; width: 38px; height: 38px; animation-delay: 3.70s; }
+</style>
+</head>
+<body>
+
+<section class="slide cover"
+         data-composition-id="cover"
+         data-start="0"
+         data-duration="6"
+         data-width="1280"
+         data-height="720">
+  <img class="bg" src="../assets/generated-2026-10-14/key-visual/whale-key-visual-16x9.png" alt="">
+  <div class="bubbles"><i></i><i></i><i></i></div>
+  <div class="overlay">
+    <div class="kicker">視覺與語言庫</div>
+    <h1>大肥魚<br>視覺語言庫</h1>
+    <div class="rule"></div>
+    <p class="sub">配色・字級・版面<br>元件・選圖</p>
+    <p class="credit">角色插圖：phoiex/AAAAGENT original-design<br>CC BY-NC-SA 4.0 ｜ 僅供非商業使用</p>
+    <p class="aside">哼，顏色是本小姐挑的喔。</p>
+  </div>
+</section>
+
+<script>
+/* render 腳本用這個介面跳到任一時刻。放在頁面裡而不是渲染器裡，
+ * 因為「哪個時間點長什麼樣」是設計問題，不是渲染問題。 */
+window.__seek = async (t) => {
+  await document.fonts.ready;
+  for (const a of document.getAnimations()) {
+    a.pause();
+    a.currentTime = t * 1000;
+  }
+  // 等兩次 rAF：確保樣式重算 + 貼上完成。headless 下 rAF 有可能不觸發，
+  // 所以加一個 timeout 當保險（截圖本身也會強制 compositor 更新）。
+  await new Promise(r => { requestAnimationFrame(() => requestAnimationFrame(r)); setTimeout(r, 80); });
+  return document.getAnimations().length;
+};
+
+/* 直接在瀏覽器打開時可以看：?t=2.5 就停在第 2.5 秒 */
+const q = new URLSearchParams(location.search).get('t');
+if (q !== null) window.__seek(parseFloat(q));
+</script>
+</body>
+</html>

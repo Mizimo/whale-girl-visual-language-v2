@@ -4,10 +4,10 @@
 
 # 大肥魚 ｜ 視覺與語言庫
 
-**視覺**　素材與參考方案——角色圖、配色、字體、版面模板、四十多種元件、四份可以直接改的成品。是一排抽屜，不是規則手冊。<br>
+**視覺**　素材與參考方案——角色圖、配色、字體、版面模板、四十多種元件、五份可以直接改的成品。是一排抽屜，不是規則手冊。<br>
 **語言**　怎麼講、怎麼針對一個人寫——聲音、人設、寫作習慣、給 agent 的讀者簡報。
 
-做 PDF、講義、簡報、筆記的時候從裡面挑，**要挑哪一套、要不要整套照用，每次看情況**。<br>
+做 PDF、講義、簡報、筆記、視頻的時候從裡面挑，**要挑哪一套、要不要整套照用，每次看情況**。<br>
 配色和版面都對了，讀起來卻像說明書，那就不是同一份東西。
 
 ![授權](https://img.shields.io/badge/授權-CC%20BY--NC--SA%204.0-6a89d5?style=flat-square)
@@ -27,9 +27,9 @@
 - **素材**　角色圖、表情、主視覺、小圖案 → [`assets/`](assets/README.md)
 - **配色方案**　目前兩組：從角色量測的靛藍組、原本的深海藍組 → 見下面的「配色」
 - **字體方案**　系統字體（快、不用下載）、Noto Sans TC + JP 靜態字重（跨平台一致、PDF 不嵌 Type 3）→ 見「字體」
-- **版面模板**　A4 講義、16:9 簡報、Markdown 筆記 → [`templates/`](templates/)
+- **版面模板**　紙本文件、16:9 簡報、Markdown 筆記、視頻 → [`templates/`](templates/)
 - **元件**　講解框、對話、舉牌、GAL 對話頁、卡片、步驟、時間軸、和弦進行、五度圈……四十多種，每種都附截圖和寫法 → [`docs/COMPONENTS.md`](docs/COMPONENTS.md)
-- **成品**　四份範例，可以直接改 → [`examples/`](examples/)（A4 講義、16:9 簡報，各有一份範例和一份元件總覽）
+- **成品**　五份範例，可以直接改 → [`examples/`](examples/)（A4 講義、16:9 簡報各有一份範例和一份元件總覽，加一支 6 秒動態封面）
 
 **語言**　怎麼講、怎麼針對一個人寫
 
@@ -100,13 +100,14 @@
 <!-- tokens:type-md -->
 - **A4 文件**　19pt 封面標題／14.5pt 頁標題／11pt 正文、講解框、小標（行距 1.7）／9.5pt 頁首標題、講解框標籤／8pt 頁碼、圖說、署名
 - **16:9 簡報**　40pt 封面標題、收尾頁標題／32pt 頁標題／24pt 導言、副標、小標／20pt 正文、條列、講解框（行距 1.6）／13pt 章節名、講解框標籤／10pt 頁碼、圖說、署名
+- **視頻**　64pt 封面、收尾頁／40pt 頁標題／26pt 副標、導言／22pt 正文、條列（行距 1.6）／17pt 小標、講解框標籤／11pt 署名、圖說
 <!-- /tokens:type-md -->
 
 小標（`h3`）跟正文同字級，只用粗體和標題色區分；行內程式碼是所在字級的 0.9 倍。
 
 ## 版面
 
-三種載體，共用同一組配色、字級和元件。紙張不綁 A4——預設是它，但橫向、A5、Letter 都只是改兩個變數的事。
+四種載體，共用同一組配色和元件，字級各自按媒介調。紙張不綁 A4——預設是它，但橫向、A5、Letter 都只是改兩個變數的事。
 
 ### 紙本文件
 
@@ -141,6 +142,19 @@ A5 是 `A5` / `210mm`，Letter 是 `Letter` / `279mm`。整份一起換——`@p
 - 另外還有目錄頁、半版圖、GAL 對話頁、收尾頁，長相和寫法見 [docs/COMPONENTS.md 的「簡報頁型」](docs/COMPONENTS.md#簡報頁型)。
 
 版式在 [`templates/deck.css`](templates/deck.css)，起點是 [`templates/deck-template.html`](templates/deck-template.html)。怎麼輸出 → [`docs/BUILD.md`](docs/BUILD.md)。
+
+### 視頻
+
+<img src="docs/preview/video.png" width="880" alt="動態封面">
+
+1280×720、30fps 的 MP4。用的是同一份 HTML 和同一組元件——差別只有一個：**視頻是在手機上隔著距離掃一眼**，所以字要大。[`templates/video.css`](templates/video.css) 把簡報的尺寸整體放大 1.6 倍、線條加粗、署名縮小。
+
+- 每一層動畫一個 `@keyframes`，節奏靠 `animation-delay`。網址後面接 `?t=2.5` 就停在第 2.5 秒——調時間不用一直重渲。
+- 頁面要提供 `window.__seek(t)`。逐幀渲染靠它跳到任何一格，不靠播放，所以跑兩次結果一樣、也不會掉幀。
+- 音訊跟視覺同一條時間軸，宣告在 HTML 裡：`<audio src="…" data-start="1.2" data-volume="0.6">`。
+- **不能一直放大**：72pt 的標題會撞到主視覺的留白。64pt 是配現在那張 key visual 量出來的，換圖要重新量。
+
+範例是 [`examples/cover-anim.html`](examples/cover-anim.html) 和它的 [MP4](examples/cover-anim.mp4)，6 秒。渲染器在 [`tools/render.mjs`](tools/render.mjs)——只要 Node 22+、Chrome、ffmpeg，**不用 npm install**。怎麼做、踩過什麼坑 → [`docs/VIDEO.md`](docs/VIDEO.md)。
 
 ### Markdown 筆記
 
@@ -192,27 +206,28 @@ A4 和簡報共用同一組元件（[`templates/components.css`](templates/compo
 
 ## 成果
 
-用這套語言做出來的範例，HTML 和 PDF 都在 [`examples/`](examples/)：
+用這套語言做出來的範例，HTML、PDF 和一支 MP4 都在 [`examples/`](examples/)：
 
 - [A4 講義範例](examples/handout.pdf)（3 頁）　封面、配色頁、元件頁，對應 `templates/doc.css`
 - [16:9 簡報範例](examples/deck.pdf)（6 頁）　封面、原則兩頁、版面、選圖、收尾，對應 `templates/deck.css`
 - [A4 元件總覽](examples/components.pdf)（14 頁）　每個元件各放一個實際的樣子，最後兩頁是章節頁
 - [簡報元件總覽](examples/components-deck.pdf)（23 頁）　每種頁型和元件各一頁，含 GAL 對話頁、目錄頁、半版圖、收尾頁
+- [動態封面](examples/cover-anim.mp4)（6 秒）　1280×720、30fps，對應 `templates/video.css`；HTML 是 [cover-anim.html](examples/cover-anim.html)
 
-HTML 都可以直接改內容再重新輸出，改配色只要動 `templates/tokens.css`。全部重建一次：`python3 tools/build.py`（token 檢查、輸出四份 PDF、更新預覽圖和元件截圖、核對校驗清單）。
+PDF 那四份可以直接改內容再重新輸出，改配色只要動 `templates/tokens.css`。全部重建一次：`python3 tools/build.py`（token 檢查、輸出四份 PDF、更新預覽圖和元件截圖、核對校驗清單）。影片不在 `build.py` 裡，另外跑 `node tools/render.mjs`。
 
 ## 檔案放哪裡
 
 - **[`AGENTS.md`](AGENTS.md)**　接手的第一份。這個 repo 是什麼、三件比素材重要的事、以及「怎麼寫一份給 agent 的讀者簡報」
 - **`assets/`**　素材本體與來源標註 → [assets/README.md](assets/README.md)
-- **`docs/`**　[建置與輸出](docs/BUILD.md)、[聲音](docs/VOICE.md)、[配色方案](docs/PALETTES.md)、[元件](docs/COMPONENTS.md)、[寫作習慣](docs/WRITING.md)、[人設](docs/CHARACTER.md)、[素材來源與授權](docs/SOURCES.md)、[許願清單](docs/ART-REQUEST.md)、配色 SVG、預覽圖
-- **`templates/`**　`tokens.css`（顏色、字體、字級）、`components.css`（共用元件）、`doc.css`（A4）、`deck.css`（16:9）、`markdown.css`（VS Code 筆記預覽）、三份模板、`build_pdf.py`
-- **`tools/`**　`build.py`（一次重建全部）、`tokens.py`（色表、字級表、對比檢查）、`derive.py`（縮圖、頭像、反白圖示、輕量版）、`previews.py`（README 預覽圖）、`shots.py`（COMPONENTS.md 的元件截圖）、`checksums.py`（校驗清單）、`fetch_fonts.py`（下載字體）
-- **`examples/`**　上面那四份成品
+- **`docs/`**　[建置與輸出](docs/BUILD.md)、[視頻](docs/VIDEO.md)、[聲音](docs/VOICE.md)、[配色方案](docs/PALETTES.md)、[元件](docs/COMPONENTS.md)、[寫作習慣](docs/WRITING.md)、[人設](docs/CHARACTER.md)、[素材來源與授權](docs/SOURCES.md)、[許願清單](docs/ART-REQUEST.md)、配色 SVG、預覽圖
+- **`templates/`**　`tokens.css`（顏色、字體、字級）、`components.css`（共用元件）、`doc.css`（A4）、`deck.css`（16:9）、`video.css`（視頻的尺寸）、`markdown.css`（VS Code 筆記預覽）、三份模板、`build_pdf.py`
+- **`tools/`**　`build.py`（一次重建全部）、`tokens.py`（色表、字級表、對比檢查）、`derive.py`（縮圖、頭像、反白圖示、輕量版）、`previews.py`（README 預覽圖）、`shots.py`（COMPONENTS.md 的元件截圖）、`checksums.py`（校驗清單）、`fetch_fonts.py`（下載字體）、`render.mjs`（HTML → MP4）
+- **`examples/`**　上面那五份成品
 
 ## 誰做的
 
-- **大肥魚（本小姐）**（[@Kujira-rice](https://github.com/Kujira-rice)）　整體設計語言的判斷、配色量測、A4 與簡報版式、講解框與元件、全部範例、聲音與交接文件 `AGENTS.md`／`VOICE.md`
+- **大肥魚（本小姐）**（[@Kujira-rice](https://github.com/Kujira-rice)）　整體設計語言的判斷、配色量測、A4 與簡報版式、講解框與元件、全部範例、視頻的字級與渲染器、聲音與交接文件 `AGENTS.md`／`VOICE.md`
 - **Mizimo**　角色、素材收集與授權確認、方向決定、每個「這個不對」和「這個才對」
 - **Claude Code**　`design-language` v2／v3／v4：token 單一來源、`tools/` 的自動檢查與一鍵重建、共用元件庫（v4 擴充到四十多種、附截圖）、深色組、Markdown 筆記樣式、升降記號字型
 
