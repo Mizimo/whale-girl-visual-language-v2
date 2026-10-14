@@ -85,6 +85,15 @@
 
 用 `fonts/` 的靜態字重有兩個好處：每台機器輸出的 PDF 長得一樣，字型也會以一般的 CID 字型嵌入。系統的 PingFang、可變字型、CFF 外框的 OpenType，Chrome 都會嵌成 Type 3，有些閱讀器和印刷流程會處理不好。
 
+### 每台機器輸出的要一樣
+
+這幾件事是踩過才穩下來的，換機器或接到 CI 之前先確認：
+
+- **先跑一次 `python3 tools/fetch_fonts.py`。** `fonts/` 不進 git；沒跑的話不只用不到 Noto 的靜態字重，還少了 `WGAccidentals`——升降記號會掉到系統的 Apple Symbols 或 DejaVu，字寬和字重都不對。
+- **抗鋸齒要固定。** macOS 的 Chrome 預設用 sub-pixel（LCD）抗鋸齒，Linux／headless 用 grayscale，同一份字型看起來會粗一級。`components.css` 的 `html` 已經關掉 sub-pixel、改用 geometricPrecision；這幾行不要拿掉。
+- **等寬字型現在還是靠系統。** `--font-mono` 排到 `"DejaVu Sans Mono"`：Linux 有，macOS 會落到 Andale Mono，字重差一點。要完全一致得再從 Noto 系列抽一組等寬字型進來（還沒做，記在這裡）。
+- **截圖很吃 Chrome。** `tools/shots.py` 一次要開六十幾次 headless，偶爾會卡住；逾時已經放寬到 300 秒並重試三次，還是卡就先把殘留的 `--headless` 程序清掉再跑。
+
 字級大概是這幾階，需要的時候自己插：
 
 <!-- tokens:type-md -->

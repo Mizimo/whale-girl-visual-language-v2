@@ -7,7 +7,7 @@ A4 講義和 16:9 簡報共用同一組元件，寫法一樣，字級和間距�
 - A4 連 `templates/doc.css`，簡報連 `templates/deck.css`。兩份都會自動載入 `tokens.css`（顏色、字體、字級）和 `components.css`（這頁的元件）。
 - 頭像、舉牌、GAL 背景這些圖的路徑寫在 CSS 裡，所以 HTML 要連 repo 裡的 `templates/`，不要把 CSS 單獨複製出去。
 - 想讓每台機器輸出的 PDF 都一樣，先跑一次 `python3 tools/fetch_fonts.py`（見 README 的「字體與字級」）。
-- 這頁的圖是 `python3 tools/shots.py` 從兩份總覽截出來的，總覽改了就重跑。
+- 這頁的圖是 `python3 tools/shots.py` 從兩份總覽截出來的，總覽改了就重跑。`docs/preview/c/` 裡會有全部元件的截圖（A4 和簡報各一套），下面只挑主要的放；沒放上來的直接翻 [A4 元件總覽](../examples/components.pdf) 或 [簡報元件總覽](../examples/components-deck.pdf)。
 
 ## 一覽
 
