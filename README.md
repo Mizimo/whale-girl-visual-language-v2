@@ -113,6 +113,8 @@
 
 封面是 58mm 圓形頭像加標題，最下面放署名。內頁的頁首自動產生：左邊文件標題、右邊「頁碼 / 總頁數」，下面一條 2px 主色線，內容溢到下一頁也會有。文件標題寫在 HTML 開頭：`:root { --running-title: "課程名 ｜ 第 6 回"; }`，封面不放頁首。頁面 A4、邊距 13～14mm。以前手寫在 section 裡的 `.head` 照樣能用。
 
+文件長到十頁以上、或分成好幾章的時候，每章開頭插一頁**章節頁**（`.chapter`）：大編號、章名、一句話，右下角一條尾巴，加 `.watermark` 換成線稿、加 `.deep` 整頁深色。它不套頁首，翻起來知道自己在哪。短文件不要插，會空。看長相：[A4 元件總覽](examples/components.pdf) 最後兩頁。
+
 骨架在 [`templates/doc-template.html`](templates/doc-template.html)，版式在 [`templates/doc.css`](templates/doc.css)：
 
 ```bash
