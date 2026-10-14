@@ -6,3 +6,6 @@
 # tools/fetch_fonts.py 下載的字體
 fonts/
 __pycache__/
+
+# tools/render.mjs --keep 留在輸出檔旁邊的逐幀 PNG
+.frames/
