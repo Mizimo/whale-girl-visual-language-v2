@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>大肥魚視覺語言庫 ｜ 元件總覽</title>
+<link rel="stylesheet" href="../templates/doc.css">
+<style>
+  :root { --running-title: "大肥魚視覺語言庫 ｜ 元件總覽"; }
+</style>
+</head>
+<body>
+
+<!-- 封面：橫幅版 -->
+<section class="page">
+  <div class="cover band">
+    <img src="../assets/generated-2026-10-14/key-visual/whale-key-visual-editorial.png" alt="">
+    <h2>元件總覽</h2>
+    <p class="lede">A4 講義會用到的每一個元件，各放一個實際的樣子。寫講義時照抄這裡的寫法就好。</p>
+    <p>封面用的是 <code>.cover.band</code>：上面一條橫式主視覺、標題靠左。想要圓形頭像的封面，就把 <code>band</code> 拿掉。</p>
+    <p class="credit">
+      角色插圖：phoiex/AAAAGENT 的 original-design 素材（AI 輔助製作）<br>
+      原始設計參考 fornarwhal/deepseek-whale-girl-icon ｜ CC BY-NC-SA 4.0 ｜ 僅供非商業使用
+    </p>
+  </div>
+</section>
+
+<!-- 文字與基本框 -->
+<section class="page">
+  <h2>文字</h2>
+  <p class="lede">導言用次要文字的顏色，一兩句說明這頁要講什麼。</p>
+  <p>正文 11pt、行距 1.7。術語保留原文，像 <code>ミクソリディアン</code>、<code>subV7</code>；和弦寫成 <code>Im7</code>、<code>♭IIImaj7</code>，降記號用 ♭。連結長這樣：<a href="https://github.com/Mizimo/whale-girl-visual-language">視覺語言庫</a>。</p>
+
+  <h3>小標</h3>
+  <p>小標跟正文同字級，只用粗體和標題色區分。條列的記號用主色：</p>
+  <ul>
+    <li>無序清單，一條一個意思。
+      <ul><li>補充的細節縮一層。</li></ul>
+    </li>
+    <li>一頁最多兩層，第三層就該拆頁。</li>
+  </ul>
+  <ol>
+    <li>有順序的步驟用編號清單。</li>
+    <li>編號是粗體主色。</li>
+  </ol>
+
+  <h3>例子框</h3>
+  <div class="ex">例：C 多利安 ← 從 B♭ 大調的第二音開始。譜例、指令、引文都放這裡，沒有頭像。</div>
+
+  <h3>兩欄對照</h3>
+  <div class="cols">
+    <div>
+      <h3>自然小調</h3>
+      <div class="degrees"><span>1</span><span>2</span><span>♭3</span><span>4</span><span>5</span><span class="key">♭6</span><span>♭7</span></div>
+      <p>第六音是小六度，聽起來比較暗。</p>
+    </div>
+    <div>
+      <h3>多利安</h3>
+      <div class="degrees"><span>1</span><span>2</span><span>♭3</span><span>4</span><span>5</span><span class="key">6</span><span>♭7</span></div>
+      <p>只差第六音：升成大六度，小調裡帶一點亮。</p>
+    </div>
+  </div>
+
+  <div class="summary">
+    <ul>
+      <li>重點框放在頁面最後，條列這一頁要帶走的東西。</li>
+      <li>上緣一條主色線、沒有底色，跟左線的框一眼就分得開。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 講解框 -->
+<section class="page">
+  <h2>講解框</h2>
+  <p class="lede">鯨魚娘出場說話的地方。種類靠表情和標籤區分，不換顏色。這頁為了展示放了六個，實際使用一頁最多一個。</p>
+
+  <div class="whale">
+    <span class="av"></span>
+    <div class="txt"><span class="who"></span>補一段原稿沒寫出來的推理。不加種類就是講解，表情是認真。</div>
+  </div>
+  <div class="whale tip">
+    <span class="av"></span>
+    <div class="txt"><span class="who"></span>記法：多利安＝小調把第六音升上去。<code>.tip</code>，表情是開心。</div>
+  </div>
+  <div class="whale warn">
+    <span class="av"></span>
+    <div class="txt"><span class="who"></span>先說好，多利安的第六音不是 ♭6，寫錯本小姐會生氣。<code>.warn</code>，表情是生氣。</div>
+  </div>
+  <div class="whale mix">
+    <span class="av"></span>
+    <div class="txt"><span class="who"></span>多利安和自然小調只差一個音，聽的時候最容易搞混。<code>.mix</code>，表情是苦惱。</div>
+  </div>
+  <div class="whale fact">
+    <span class="av"></span>
+    <div class="txt"><span class="who"></span>《So What》的 A 段整段都是 D 多利安，B 段只是整個升半音。<code>.fact</code>，表情是驚訝。</div>
+  </div>
+  <div class="whale review">
+    <span class="av"></span>
+    <div class="txt"><span class="who"></span>七個調式的起點：1 到 7 各來一次。<code>.review</code>，表情是想睡。</div>
+  </div>
+</section>
+
+<!-- 樂理元件 -->
+<section class="page">
+  <h2>樂理元件</h2>
+
+  <h3>音級</h3>
+  <p>一排格子列出音級，特徵音實心填色；左邊可以掛名稱，格子裡可以加音名。</p>
+  <div class="degrees" data-label="C 多利安">
+    <span>1<small>C</small></span><span>2<small>D</small></span><span>♭3<small>E♭</small></span><span>4<small>F</small></span><span>5<small>G</small></span><span class="key">6<small>A</small></span><span>♭7<small>B♭</small></span>
+  </div>
+
+  <h3>鍵盤圖</h3>
+  <p>一個八度寫 12 個鍵，要亮的加 <code>.on</code>，鍵上可以寫音級。下面是 C 多利安。</p>
+  <div class="keys">
+    <i class="on">1</i><i></i><i class="on">2</i><i class="on">♭3</i><i></i><i class="on">4</i><i></i><i class="on">5</i><i></i><i class="on">6</i><i class="on">♭7</i><i></i>
+  </div>
+
+  <h3>術語表</h3>
+  <dl class="terms">
+    <dt>ドリアン<span>Dorian・多利安</span></dt><dd>自然小調把第六音升成大六度。</dd>
+    <dt>ミクソリディアン<span>Mixolydian</span></dt><dd>大調把第七音降成小七度，屬七和弦的家。</dd>
+    <dt>特徵音<span>characteristic note</span></dt><dd>跟最接近的大調或自然小調比，不一樣的那個音；調式的味道就在這裡。</dd>
+  </dl>
+
+  <h3>表格</h3>
+  <table>
+    <caption>七個調式</caption>
+    <thead><tr><th>調式</th><th>日文</th><th class="num">起點</th><th>特徵音</th></tr></thead>
+    <tbody>
+      <tr><td>Ionian</td><td>アイオニアン</td><td class="num">1</td><td>（就是大調）</td></tr>
+      <tr><td>Dorian</td><td>ドリアン</td><td class="num">2</td><td class="key">6</td></tr>
+      <tr><td>Phrygian</td><td>フリジアン</td><td class="num">3</td><td>♭2</td></tr>
+      <tr><td>Lydian</td><td>リディアン</td><td class="num">4</td><td>♯4</td></tr>
+      <tr><td>Mixolydian</td><td>ミクソリディアン</td><td class="num">5</td><td>♭7</td></tr>
+      <tr><td>Aeolian</td><td>エオリアン</td><td class="num">6</td><td>（就是自然小調）</td></tr>
+      <tr><td>Locrian</td><td>ロクリアン</td><td class="num">7</td><td>♭2、♭5</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 練習題 -->
+<section class="page">
+  <h2>練習題</h2>
+  <p class="lede">題號自動編。印學生版時在 <code>&lt;body&gt;</code> 加 <code>class="no-answers"</code>：答案框留著、字藏起來，版面跟老師版一模一樣。</p>
+  <ol class="quiz">
+    <li>C 多利安是從哪個大調的第幾音開始？
+      <div class="answer">B♭ 大調的第二音。</div>
+    </li>
+    <li>多利安和自然小調差在哪一個音？
+      <div class="answer">第六音：多利安是大六度（6），自然小調是小六度（♭6）。</div>
+    </li>
+    <li>寫出 D 多利安的七個音。
+      <div class="lines" style="--n: 2"></div>
+    </li>
+  </ol>
+
+  <div class="summary" data-label="這一回的重點">
+    <ul>
+      <li>多利安＝自然小調把第六音升半音，特徵音是大六度。</li>
+      <li>調式的名字跟起點一起記：多利安從大調的第二音開始。</li>
+    </ul>
+  </div>
+</section>
+
+</body>
+</html>

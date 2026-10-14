@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="922" viewBox="0 0 900 922">
+<rect width="100%" height="100%" rx="14" fill="#f8f9fc"/>
+<path d="M0 544H900V908a14 14 0 0 1-14 14H14a14 14 0 0 1-14-14Z" fill="#1c1a34"/>
+<text x="34" y="52" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="23" font-weight="700" fill="#313157">配色</text>
+<text x="106" y="52" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="14" fill="#6f7181">從角色身上取色：深色跟洋裝與髮根，淺色跟髮尾與眼睛</text>
+<rect x="34" y="92" width="54" height="54" rx="10" fill="#313157" stroke="none"/>
+<text x="102" y="114" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#313157">#313157<tspan font-size="12" font-weight="400" fill="#6f7181">　--c-title</tspan></text>
+<text x="102" y="134" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#515365">深海藍　·　頁標題、程式碼字　12.3:1</text>
+<rect x="34" y="166" width="54" height="54" rx="10" fill="#5a64a3" stroke="none"/>
+<text x="102" y="188" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#313157">#5a64a3<tspan font-size="12" font-weight="400" fill="#6f7181">　--c-primary</tspan></text>
+<text x="102" y="208" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#515365">主色　·　頁首線、講解框標籤、簡報小標　5.5:1</text>
+<rect x="34" y="240" width="54" height="54" rx="10" fill="#6a89d5" stroke="none"/>
+<text x="102" y="262" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#313157">#6a89d5<tspan font-size="12" font-weight="400" fill="#6f7181">　--c-accent</tspan></text>
+<text x="102" y="282" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#515365">亮色　·　講解框左線，取自眼睛　3.4:1</text>
+<rect x="34" y="314" width="54" height="54" rx="10" fill="#bfd3ef" stroke="none"/>
+<text x="102" y="336" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#313157">#bfd3ef<tspan font-size="12" font-weight="400" fill="#6f7181">　--c-accent-soft</tspan></text>
+<text x="102" y="356" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#515365">淺色　·　封面圓框，取自髮尾</text>
+<rect x="34" y="388" width="54" height="54" rx="10" fill="#f0f4ff" stroke="#e6e7ef"/>
+<text x="102" y="410" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#313157">#f0f4ff<tspan font-size="12" font-weight="400" fill="#6f7181">　--c-tint</tspan></text>
+<text x="102" y="430" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#515365">講解框底　·　講解框</text>
+<rect x="34" y="462" width="54" height="54" rx="10" fill="#f8f9fc" stroke="#e6e7ef"/>
+<text x="102" y="484" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#313157">#f8f9fc<tspan font-size="12" font-weight="400" fill="#6f7181">　--c-tint-2</tspan></text>
+<text x="102" y="504" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#515365">例子框底　·　例子框</text>
+<rect x="467" y="92" width="54" height="54" rx="10" fill="#f0f1f7" stroke="#e6e7ef"/>
+<text x="535" y="114" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#313157">#f0f1f7<tspan font-size="12" font-weight="400" fill="#6f7181">　--c-code-bg</tspan></text>
+<text x="535" y="134" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#515365">程式碼底　·　行內程式碼、和弦記號</text>
+<rect x="467" y="166" width="54" height="54" rx="10" fill="#e6e7ef" stroke="#e6e7ef"/>
+<text x="535" y="188" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#313157">#e6e7ef<tspan font-size="12" font-weight="400" fill="#6f7181">　--c-line</tspan></text>
+<text x="535" y="208" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#515365">框線　·　圖片外框</text>
+<rect x="467" y="240" width="54" height="54" rx="10" fill="#898a9e" stroke="none"/>
+<text x="535" y="262" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#313157">#898a9e<tspan font-size="12" font-weight="400" fill="#6f7181">　--c-line-strong</tspan></text>
+<text x="535" y="282" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#515365">例子框線　·　例子框左線　3.4:1</text>
+<rect x="467" y="314" width="54" height="54" rx="10" fill="#1a1a1a" stroke="none"/>
+<text x="535" y="336" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#313157">#1a1a1a<tspan font-size="12" font-weight="400" fill="#6f7181">　--c-ink</tspan></text>
+<text x="535" y="356" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#515365">正文　·　內文、條列　17.4:1</text>
+<rect x="467" y="388" width="54" height="54" rx="10" fill="#515365" stroke="none"/>
+<text x="535" y="410" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#313157">#515365<tspan font-size="12" font-weight="400" fill="#6f7181">　--c-ink-2</tspan></text>
+<text x="535" y="430" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#515365">次要文字　·　導言、補充說明　7.6:1</text>
+<rect x="467" y="462" width="54" height="54" rx="10" fill="#6f7181" stroke="none"/>
+<text x="535" y="484" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#313157">#6f7181<tspan font-size="12" font-weight="400" fill="#6f7181">　--c-ink-3</tspan></text>
+<text x="535" y="504" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#515365">說明文字　·　圖說、署名、頁碼　4.8:1</text>
+<text x="34" y="588" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="23" font-weight="700" fill="#f1f3fa">深海</text>
+<text x="106" y="588" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="14" fill="#a3aabe">深色頁用的一組：章節頁、深色簡報、VS Code 深色預覽</text>
+<rect x="34" y="610" width="54" height="54" rx="10" fill="#1c1a34" stroke="#494a65"/>
+<text x="102" y="632" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#f1f3fa">#1c1a34<tspan font-size="12" font-weight="400" fill="#a3aabe">　--c-deep</tspan></text>
+<text x="102" y="652" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#c7cedf">深海　·　深色頁底色</text>
+<rect x="34" y="684" width="54" height="54" rx="10" fill="#2a2a47" stroke="#494a65"/>
+<text x="102" y="706" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#f1f3fa">#2a2a47<tspan font-size="12" font-weight="400" fill="#a3aabe">　--c-deep-2</tspan></text>
+<text x="102" y="726" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#c7cedf">深海浮層　·　深色頁的框底、程式碼底</text>
+<rect x="34" y="758" width="54" height="54" rx="10" fill="#f1f3fa" stroke="none"/>
+<text x="102" y="780" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#f1f3fa">#f1f3fa<tspan font-size="12" font-weight="400" fill="#a3aabe">　--c-on-deep</tspan></text>
+<text x="102" y="800" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#c7cedf">深海字　·　深色頁的標題、正文　15.2:1</text>
+<rect x="34" y="832" width="54" height="54" rx="10" fill="#c7cedf" stroke="none"/>
+<text x="102" y="854" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#f1f3fa">#c7cedf<tspan font-size="12" font-weight="400" fill="#a3aabe">　--c-on-deep-2</tspan></text>
+<text x="102" y="874" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#c7cedf">深海次要字　·　深色頁的導言、補充　10.7:1</text>
+<rect x="467" y="610" width="54" height="54" rx="10" fill="#a3aabe" stroke="none"/>
+<text x="535" y="632" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#f1f3fa">#a3aabe<tspan font-size="12" font-weight="400" fill="#a3aabe">　--c-on-deep-3</tspan></text>
+<text x="535" y="652" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#c7cedf">深海說明字　·　深色頁的圖說、頁碼　7.3:1</text>
+<rect x="467" y="684" width="54" height="54" rx="10" fill="#96b8f5" stroke="none"/>
+<text x="535" y="706" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#f1f3fa">#96b8f5<tspan font-size="12" font-weight="400" fill="#a3aabe">　--c-accent-on-deep</tspan></text>
+<text x="535" y="726" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#c7cedf">深海亮色　·　深色頁的小標、講解框線　8.4:1</text>
+<rect x="467" y="758" width="54" height="54" rx="10" fill="#494a65" stroke="#494a65"/>
+<text x="535" y="780" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#f1f3fa">#494a65<tspan font-size="12" font-weight="400" fill="#a3aabe">　--c-line-on-deep</tspan></text>
+<text x="535" y="800" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#c7cedf">深海框線　·　深色頁的圖片外框</text>
+<rect x="467" y="832" width="54" height="54" rx="10" fill="#767892" stroke="#494a65"/>
+<text x="535" y="854" font-family="SF Mono, Menlo, Consolas, DejaVu Sans Mono, monospace" font-size="14.5" font-weight="600" fill="#f1f3fa">#767892<tspan font-size="12" font-weight="400" fill="#a3aabe">　--c-line-strong-on-deep</tspan></text>
+<text x="535" y="874" font-family="PingFang TC, Noto Sans TC, Noto Sans CJK TC, Microsoft JhengHei, sans-serif" font-size="13" fill="#c7cedf">深海例子框線　·　深色頁的例子框左線　3.9:1</text>
+</svg>

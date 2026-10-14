@@ -1,0 +1,128 @@
+/* 大肥魚視覺語言庫 ｜ 文件排版 CSS
+ * 用法：把這個檔案連進你的 HTML，或用 doc-template.html 當起點。
+ * 顏色、字體、字級在 tokens.css；講解框、表格這些共用元件在 components.css。這裡只管 A4 版式。
+ */
+@import "tokens.css";
+@import "components.css";
+
+/* 共用元件用的別名，接到 A4 的字級與間距 */
+:root {
+  --fs-micro: var(--doc-micro);
+  --fs-label: var(--doc-label);
+  --fs-body: var(--doc-body);
+  --fs-title: var(--doc-title);
+  --bar: var(--doc-bar);
+  --pad-y: var(--sp-4);
+  --pad-x: var(--sp-5);
+  --gap: var(--sp-4);
+  --stack: var(--sp-4);
+  --av: 34px;
+}
+
+@page {
+  size: A4;
+  margin: 13mm 14mm 11mm 14mm;
+}
+
+/* ── 頁首 ───────────────────────────── */
+/* 左邊文件標題、右邊頁碼，下面一條 2px 主色線。每頁自動產生，內容溢到下一頁也會有。
+ * 文件標題寫在 :root 的 --running-title；封面（含 .cover 的那頁）不放頁首。 */
+@page doc {
+  margin-top: 23mm;
+  @top-left {
+    content: var(--running-title);
+    vertical-align: bottom;
+    margin-bottom: 10px;
+    padding-bottom: 4px;
+    border-bottom: var(--rule) solid var(--c-primary);
+    font: 700 var(--doc-label) / 1.4 var(--font-sans);
+    letter-spacing: .04em;
+    color: var(--c-primary);
+  }
+  @top-right {
+    content: counter(page) " / " counter(pages);
+    vertical-align: bottom;
+    margin-bottom: 10px;
+    padding-bottom: 4px;
+    border-bottom: var(--rule) solid var(--c-primary);
+    font: var(--doc-micro) / 1.4 var(--font-sans);
+    color: var(--c-ink-3);
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--doc-body);
+  line-height: var(--doc-leading);
+  color: var(--c-ink);
+  background: var(--c-paper);
+  margin: 0;
+  text-autospace: normal;  /* 中英之間忘了空格時，自動補 1/8 字寬 */
+}
+
+/* 一頁一 section，最後一頁不要多出空白頁 */
+section.page { page: doc; break-after: page; }
+section.page:last-child { break-after: auto; }
+/* 封面，以及自己手寫 .head 的舊文件，不套自動頁首 */
+section.page:has(> .cover), section.page:has(> .head) { page: auto; }
+
+/* 舊版頁首：直接寫在 section 裡的 .head。新文件不用再寫。 */
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: var(--rule) solid var(--c-primary);
+  padding-bottom: var(--sp-2);
+  margin-bottom: 10px;
+}
+.head .t { font-size: var(--doc-label); color: var(--c-primary); font-weight: 700; letter-spacing: .04em; }
+.head .p { font-size: var(--doc-micro); color: var(--c-ink-3); }
+
+/* ── 文字 ───────────────────────────── */
+h2 { font-size: var(--doc-title); margin: 0 0 var(--sp-4); color: var(--c-title); line-height: 1.4; break-after: avoid; }
+* + h2 { margin-top: var(--sp-6); }
+/* 小標跟正文同字級，用粗體和標題色區分，不另外多一階 */
+h3 { font-size: var(--doc-body); margin: var(--sp-5) 0 var(--sp-2); color: var(--c-title); line-height: var(--doc-leading); break-after: avoid; }
+h2 + h3 { margin-top: 0; }
+p { margin: 0 0 var(--sp-3); }
+/* 避免段落最後一行只剩一兩個字；標題換行時兩行等長 */
+p, li { text-wrap: pretty; }
+h2, h3 { text-wrap: balance; }
+ul, ol { margin: 0 0 var(--sp-3); padding-left: 1.3em; }
+li { margin-bottom: var(--sp-2); }
+ul ul, ol ul { margin: var(--sp-2) 0 0; }
+.lede { color: var(--c-ink-2); }
+.note { color: var(--c-ink-2); }
+small { font-size: var(--doc-label); color: var(--c-ink-2); }
+
+/* ── 封面 ───────────────────────────── */
+/* 預設是 58mm 圓形頭像加標題。.band 是另一種：上面一條橫式主視覺、標題靠左。 */
+.cover { text-align: center; margin-top: var(--sp-8); }
+.cover img {
+  width: 58mm;
+  height: 58mm;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--c-accent-soft);
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--c-primary) 16%, transparent);
+}
+.cover h2 { font-size: var(--doc-display); margin: var(--sp-6) 0 var(--sp-3); }
+.cover.band { text-align: left; margin-top: 0; }
+.cover.band img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: var(--radius-s);
+  box-shadow: none;
+}
+.cover.band h2 { margin-top: var(--sp-7); }
+/* CC BY-NC-SA 要求署名，用到素材就別拿掉 */
+.credit { font-size: var(--doc-micro); color: var(--c-ink-3); margin-top: var(--sp-8); line-height: 1.7; }
+
+/* ── 圖 ─────────────────────────────── */
+figure { margin: var(--sp-5) 0 0; text-align: center; break-inside: avoid; }
+figure img { width: 100%; border: 1px solid var(--c-line); border-radius: var(--radius-s); }
+figcaption { font-size: var(--doc-micro); color: var(--c-ink-3); margin-top: var(--sp-1); text-align: right; }

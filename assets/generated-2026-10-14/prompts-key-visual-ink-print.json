@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "generated_date": "2026-10-14",
+  "tool": "image_gen.imagegen",
+  "generation_mode": "built-in image_gen",
+  "asset": "assets/generated-2026-10-14/key-visual/whale-key-visual-ink-print.png",
+  "art_direction": "Limited-color hand-drawn ink print",
+  "source_references": [
+    {
+      "path": "assets/original-design/whale-design.png",
+      "role": "character identity and costume image reference; supplied to initial generation"
+    },
+    {
+      "url": "https://visions.pr-pixiv.net/2026/en/sample/",
+      "role": "official public sample page; research only"
+    },
+    {
+      "url": "https://visions.pr-pixiv.net/2026/assets/img/sample/04.webp",
+      "role": "visually inspected public sample; broad medium observations (tapered ink, hatching, paper grain and flat limited-color areas), not supplied as an image input"
+    }
+  ],
+  "selected_original_output_path": "/Users/mikotomizimo/.codex-personal/generated_images/01a13841-3d69-7b51-8dc1-9cf1885c8b22/exec-1b30b101-2a28-4717-8090-9162ebaca778.png",
+  "operations": [
+    {
+      "kind": "generate",
+      "prompt": "Use case: stylized-concept\nAsset type: finished original horizontal presentation-cover key visual for a whale-girl character library.\nPrimary request: a 16:9 landscape illustration of one adult blue-haired whale-fin girl in her canonical deep-sea-blue and white maid attire, shown half-body from the hips up, placed entirely in the LEFT 50–55% of the composition. The RIGHT 40–45% must remain calm clean pale ivory paper with generous uninterrupted blank space for a title to be added later. Do not generate any title or text.\nInput image 1: character identity and costume reference only. Preserve her blue eyes, very long deep-blue-to-light-blue hair, curled ahoge, navy whale-fin ears with pale scalloped inner edges, white frilled maid headband, small blue side bow, deep navy maid dress, white frilled apron, navy neckline bow centered by one sapphire gem, long sleeves with white ruffled cuffs. Render the character anew in the requested medium; do not copy the reference pose or composition.\nStyle/medium: LIMITED-COLOR HAND-DRAWN INK PRINT, strongly and unmistakably different from a glossy polished anime rendering. Deliberate tapered pen contours, controlled cross-hatching and short engraved hatch marks describing hair and fabric, restrained irregular ink coverage and subtle fibrous print-paper grain. Large flat navy and cool cyan color areas; pale ivory paper acts as the light. The broad medium language comes from observing public illustration-yearbook previews, not copying any individual artist, artwork, scene, character, panel, or layout.\nComposition: her head at the upper-left third, face turned slightly toward the viewer with a quiet proud, soft expression. One hand lightly rests near her sapphire collar, the other relaxed below the waist crop. A fresh asymmetrical flow of broad simplified hair ribbons sweeps down and to the far-left edge; her single forked whale tail curves behind her left shoulder as a clear graphic accent, visibly anatomically separate from the fin ears. Two minimal engraved ocean-wave sweeps at the lower-left blend with the hair motion, limited to the character side. Avoid placing objects, hair, tail, marks, motifs, or texture clusters in the right blank title area.\nPalette: only deep sea navy, clear cool cyan, pale cool blue, and very pale ivory/off-white paper; skin represented mostly by pale paper with subtle cool hatch shading. No warm main colors, no neon, no metallic gradients, no photographic or 3D gloss.\nLight: graphic ink-and-paper tonal structure, no lens effects.\nConstraints: exactly one character, clear pleasant face, canonical recognizable whale-maid silhouette, refined printed illustration finish, no text, lettering, numbers, signature, watermark, logo, border, frame, panel division, collage, mockup, typography, badges, or decorative stars. This is one complete new illustration, not a page from a book. Do not replicate the input's full-body front-facing pose. Landscape 16:9 aspect ratio is essential.",
+      "tool_arguments": {
+        "referenced_image_paths": [
+          "/Users/mikotomizimo/Documents/ChatGPT/whale-girl-visual-language/assets/original-design/whale-design.png"
+        ],
+        "transparent_background": false
+      },
+      "original_output_path": "/Users/mikotomizimo/.codex-personal/generated_images/01a13841-3d69-7b51-8dc1-9cf1885c8b22/exec-9bed3236-d71e-4015-9690-43cc02c8c916.png",
+      "selected": false,
+      "reason": "Initial lower hair and waves encroached too far into the title zone."
+    },
+    {
+      "kind": "edit",
+      "prompt": "Use case: precise-object-edit\nInput image 1: edit target, the original newly created navy-blue whale-maid ink-print key visual.\nMake one targeted composition correction only: the entire illustrated group (character, hair, tail, ocean waves and every ink speck) must occupy ONLY the leftmost 55 percent of the landscape canvas. Recompose and slightly scale down the illustration within that left section while retaining a half-body hips-up crop and a prominent expressive face. The rightmost 45 percent of the image must be uninterrupted, uniform, very pale ivory paper with the same very subtle paper texture; absolutely no ink marks, hair, wave tips, dots, shadows or objects in that right title zone, including its bottom edge.\nPreserve the same character identity, face, blue fin ears, ahoge, frilled white maid headband, sapphire, navy-and-white canonical costume, hand near collar, limited navy/blue/ivory palette, delicate engraved hatching, printed ink and paper appearance, and existing 16:9 landscape aspect ratio. Keep this a single complete illustration. No text, lettering, numbers, logo, signature, border or panel. Do not add any new visual elements.",
+      "tool_arguments": {
+        "referenced_image_paths": [
+          "/Users/mikotomizimo/.codex-personal/generated_images/01a13841-3d69-7b51-8dc1-9cf1885c8b22/exec-9bed3236-d71e-4015-9690-43cc02c8c916.png"
+        ],
+        "transparent_background": false
+      },
+      "original_output_path": "/Users/mikotomizimo/.codex-personal/generated_images/01a13841-3d69-7b51-8dc1-9cf1885c8b22/exec-1b30b101-2a28-4717-8090-9162ebaca778.png",
+      "selected": true
+    }
+  ],
+  "postprocessing": "None. Selected output copied byte-for-byte.",
+  "visual_review": "Inspected final generated image: one recognizable canonical whale-maid, half-body on the left, visible tapered ink and hatch detail, muted limited blue palette and ivory paper, title area at right approximately 40%+ width; no text, panel, border or copied source scene.",
+  "output_metadata": {
+    "format": "PNG",
+    "width": 1672,
+    "height": 941,
+    "aspect_ratio": 1.7768331562167907,
+    "bit_depth": 8,
+    "color_type": 2,
+    "has_alpha": false,
+    "bytes": 2468266,
+    "sha256": "4be240be130cd4f8f346c63a3679fe65bb981ea365b8cc5a4b8d3e6a8164ac5a"
+  },
+  "user_selection": {
+    "date": "2026-10-14",
+    "status": "keep_original",
+    "instruction": "這兩張保留，很好",
+    "selected_asset": "key-visual/whale-key-visual-ink-print.png",
+    "sha256": "4be240be130cd4f8f346c63a3679fe65bb981ea365b8cc5a4b8d3e6a8164ac5a"
+  }
+}

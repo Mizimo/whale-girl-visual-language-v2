@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>簡報標題</title>
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+
+<!-- 封面。這張主視覺在左側留了標題空間，文字疊上去剛好。
+     換成留白在右邊的主視覺（ink-print、casual）時加 class="right"；
+     背景太花的（cinematic）加 class="scrim"。 -->
+<section class="slide cover">
+  <img class="bg" src="../assets/generated-2026-10-14/key-visual/whale-key-visual-16x9.png" alt="">
+  <div class="overlay">
+    <h1>簡報標題</h1>
+    <p class="sub">副標題，一行就夠</p>
+    <p class="credit">角色插圖：phoiex/AAAAGENT original-design<br>CC BY-NC-SA 4.0 ｜ 僅供非商業使用</p>
+  </div>
+</section>
+
+<!-- 章節頁：換章節時插一頁，預設深色。要淺色就加 class="light"。 -->
+<section class="slide section">
+  <div class="num">01</div>
+  <h2>章節名稱</h2>
+  <p class="lede">一句話說這一章要講什麼</p>
+</section>
+
+<!-- 條列。頁碼留空會自動填。 -->
+<section class="slide">
+  <div class="kicker">章節名稱</div>
+  <h2>這一頁要講什麼</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <ul>
+      <li><b>重點一</b>　一行講完，不要塞第二句。</li>
+      <li><b>重點二</b>　一頁最多四條，超過就拆頁。</li>
+      <li><b>重點三</b>　術語保留原文。</li>
+    </ul>
+  </div>
+  <div class="pageno"></div>
+</section>
+
+<!-- 左文右圖 -->
+<section class="slide">
+  <div class="kicker">章節名稱</div>
+  <h2>配圖的頁面</h2>
+  <div class="rule"></div>
+  <div class="body two-col">
+    <div class="txt">
+      <p>文字佔 52%，圖佔剩下的。圖一定要跟文字同一個色系。</p>
+      <p class="muted">圖說放在圖的下方，用說明文字的顏色。</p>
+    </div>
+    <div class="pic">
+      <img src="../assets/generated-2026-10-14/thumbnails/key-visual/whale-key-visual-editorial.webp" alt="">
+    </div>
+  </div>
+  <div class="pageno"></div>
+</section>
+
+<!-- 鯨魚娘出場：講解框加 tip／warn／mix／fact／review 換種類，頭像和標籤會自動跟著換 -->
+<section class="slide">
+  <div class="kicker">章節名稱</div>
+  <h2>要插話的時候</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <p>講解框放在內容後面，一頁最多一個。</p>
+    <div class="whale tip">
+      <span class="av"></span>
+      <div class="txt">
+        <span class="who"></span>
+        這個框是給補充說明用的。話不要太長，超過三行就該拆頁了。
+      </div>
+    </div>
+  </div>
+  <div class="pageno"></div>
+</section>
+
+</body>
+</html>

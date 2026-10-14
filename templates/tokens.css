@@ -1,0 +1,124 @@
+/* 大肥魚視覺語言庫 ｜ 設計 token
+ * doc.css 和 deck.css 的顏色、字體、字級都從這裡讀。
+ * 改完執行 python3 tools/tokens.py，docs/palette.svg、README 和範例裡的色表、字級表會跟著更新。
+ *
+ * 色票是從基準設定圖 assets/original-design/whale-design.png 量出來的：
+ * 深色跟著洋裝和髮根的靛藍（OKLCH 色相約 282°），越亮越往髮尾、眼睛的天藍偏（約 258–266°）。
+ * 想重新量就跑 python3 tools/tokens.py sample。
+ */
+
+/* ── 字體 ───────────────────────────── */
+/* Noto Sans TC：先讀 fonts/ 的靜態字重（python3 tools/fetch_fonts.py 產生），沒有再找系統裝好的。 */
+@font-face {
+  font-family: "WG Sans";
+  font-weight: 400;
+  src: url("../fonts/NotoSansTC-Regular.ttf") format("truetype"),
+       local("NotoSansTC-Regular"), local("NotoSansCJKtc-Regular");
+}
+@font-face {
+  font-family: "WG Sans";
+  font-weight: 700;
+  src: url("../fonts/NotoSansTC-Bold.ttf") format("truetype"),
+       local("NotoSansTC-Bold"), local("NotoSansCJKtc-Bold");
+}
+/* ♭ ♮ ♯：Noto 本身就有。只有退到 PingFang 這類沒有的字體時，才改用各平台的符號字體，
+ * 不然 ♮ 會被系統隨便換一個字形。 */
+@font-face {
+  font-family: "WG Accidentals";
+  src: local("AppleSymbols"), local("Apple Symbols"), local("SegoeUISymbol"), local("Segoe UI Symbol"),
+       local("DejaVuSans"), local("DejaVu Sans");
+  unicode-range: U+266D-266F;
+}
+/* 日文漢字（楽、徴、続、録、徳…）不在 Noto Sans TC 裡，少了這段會掉到系統的 PingFang，
+ * 被 Chrome 嵌成 Type 3。Noto Sans JP 一樣做成 TrueType 靜態字重接在後面。 */
+@font-face {
+  font-family: "WG Sans JP";
+  font-weight: 400;
+  src: url("../fonts/NotoSansJP-Regular.ttf") format("truetype"),
+       local("NotoSansJP-Regular");
+}
+@font-face {
+  font-family: "WG Sans JP";
+  font-weight: 700;
+  src: url("../fonts/NotoSansJP-Bold.ttf") format("truetype"),
+       local("NotoSansJP-Bold");
+}
+
+:root {
+  /* ── 顏色 ─────────────────────────── */
+  /* 註解格式：名稱｜用途｜種類。種類 text＝拿來寫字（對白底至少 4.5:1）、
+   * line＝有意義的線（至少 3:1）、fill＝底色、deco＝純裝飾。tools/tokens.py 會檢查。 */
+  --c-title:       #313157; /* 深海藍｜頁標題、程式碼字｜text */
+  --c-primary:     #5a64a3; /* 主色｜頁首線、講解框標籤、簡報小標｜text */
+  --c-accent:      #6a89d5; /* 亮色｜講解框左線，取自眼睛｜line */
+  --c-accent-soft: #bfd3ef; /* 淺色｜封面圓框，取自髮尾｜deco */
+  --c-tint:        #f0f4ff; /* 講解框底｜講解框｜fill */
+  --c-tint-2:      #f8f9fc; /* 例子框底｜例子框｜fill */
+  --c-code-bg:     #f0f1f7; /* 程式碼底｜行內程式碼、和弦記號｜fill */
+  --c-line:        #e6e7ef; /* 框線｜圖片外框｜deco */
+  --c-line-strong: #898a9e; /* 例子框線｜例子框左線｜line */
+  --c-ink:         #1a1a1a; /* 正文｜內文、條列｜text */
+  --c-ink-2:       #515365; /* 次要文字｜導言、補充說明｜text */
+  --c-ink-3:       #6f7181; /* 說明文字｜圖說、署名、頁碼｜text */
+  --c-paper:       #ffffff; /* 紙｜頁面底色｜fill */
+
+  /* 深海：深色頁（簡報章節頁、整份深色簡報、VS Code 深色預覽）。
+   * 用 .deep 包起來，裡面的元件會自動換成這一組，見 doc.css／deck.css 的 .deep。
+   * 種類後面的 @deep 表示對比要對 --c-deep 算。 */
+  --c-deep:           #1c1a34; /* 深海｜深色頁底色｜fill */
+  --c-deep-2:         #2a2a47; /* 深海浮層｜深色頁的框底、程式碼底｜fill */
+  --c-on-deep:        #f1f3fa; /* 深海字｜深色頁的標題、正文｜text@deep */
+  --c-on-deep-2:      #c7cedf; /* 深海次要字｜深色頁的導言、補充｜text@deep */
+  --c-on-deep-3:      #a3aabe; /* 深海說明字｜深色頁的圖說、頁碼｜text@deep */
+  --c-accent-on-deep: #96b8f5; /* 深海亮色｜深色頁的小標、講解框線｜text@deep */
+  --c-line-on-deep:   #494a65; /* 深海框線｜深色頁的圖片外框｜deco */
+  --c-line-strong-on-deep: #767892; /* 深海例子框線｜深色頁的例子框左線｜line@deep */
+
+  /* ── 間距、圓角、線 ───────────────── */
+  /* 間距只用這幾階。A4 多用 2–5，簡報多用 4–8。 */
+  --sp-1: 2px;
+  --sp-2: 4px;
+  --sp-3: 6px;
+  --sp-4: 8px;
+  --sp-5: 12px;
+  --sp-6: 16px;
+  --sp-7: 24px;
+  --sp-8: 32px;
+  --sp-9: 48px;
+  --radius-s: 3px;   /* 程式碼、圖片、小方塊 */
+  --radius-m: 6px;   /* 簡報的圖片、半透明底 */
+  --rule: 2px;       /* 頁首線、表頭線、重點框上緣 */
+  --doc-bar: 3px;    /* A4 框的左線 */
+  --deck-bar: 4px;   /* 簡報框的左線、標題短線 */
+
+  /* ── 字體 ─────────────────────────── */
+  --font-sans: "WG Sans", "WG Sans JP", "WG Accidentals", "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC", sans-serif;
+  --font-mono: "SF Mono", "Andale Mono", Menlo, Consolas, "DejaVu Sans Mono", "WG Sans", "WG Sans JP", "WG Accidentals", monospace;
+
+  /* ── A4 文件字級：固定五階，不要在中間再插一階 ── */
+  --doc-micro:   8pt;    /* 頁碼、圖說、署名 */
+  --doc-label:   9.5pt;  /* 頁首標題、講解框標籤 */
+  --doc-body:    11pt;   /* 正文、講解框、小標 */
+  --doc-title:   14.5pt; /* 頁標題 */
+  --doc-display: 19pt;   /* 封面標題 */
+  --doc-leading: 1.7;
+
+  /* ── 16:9 簡報字級：固定六階 ── */
+  --deck-micro:   10pt;  /* 頁碼、圖說、署名 */
+  --deck-label:   13pt;  /* 章節名、講解框標籤 */
+  --deck-body:    20pt;  /* 正文、條列、講解框 */
+  --deck-lede:    24pt;  /* 導言、副標、小標 */
+  --deck-title:   32pt;  /* 頁標題 */
+  --deck-display: 40pt;  /* 封面標題、收尾頁標題 */
+  --deck-leading: 1.6;
+
+  /* A4 頁首左邊的文件標題。每份文件在自己的 <style> 裡寫 :root { --running-title: "…"; } */
+  --running-title: "";
+
+  /* 鍵盤圖固定用鋼琴的黑白，放在深色頁上也不反轉（在 :root 算好值再往下繼承） */
+  --key-white: var(--c-paper);
+  --key-black: var(--c-title);
+  --key-edge: var(--c-ink-2);
+  --key-on: var(--c-primary);
+  --key-on-black: var(--c-accent-soft);
+}

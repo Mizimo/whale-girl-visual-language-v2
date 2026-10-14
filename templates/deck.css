@@ -1,0 +1,203 @@
+/* 大肥魚視覺語言庫 ｜ 16:9 簡報 CSS
+ * 用法：把這個檔案連進你的 HTML，或用 deck-template.html 當起點。
+ * 一頁一個 section.slide。顏色、字體、字級在 tokens.css；講解框、表格這些共用元件在 components.css。
+ */
+@import "tokens.css";
+@import "components.css";
+
+/* 共用元件用的別名，接到簡報的字級與間距 */
+:root {
+  --fs-micro: var(--deck-micro);
+  --fs-label: var(--deck-label);
+  --fs-body: var(--deck-body);
+  --fs-title: var(--deck-title);
+  --bar: var(--deck-bar);
+  --pad-y: var(--sp-6);
+  --pad-x: var(--sp-7);
+  --gap: var(--sp-6);
+  --stack: var(--sp-6);
+  --av: 56px;
+}
+
+/* 1280 × 720 px，剛好 16:9 */
+@page {
+  size: 338.67mm 190.5mm;
+  margin: 0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--c-ink);
+  margin: 0;
+  counter-reset: slide;
+  text-autospace: normal;  /* 中英之間忘了空格時，自動補 1/8 字寬 */
+}
+
+/* 高度用 min-height：內容塞不下時這頁會長出第二頁，build_pdf.py 會擋下來，
+ * 不會像以前一樣被默默裁掉。 */
+section.slide {
+  width: 1280px;
+  min-height: 720px;
+  position: relative;
+  padding: 72px 88px 76px;
+  display: flex;
+  flex-direction: column;
+  break-after: page;
+  background: var(--c-paper);
+  color: var(--c-ink);
+  counter-increment: slide;
+}
+section.slide:last-child { break-after: auto; }
+
+/* ── 頁首與標題 ─────────────────────── */
+.kicker {
+  font-size: var(--deck-label);
+  color: var(--c-primary);
+  font-weight: 700;
+  letter-spacing: .1em;
+  margin-bottom: 10px;
+}
+h2 {
+  font-size: var(--deck-title);
+  color: var(--c-title);
+  margin: 0 0 22px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+h2 .thin { color: var(--c-ink-3); font-weight: 400; }
+h3 { font-size: var(--deck-lede); color: var(--c-primary); margin: 0 0 var(--sp-4); line-height: 1.35; }
+
+/* 標題下面那條短線，跟 A4 版式的頁首同一條 */
+.rule {
+  width: 72px;
+  height: var(--deck-bar);
+  background: var(--c-primary);
+  border-radius: 2px;
+  margin-bottom: 26px;
+}
+
+/* ── 文字 ───────────────────────────── */
+p { font-size: var(--deck-body); line-height: var(--deck-leading); margin: 0 0 14px; }
+ul, ol { font-size: var(--deck-body); line-height: var(--deck-leading); margin: 0; padding-left: 1.1em; }
+li { margin-bottom: 14px; }
+li b { color: var(--c-title); }
+/* 避免段落最後一行只剩一兩個字；標題換行時兩行等長 */
+p, li { text-wrap: pretty; }
+h1, h2, h3 { text-wrap: balance; }
+.lede { font-size: var(--deck-lede); color: var(--c-ink-2); }
+.muted { color: var(--c-ink-3); }
+
+/* 共用元件在簡報上用正文字級 */
+.whale, .ex, .summary, table, .degrees, .keys, .terms, .quiz, .cols { font-size: var(--deck-body); line-height: var(--deck-leading); }
+
+/* ── 排版組合 ───────────────────────── */
+.body { flex: 1 1 auto; min-height: 0; }
+.two-col { display: flex; gap: var(--sp-9); align-items: center; }
+.two-col > .txt { flex: 0 0 52%; }
+.two-col > .pic { flex: 1 1 auto; min-width: 0; }
+.two-col img { display: block; width: 100%; border-radius: var(--radius-m); }
+.center { justify-content: center; text-align: center; }
+.center h2 { font-size: var(--deck-display); }
+.center p { font-size: var(--deck-lede); }
+
+/* 滿版的圖片頁：圖用絕對定位填滿剩下的空間，不會把頁面撐高 */
+figure.full { margin: 0; flex: 1 1 auto; min-height: 0; position: relative; }
+figure.full img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+figcaption { font-size: var(--deck-micro); color: var(--c-ink-3); margin-top: 10px; }
+
+/* ── 章節頁 ─────────────────────────── */
+/* 換章節時插一頁，預設深色（深海那組 token，見 components.css 的 .deep），讓整份簡報有段落感。
+ * 要淺色就再加 .light。
+ * <section class="slide section"><div class="num">02</div><h2>章名</h2><p class="lede">一句話</p></section> */
+.slide.section { justify-content: center; }
+.slide.section .num {
+  font-size: var(--deck-display);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .04em;
+  color: var(--c-accent);
+  font-variant-numeric: tabular-nums;
+  padding-bottom: var(--sp-6);
+  margin-bottom: var(--sp-7);
+  border-bottom: var(--deck-bar) solid var(--c-accent);
+  align-self: flex-start;
+}
+.slide.section h2 { font-size: var(--deck-display); margin-bottom: var(--sp-5); }
+.slide.section .lede { margin: 0; }
+/* 右下角的尾巴：只在章節頁出現的小記號 */
+.slide.section::after {
+  content: "";
+  position: absolute;
+  right: 88px;
+  bottom: 64px;
+  width: 96px;
+  height: 96px;
+  background: center / contain no-repeat url("../assets/generated-2026-10-14/icons/on-dark/whale-tail.png");
+}
+.slide.section.light::after { background-image: url("../assets/generated-2026-10-14/icons/whale-tail.png"); }
+
+/* ── 引言頁 ─────────────────────────── */
+/* 一句話撐一整頁，左邊一條亮色線，出處放下面。
+ * <section class="slide quote"><blockquote>引文</blockquote><p class="cite">出處</p></section> */
+.slide.quote { justify-content: center; }
+.slide.quote blockquote {
+  margin: 0;
+  max-width: 88%;
+  padding-left: var(--sp-7);
+  border-left: var(--deck-bar) solid var(--c-accent);
+  font-size: var(--deck-title);
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--c-title);
+}
+.slide.quote .cite {
+  margin: var(--sp-6) 0 0 calc(var(--sp-7) + var(--deck-bar));
+  font-size: var(--deck-lede);
+  color: var(--c-ink-3);
+}
+
+/* ── 封面 ───────────────────────────── */
+/* 標題放在主視覺留白的那一側。預設在左；留白在右的圖加 .right，
+ * 背景太花、沒有乾淨留白的圖加 .scrim。每張主視覺該用哪個，見 README 的「選圖」。 */
+.slide.cover { padding: 0; }
+.slide.cover .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.slide.cover .overlay {
+  position: absolute;
+  left: 88px;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 46%;
+}
+.slide.cover.right .overlay { left: auto; right: 88px; }
+.slide.cover.scrim .overlay {
+  background: color-mix(in srgb, var(--c-paper) 88%, transparent);
+  padding: 30px 36px 26px;
+  border-radius: var(--radius-m);
+}
+.slide.cover h1 {
+  font-size: var(--deck-display);
+  color: var(--c-title);
+  margin: 0 0 var(--sp-6);
+  line-height: 1.25;
+  font-weight: 700;
+}
+.slide.cover .sub { font-size: var(--deck-lede); color: var(--c-ink-2); margin: 0 0 18px; }
+.slide.cover .credit { font-size: var(--deck-micro); color: var(--c-ink-3); line-height: 1.6; margin: 0; }
+
+/* 深底封面（疊在暗部時用） */
+.slide.cover.dark h1, .slide.cover.dark .sub { color: var(--c-on-deep); }
+.slide.cover.dark .credit { color: var(--c-on-deep-2); }
+.slide.cover.dark .overlay { text-shadow: 0 2px 12px color-mix(in srgb, var(--c-deep) 60%, transparent); }
+
+/* ── 頁碼 ───────────────────────────── */
+/* 留空的 <div class="pageno"></div> 會自動填頁碼（封面算第 1 頁） */
+.pageno {
+  position: absolute;
+  right: 88px;
+  bottom: 34px;
+  font-size: var(--deck-micro);
+  color: var(--c-ink-3);
+}
+.pageno:empty::after { content: counter(slide); }

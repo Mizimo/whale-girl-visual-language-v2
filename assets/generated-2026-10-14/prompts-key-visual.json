@@ -1,0 +1,49 @@
+{
+  "generation_date": "2026-10-14",
+  "tool": "Built-in image_gen.imagegen",
+  "mode": "generate with image references",
+  "research_sources": [
+    "https://github.com/Mizimo/whale-girl-visual-language/blob/main/docs/ART-REQUEST.md",
+    "https://github.com/Mizimo/whale-girl-visual-language/blob/main/docs/CHARACTER.md",
+    "https://github.com/Neko3000/deepseek-whalechan/blob/main/skills/whalechan-image-character/references/character-spec.md",
+    "https://github.com/Neko3000/deepseek-whalechan/blob/main/skills/whalechan-image-character/references/form-profiles.md",
+    "https://treapgogo.github.io/deepseek-whale-girl/"
+  ],
+  "reference_images": [
+    {
+      "path": "assets/original-design/whale-design.png",
+      "role": "Existing character identity/costume reference from target repository; original provenance remains documented by the repository"
+    },
+    {
+      "path": "assets/generated-2026-10-14/expressions/whale-happy.png",
+      "generation_path": "/Users/mikotomizimo/.codex-personal/generated_images/01a1383d-a219-7a80-8b75-5c7e1c30f0aa/exec-bb162ae1-67c5-47ec-b18b-516ae940c63e.png",
+      "role": "Newly generated expression reference from this task; face and illustration finish"
+    }
+  ],
+  "external_reference_images_used_in_generation": false,
+  "assets": [
+    {
+      "file": "key-visual/whale-key-visual-16x9.png",
+      "generated_original": "/Users/mikotomizimo/.codex-personal/generated_images/01a1383e-82b8-7810-862e-b724bca52707/exec-826319b8-8311-4dcc-8a26-ea5fc6ac7127.png",
+      "requested_aspect_ratio": "16:9",
+      "actual_dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "note": "Native image generator output is approximately 16:9 (1672/941); copied without resizing or cropping. Broad upper-left half remains blank for a title; character is on the right.",
+      "prompt": "Use case: illustration-story\nAsset type: presentation cover key visual, landscape 16:9. Generate one finished image at 2048×1152 or another exact 16:9 canvas.\nPrimary request: a polished half-body illustration of 大肥魚 / DeepSeek Whale-chan on the RIGHT side of the frame, leaving the entire LEFT 50 percent as clean usable blank title space.\nInput images: Image 1 is the existing project's whale-design.png and is the authority for character identity, costume, hair and rendering. Image 2 is this asset set's happy expression and anchors the exact face, eye construction and illustration finish. These are reference images, not layouts to reproduce.\nScene/backdrop: minimalist luminous icy-white and very pale blue background, extremely restrained thin ocean-blue flowing water curves and a few tiny bubbles only near the far right and bottom edge. Keep the left half quiet and near-white, with no text or decorative focal objects.\nSubject: one friendly confident adult-proportioned anime whale maid, framed from above her complete ahoge to around her hips, located within the rightmost 48 percent. Match the references' soft oval face, expressive bright blue eyes, softly smiling small mouth, dense flowing long deep-ocean-blue hair fading to light ocean-blue curled ends, side-swept bangs, one forward-curving ahoge, white frilled maid headpiece, the small blue bow, paired lateral dark navy whale-fin ears with pale scalloped underside. Keep the visible identity consistent with Image 2.\nCostume: the reference navy and white ornate maid dress, white ruffled collar and shoulder ruffles, white pleated bodice with dark buttons, dark navy neck bow centered with a blue gem and restrained gold trim, navy sleeves with pale frilled cuffs and small gold embroidery, fitted navy waist and white apron. A single smooth navy whale tail may curve behind her on the far right; do not let it invade the blank title area.\nPose: gentle welcoming posture, torso very slightly turned toward the blank space, her face looking toward viewer, one relaxed open hand near waist height presenting the title space. Natural correct fingers and two arms. Cropped half-body, not full length.\nStyle/medium: high quality finished 2D anime illustration matching the references, crisp fine navy outlines, controlled soft cel shading, clean layered fabric, restrained specular hair highlights. Mature elegant gentle character identity, not a child.\nComposition/framing: EXACT 16:9 horizontal cover. Left x=0–50% is blank usable space. Entire ahoge and headpiece fit inside canvas with margin. Character and her hair remain predominantly in x=55–96%; head high in the right side, waist near lower edge. No panels or border.\nText: none.\nConstraints: do not add title, caption, signature, watermark, interface, logos, symbols that read as letters, extra characters, mermaid body, cat ears, horns, extra tails, extra arms, or extra fingers. Preserve cool ocean-blue and white palette with only small muted-gold details. No warm dominant colors.",
+      "transparent_background": false
+    },
+    {
+      "file": "line-art/whale-line-art.png",
+      "generated_original": "/Users/mikotomizimo/.codex-personal/generated_images/01a1383e-82b8-7810-862e-b724bca52707/exec-fe063cb9-b545-4259-b7fb-53dadfeb5177.png",
+      "actual_dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "note": "Navy outline character on white; no broad color-filled or shaded regions. Minor thick eyelash strokes remain part of line rendering. Copied without postprocessing.",
+      "prompt": "Use case: stylized-concept\nAsset type: monochrome character line-art watermark asset.\nPrimary request: create one clean single-ink NAVY OUTLINE DRAWING of the same DeepSeek Whale-chan / 大肥魚 shown in the two image references, on pure white. This is a refined outline drawing for a slide watermark, not a colored illustration.\nInput images: Image 1 whale-design.png is identity and costume authority. Image 2 is this asset batch's happy-expression face authority. Preserve the adult character identity, recognizable face and hair while simplifying into line art. Do not copy colors or shaded rendering from the inputs.\nSubject: centered elegant half-body whale maid from complete ahoge to apron at hips, gentle closed-mouth smile, forward-facing soft oval face, large expressive eyes, long flowing curled hair, side bangs, one forward-curving ahoge, white frilled headpiece with small bow, two lateral whale-fin ears with scalloped inner edge. A single naturally attached whale tail curves behind her to the right, with two broad tail flukes visible. Two relaxed hands lightly meet in front of the apron at waist height with correct natural anatomy.\nCostume: recognizable reference maid dress structure, ruffled collar, neck bow with blue-gem shape outlined only, shoulder ruffles, pleated front and buttons, long puffed sleeves with frilled cuffs, fitted waist, white apron, a small whale outline emblem. Reduce decorative density thoughtfully so the image remains legible as a small watermark.\nStyle/medium: exceptionally clean professional line art, elegant closed contours, gently varied but mostly consistent thin line weight, vector-like clarity. Draw every mark in ONE dark navy ink approximately #1a365d. Everything between lines is white, including hair, pupils, costume, bow, gem and tail.\nComposition/framing: square canvas, centered single character, whole head, ahoge, tail and hands entirely visible, generous whitespace around silhouette, half-body to hips. No frame, no other objects or characters.\nMANDATORY: outline strokes ONLY. NO solid navy areas, NO hair fill, NO filled pupils, NO filled eyelashes or bow, NO gray shading, NO halftone, NO crosshatching, NO gradients, NO shadows, NO colored fills. White canvas and single navy line strokes only; antialiasing of the lines is acceptable.\nText: none. No title, lettering, signature, watermark text, logo, badge, labels or graphic border.\nPreserve whale-fin ears rather than animal cat ears; retain the reference's face structure, hair silhouette and original costume details as readable outline simplifications. Correct anatomy, one tail, two arms.",
+      "transparent_background": false
+    }
+  ]
+}

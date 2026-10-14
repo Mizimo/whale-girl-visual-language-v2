@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-14",
+  "tool": "image_gen.imagegen (built-in)",
+  "art_direction": "低彩度時裝編輯插畫",
+  "output_file": "assets/generated-2026-10-14/key-visual/whale-key-visual-editorial.png",
+  "prompt": "Use case: stylized-concept.\nAsset type: 16:9 horizontal half-body character key visual for a slide or illustrated book cover.\nInput image 1 is the CHARACTER IDENTITY AND COSTUME reference only. Preserve the blue-haired whale girl, her face identity, whale-fin ears, forward ahoge, white maid headdress, side blue bow, navy-and-white maid dress, white apron, navy collar bow with sapphire jewel and single whale tail.\nInput image 2 is a public annual-book SAMPLE PAGE used only to study broad EDITORIAL ILLUSTRATION qualities: restrained gray-blue/lavender/cream palette, delicate tapered contours, flat geometric framing, sweeping hair shapes, soft powdery color and generous layout space. Do not copy any depicted character, costume, pose, flower arrangement, page layout, text or artist's distinct artwork.\nPrimary request: a fresh, sophisticated low-saturation fashion-editorial illustration of the whale girl. Half-body three-quarter portrait on the RIGHT side, turned slightly toward the viewer, quietly confident gentle expression. One hand loosely brushes a lock of hair near her shoulder, other hand naturally resting just outside lower crop. Her abundant gradient blue hair flows diagonally down toward the center, arranged into broad elegant ribbons with a few fine strands. Her fins, ahoge and headdress remain entirely visible. Tail fluke subtly visible beside her at far right, not dominant.\nArt direction: very fine graphite-blue linework, graceful natural anatomical proportions; flat restrained lilac-gray shadows with powder-blue accents, cool cream skin, nearly-white apron, low-saturation navy dress; sophisticated 2D editorial anime aesthetic, subtle matte printed-paper grain. Quiet expressive eyes, delicate features and minimal cheek color. No glossy plastic highlights, no heavy cel outlines, no chibi proportions. Flatten detail into carefully chosen shapes; this image should feel like an airy art-book illustration.\nComposition: wide 16:9 canvas. Left 43% is uninterrupted cool ivory/pale blue negative space for a future headline, with only a subtle pale-blue rectangular framing field partly behind the figure. Character and all high-detail content on right. Restrained thin overlapping geometric shapes may sit behind the right-side portrait, no text. Palette is dusty blue, muted periwinkle, sea navy and cool ivory; a tiny muted gold jewel rim is allowed.\nNo typography, no captions, no lettering, no logos, no signature, no watermark, no duplicated characters, no book mockup, no multipanel or sample-page layout. A single finished original illustration with useful title space.",
+  "transparent_background": false,
+  "reference_images": [
+    {
+      "tool_input_path": "/Users/mikotomizimo/Documents/ChatGPT/whale-girl-visual-language/assets/original-design/whale-design.png",
+      "role": "Character identity and costume only",
+      "source": "assets/original-design/whale-design.png"
+    },
+    {
+      "tool_input_path": "/Users/mikotomizimo/Documents/ChatGPT/whale-art-references/visions-2027/06.webp",
+      "role": "Broad editorial illustration medium, fine contours, subdued palette and generous layout space; not character, costume, composition or typography copying",
+      "source_page": "https://visions.pr-pixiv.net/2026/en/sample/",
+      "source_image_url": "https://visions.pr-pixiv.net/2026/assets/img/sample/06.webp",
+      "downloaded_from": "https://visions.pr-pixiv.net/2027/assets/img/sample/06.webp",
+      "source_verification": "2026 and 2027 sample URLs served byte-identical image; printed sample footer identifies VISIONS2026."
+    }
+  ],
+  "postprocessing": "None; generated PNG copied byte-for-byte.",
+  "original_generation_file": "/Users/mikotomizimo/.codex-personal/generated_images/01a1383d-a219-7a80-8b75-5c7e1c30f0aa/exec-18c8c994-b138-49de-91e0-a99268a92c8c.png",
+  "inspection": "Single recognizable whale-girl half-body on right, broad left title space, fine matte blue-gray treatment, no lettering.",
+  "user_selection": {
+    "date": "2026-10-14",
+    "status": "keep_original",
+    "instruction": "這兩張保留，很好",
+    "selected_asset": "key-visual/whale-key-visual-editorial.png",
+    "sha256": "c03099a974dd7b9154fc993bdced73044b2f6b1ad898b5dc8ec55dcccefa3066"
+  },
+  "output_metadata": {
+    "file": "key-visual/whale-key-visual-editorial.png",
+    "label": "低彩度時裝編輯插畫",
+    "width": 1672,
+    "height": 941,
+    "mode": "RGB",
+    "has_transparency": false,
+    "alpha_range": [
+      255,
+      255
+    ],
+    "bytes": 2322618,
+    "sha256": "c03099a974dd7b9154fc993bdced73044b2f6b1ad898b5dc8ec55dcccefa3066",
+    "user_selection": "Keep original; selected by user on 2026-10-14."
+  }
+}

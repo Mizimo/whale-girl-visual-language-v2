@@ -1,0 +1,322 @@
+/* 大肥魚視覺語言庫 ｜ 共用元件
+ * doc.css（A4）和 deck.css（16:9）都會引用這個檔案，不用自己連。
+ * 這裡不寫死字級和間距，只用下面這組別名；兩份版式各自在 :root 把別名接到自己的字級：
+ *   --fs-micro --fs-label --fs-body --fs-title   字級
+ *   --bar      框的左線粗細
+ *   --pad-y --pad-x                              框的內距
+ *   --gap      頭像與文字、格子之間的距離
+ *   --stack    區塊上下的間距
+ *   --av       講解框頭像的直徑
+ * 每個元件的用法、什麼時候用，見 docs/COMPONENTS.md。
+ */
+
+html { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+
+/* ── 深海：深色頁 ─────────────────────── */
+/* 把一組淺色 token 換成深色那組，裡面的元件不用改寫就會跟著變。
+ * 簡報章節頁預設就是深色（見 deck.css）；其他地方加 class="deep"。 */
+.deep, .slide.section:not(.light) {
+  --c-paper: var(--c-deep);
+  --c-title: var(--c-on-deep);
+  --c-ink: var(--c-on-deep);
+  --c-ink-2: var(--c-on-deep-2);
+  --c-ink-3: var(--c-on-deep-3);
+  --c-primary: var(--c-accent-on-deep);
+  --c-accent: var(--c-accent-on-deep);
+  --c-accent-soft: var(--c-line-strong-on-deep);
+  --c-tint: var(--c-deep-2);
+  --c-tint-2: var(--c-deep-2);
+  --c-code-bg: var(--c-deep-2);
+  --c-line: var(--c-line-on-deep);
+  --c-line-strong: var(--c-line-strong-on-deep);
+  background: var(--c-paper);
+  color: var(--c-ink);
+}
+
+/* ── 行內 ───────────────────────────── */
+/* 和弦記號、程式碼。降記號一律寫 ♭（U+266D），不要用小寫 b。 */
+code {
+  font-family: var(--font-mono);
+  font-size: .9em;
+  background: var(--c-code-bg);
+  padding: .08em .4em;
+  border-radius: var(--radius-s);
+  color: var(--c-title);
+  white-space: nowrap;  /* 和弦記號、檔名不要被拆到兩行 */
+}
+a { color: var(--c-primary); text-decoration-thickness: 1px; text-underline-offset: .2em; }
+li::marker { color: var(--c-primary); }
+ol > li::marker { font-weight: 700; }
+
+/* ── 例子框（譜例、指令、引文）───────── */
+/* 中性灰線、沒有頭像。印成黑白也要看得出邊界，所以線至少 3:1。 */
+.ex {
+  background: var(--c-tint-2);
+  border-left: var(--bar) solid var(--c-line-strong);
+  padding: calc(var(--pad-y) * .75) var(--pad-x);
+  margin: var(--stack) 0;
+  break-inside: avoid;
+}
+
+/* ── 講解框（鯨魚娘出場的地方）───────── */
+/* 亮色線＋頭像＋標籤。一頁最多一個，超過三行就拆頁。
+ * 種類用表情和標籤區分，不換顏色：
+ *   （不加）講解　認真　　.tip 訣竅　開心　　.warn 警告　生氣
+ *   .mix 易混　　苦惱　　.fact 冷知識　驚訝　　.review 複習　想睡
+ * 頭像寫成 <span class="av"></span> 就會照種類自動換；要用別張圖就寫 <img class="av" src="…">。
+ * 標籤 <span class="who"></span> 留空會填預設文字，寫了字就用你寫的。 */
+.whale {
+  background: var(--c-tint);
+  border-left: var(--bar) solid var(--c-accent);
+  padding: var(--pad-y) var(--pad-x);
+  margin: var(--stack) 0;
+  display: flex;
+  gap: var(--gap);
+  align-items: flex-start;
+  break-inside: avoid;
+}
+.whale .av {
+  width: var(--av);
+  height: var(--av);
+  border-radius: 50%;
+  object-fit: cover;
+  flex: 0 0 auto;
+  margin-top: .15em;
+}
+.whale .av:not(img) { background: center / cover no-repeat url("../assets/generated-2026-10-14/avatars/whale-serious.png"); }
+.whale.tip .av:not(img) { background-image: url("../assets/generated-2026-10-14/avatars/whale-happy.png"); }
+.whale.warn .av:not(img) { background-image: url("../assets/generated-2026-10-14/avatars/whale-angry.png"); }
+.whale.mix .av:not(img) { background-image: url("../assets/generated-2026-10-14/avatars/whale-troubled.png"); }
+.whale.fact .av:not(img) { background-image: url("../assets/generated-2026-10-14/avatars/whale-surprised.png"); }
+.whale.review .av:not(img) { background-image: url("../assets/generated-2026-10-14/avatars/whale-sleepy.png"); }
+.whale .txt { flex: 1 1 auto; min-width: 0; }
+.whale .who {
+  display: block;
+  color: var(--c-primary);
+  font-weight: 700;
+  font-size: var(--fs-label);
+  margin-bottom: var(--sp-1);
+}
+.whale .who:empty::before { content: "本小姐的講解"; }
+.whale.tip .who:empty::before { content: "本小姐的訣竅"; }
+.whale.warn .who:empty::before { content: "本小姐的警告"; }
+.whale.mix .who:empty::before { content: "容易搞混的地方"; }
+.whale.fact .who:empty::before { content: "本小姐的冷知識"; }
+.whale.review .who:empty::before { content: "快速複習"; }
+
+/* ── 重點框（這一頁要帶走的東西）────── */
+/* 上緣一條主色線、沒有底色，跟左線的兩種框一眼就分得開。標籤預設「本頁重點」，
+ * 要換就寫 data-label="…"。放在頁面最後。 */
+.summary {
+  border-top: var(--rule) solid var(--c-primary);
+  border-bottom: 1px solid var(--c-line);
+  padding: calc(var(--pad-y) * .75) 0 calc(var(--pad-y) * .5);
+  margin: calc(var(--stack) * 1.5) 0 var(--stack);
+  break-inside: avoid;
+}
+.summary::before {
+  content: "本頁重點";
+  display: block;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--c-primary);
+  margin-bottom: var(--sp-1);
+}
+.summary[data-label]::before { content: attr(data-label); }
+.summary > :last-child { margin-bottom: 0; }
+
+/* ── 表格 ───────────────────────────── */
+/* 只在 A4 和簡報用；Markdown 筆記照舊不用表格。表頭下一條主色線，列與列之間細線。
+ * 要特別指出的格子加 class="key"（粗體＋淡底，印黑白靠粗體）。數字欄加 class="num" 靠右。 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--stack) 0;
+  font-variant-numeric: tabular-nums;
+  break-inside: avoid;
+}
+caption {
+  caption-side: top;
+  text-align: left;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  color: var(--c-primary);
+  padding-bottom: var(--sp-2);
+}
+th, td { text-align: left; vertical-align: top; padding: calc(var(--pad-y) * .5) calc(var(--pad-x) * .75); }
+th:first-child, td:first-child { padding-left: 0; }
+th { font-weight: 700; color: var(--c-title); border-bottom: var(--rule) solid var(--c-primary); white-space: nowrap; }
+td { border-bottom: 1px solid var(--c-line); }
+tbody tr:last-child td { border-bottom-color: var(--c-line-strong); }
+th.num, td.num { text-align: right; }
+td.key, th.key { font-weight: 700; color: var(--c-title); background: var(--c-tint); }
+td.key:first-child, th.key:first-child { padding-left: calc(var(--pad-x) * .75); }
+
+/* ── 音級（一排格子，標出特徵音）──────── */
+/* <div class="degrees" data-label="C 多利安"><span>1</span>…<span class="key">6</span>…</div>
+ * 格子裡可以再放 <small>音名</small>。特徵音實心填色，印黑白也看得出來。 */
+.degrees {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: var(--sp-2);
+  margin: var(--stack) 0;
+  break-inside: avoid;
+}
+.degrees[data-label]::before {
+  content: attr(data-label);
+  align-self: center;
+  min-width: 5.5em;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  color: var(--c-primary);
+}
+.degrees > span {
+  min-width: 2.6em;
+  padding: .3em .45em;
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--radius-s);
+  text-align: center;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--c-title);
+  font-variant-numeric: tabular-nums;
+}
+.degrees > span small {
+  display: block;
+  font-size: var(--fs-micro);
+  font-weight: 400;
+  color: var(--c-ink-3);
+}
+.degrees > .key { background: var(--c-primary); border-color: var(--c-primary); color: var(--c-paper); }
+.degrees > .key small { color: var(--c-paper); }
+
+/* ── 鍵盤圖（一個八度）────────────────── */
+/* 寫 12 個 <i>，照半音順序 C C♯ D D♯ E F F♯ G G♯ A A♯ B；要亮的加 class="on"，
+ * 裡面可以寫字當標籤（例如音級）。兩個八度以上就用 <span class="oct">…12 個 i…</span> 包起來排在一起。
+ * 顏色固定鋼琴黑白，放在深色頁也不反轉。 */
+.keys, .keys > .oct {
+  display: inline-grid;
+  grid-template-columns: repeat(21, .7em);
+  grid-template-rows: 6.4em;
+  vertical-align: top;
+}
+.keys { margin: var(--stack) 0; break-inside: avoid; }
+.keys:has(> .oct) { display: inline-flex; }
+.keys i {
+  grid-row: 1;
+  font-style: normal;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: .55em;
+  font-size: max(var(--fs-micro), .75em);  /* 跟著鍵的大小走，但不小於最小字級 */
+  font-weight: 700;
+  line-height: 1;
+}
+/* 白鍵 */
+.keys i:nth-child(1), .keys i:nth-child(3), .keys i:nth-child(5), .keys i:nth-child(6),
+.keys i:nth-child(8), .keys i:nth-child(10), .keys i:nth-child(12) {
+  background: var(--key-white);
+  border: 1px solid var(--key-edge);
+  border-right-width: 0;
+  color: var(--key-edge);
+  z-index: 0;
+}
+.keys i:nth-child(12) { border-right-width: 1px; }
+.keys > .oct + .oct { margin-left: -1px; }
+/* 黑鍵 */
+.keys i:nth-child(2), .keys i:nth-child(4), .keys i:nth-child(7), .keys i:nth-child(9), .keys i:nth-child(11) {
+  background: var(--key-black);
+  height: 62%;
+  align-self: start;
+  border-radius: 0 0 2px 2px;
+  color: var(--key-black);
+  z-index: 1;
+  padding-bottom: .45em;
+}
+.keys i:nth-child(1)  { grid-column: 1 / span 3; }
+.keys i:nth-child(2)  { grid-column: 3 / span 2; }
+.keys i:nth-child(3)  { grid-column: 4 / span 3; }
+.keys i:nth-child(4)  { grid-column: 6 / span 2; }
+.keys i:nth-child(5)  { grid-column: 7 / span 3; }
+.keys i:nth-child(6)  { grid-column: 10 / span 3; }
+.keys i:nth-child(7)  { grid-column: 12 / span 2; }
+.keys i:nth-child(8)  { grid-column: 13 / span 3; }
+.keys i:nth-child(9)  { grid-column: 15 / span 2; }
+.keys i:nth-child(10) { grid-column: 16 / span 3; }
+.keys i:nth-child(11) { grid-column: 18 / span 2; }
+.keys i:nth-child(12) { grid-column: 19 / span 3; }
+/* 亮起的鍵不整片填色，而是在下方點一個圓點，音級寫在圓點裡 */
+.keys i.on {
+  color: var(--key-white);
+  background: radial-gradient(circle at 50% calc(100% - 1.05em), var(--key-on) .85em, transparent calc(.85em + .5px)) var(--key-white);
+}
+.keys i.on:nth-child(2), .keys i.on:nth-child(4), .keys i.on:nth-child(7),
+.keys i.on:nth-child(9), .keys i.on:nth-child(11) {
+  color: var(--key-black);
+  background: radial-gradient(circle at 50% calc(100% - .95em), var(--key-on-black) .78em, transparent calc(.78em + .5px)) var(--key-black);
+}
+
+/* ── 術語表（原文、讀音、說明）────────── */
+/* <dl class="terms"><dt>ドリアン<span>Dorian</span></dt><dd>說明</dd>…</dl>
+ * 原文放 dt，另一種寫法或讀音放 dt 裡的 span，中文說明放 dd。 */
+.terms {
+  display: grid;
+  grid-template-columns: minmax(7em, 28%) 1fr;
+  margin: var(--stack) 0;
+  break-inside: avoid;
+}
+.terms dt, .terms dd {
+  margin: 0;
+  padding: calc(var(--pad-y) * .5) 0;
+  border-top: 1px solid var(--c-line);
+}
+.terms dt { font-weight: 700; color: var(--c-title); padding-right: var(--pad-x); }
+.terms dt span { display: block; font-size: var(--fs-micro); font-weight: 400; color: var(--c-ink-3); }
+.terms dd:last-of-type, .terms dt:nth-last-of-type(1) { border-bottom: 1px solid var(--c-line); }
+
+/* ── 練習題 ─────────────────────────── */
+/* <ol class="quiz"><li>題目<div class="answer">答案</div></li>…</ol>
+ * 要學生自己寫的地方用 <div class="lines" style="--n: 2"></div>（n 條書寫線）。
+ * 印學生版：在 <body> 加 class="no-answers"，答案框留著、字藏起來，版面跟老師版一模一樣。 */
+.quiz { list-style: none; padding: 0; margin: var(--stack) 0; counter-reset: quiz; }
+.quiz > li {
+  counter-increment: quiz;
+  position: relative;
+  padding-left: 2.2em;
+  margin-bottom: calc(var(--stack) * 1.5);
+  break-inside: avoid;
+}
+.quiz > li::before {
+  content: "Q" counter(quiz);
+  position: absolute;
+  left: 0;
+  top: .2em;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  color: var(--c-primary);
+}
+.answer {
+  margin-top: var(--sp-2);
+  padding: calc(var(--pad-y) * .5) var(--pad-x);
+  border: 1px dashed var(--c-line-strong);
+  border-radius: var(--radius-s);
+  color: var(--c-ink-2);
+}
+.answer::before { content: "答　"; font-weight: 700; color: var(--c-primary); }
+.no-answers .answer { color: transparent; }
+.no-answers .answer::before { color: var(--c-primary); }
+.lines {
+  --n: 2;
+  height: calc(var(--n) * 2em);
+  margin-top: var(--sp-2);
+  background: repeating-linear-gradient(to bottom, transparent 0 calc(2em - 1px), var(--c-line-strong) calc(2em - 1px) 2em);
+}
+
+/* ── 兩欄對照 ───────────────────────── */
+/* 兩個東西並排比較（例如自然小調 vs 多利安）。每欄可以用 h3 當欄名。 */
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--pad-x) * 2); margin: var(--stack) 0; }
+.cols > * > :first-child { margin-top: 0; }
+.cols > * > :last-child { margin-bottom: 0; }

@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-14",
+  "tool": "image_gen.imagegen (built-in)",
+  "postprocessing": "None; generated PNGs copied without pixel changes.",
+  "visual_reference": "assets/original-design/whale-design.png",
+  "specification_references": [
+    "docs/CHARACTER.md",
+    "https://github.com/Neko3000/deepseek-whalechan/blob/main/skills/whalechan-image-character/references/character-spec.md",
+    "https://github.com/Neko3000/deepseek-whalechan/blob/main/skills/whalechan-image-character/references/form-profiles.md",
+    "https://treapgogo.github.io/deepseek-whale-girl/"
+  ],
+  "outputs": [
+    {
+      "file": "expressions/whale-happy.png",
+      "label": "開心",
+      "prompt": "Use case: stylized-concept.\nAsset type: expression avatar master for a coherent six-expression illustration set.\nInput image 1 is a CHARACTER DESIGN REFERENCE: use the same recognizable whale girl and clothing, drawn as a polished clean anime bust portrait. It is not the desired framing.\nPrimary request: draw one HAPPY expression of 大肥魚 (DeepSeek whale girl). A sweet but slightly proud tsundere smile, mouth gently open smiling, bright blue eyes looking straight at the viewer, eyebrows gently relaxed.\nComposition: square canvas, exactly frontal symmetrical head position, bust from upper chest upward, centered. Entire white frilled maid headdress, curved ahoge and both whale-flipper ears fully visible with comfortable margin. Hands out of frame. Plain near-white cool-blue background. A stable pose that can be edited later by changing only eyes/eyebrows/mouth.\nCharacter invariants: same face identity as reference; large blue eyes with sky-blue highlights, abundant long side-parted deep navy-blue hair fading to pale cyan ends, a single forward-curving ahoge; two dark blue whale-fin ears with pale inner edges, no human or cat ears. White frilled maid headdress, small blue bow on viewer's right. Dark sea-blue maid dress, white apron/frilled neckline, dark collar bow centered on a blue diamond sapphire. Tiny restrained gold cuff/trim details only if visible.\nStyle: beautiful refined anime illustration, crisp tapered dark blue outlines, soft controlled cel shading, coherent blue-white palette (#4a6fa5 hair, #4299e1 eyes, #1a365d dress, #f7fafc lace, #2b6cb0 bow). Clear compact shapes readable as an avatar.\nConstraints: one character one image, no captions, no text, no typography, no watermark, no additional symbols, no floating hearts, no props. Do not make a grid. No excessive blush, no warm dominant colors. Preserve whale flipper ears and recognizable maid design.",
+      "reference_images": [
+        "assets/original-design/whale-design.png"
+      ],
+      "transparent_background": false,
+      "original_generation_filename": "exec-bb162ae1-67c5-47ec-b18b-516ae940c63e.png"
+    },
+    {
+      "file": "expressions/whale-troubled.png",
+      "label": "苦惱",
+      "prompt": "Use case: identity-preserve.\nAsset type: facial expression variant in a six-expression character set.\nInput image 1 is the EXACT EDIT TARGET AND IDENTITY MASTER, not merely a style reference.\nTask: change ONLY the facial expression to TROUBLED / worried and thinking hard: inner eyebrow tips raised and gently drawn together, upper eyelids slightly worried, gaze still forward, small closed wavy frown. Readable sincere puzzlement, not anger, no tears.\nStrict invariants: preserve the exact same person, face outline, nose, skin tone, head size and position, camera/framing, neck, body, hair shape and individual locks, white frilled headdress, ahoge, whale-fin ears, blue hair bow, eye iris color, maid dress, sapphire brooch, outlines, lighting, colors, and plain pale-blue background. Keep all pixels outside the facial expression area visually unchanged. Do not redraw hairstyle or costume, do not tilt or turn the head, do not move shoulders, do not add objects. Only eyebrows, eyelids, iris/pupil opening and mouth may change (cheeks only slightly for expression).\nOutput one square portrait image exactly matching master canvas and registration, no side by side, no grid, no letters, no captions, no watermarks, no emotion symbols. Same clean refined anime illustration.",
+      "reference_images": [
+        "assets/generated-2026-10-14/expressions/whale-happy.png"
+      ],
+      "transparent_background": false,
+      "original_generation_filename": "exec-a6438c59-a8fe-4834-99d4-d31b95b720d7.png"
+    },
+    {
+      "file": "expressions/whale-angry.png",
+      "label": "生氣",
+      "prompt": "Use case: identity-preserve.\nAsset type: facial expression variant in a six-expression character set.\nInput image 1 is the EXACT EDIT TARGET AND IDENTITY MASTER, not merely a style reference.\nTask: change ONLY the facial expression to ANGRY / tsundere annoyed: inner eyebrows clearly lowered and drawn inward, focused slightly narrowed eyes looking forward, closed small pursed pout with gently puffed cheeks. Cute irritated frown, definitely not a smile, no tears.\nStrict invariants: preserve the exact same person, face outline, nose, skin tone, head size and position, camera/framing, neck, body, hair shape and individual locks, white frilled headdress, ahoge, whale-fin ears, blue hair bow, eye iris color, maid dress, sapphire brooch, outlines, lighting, colors, and plain pale-blue background. Keep all pixels outside the facial expression area visually unchanged. Do not redraw hairstyle or costume, do not tilt or turn the head, do not move shoulders, do not add objects. Only eyebrows, eyelids, iris/pupil opening and mouth may change (cheeks only slightly for expression).\nOutput one square portrait image exactly matching master canvas and registration, no side by side, no grid, no letters, no captions, no watermarks, no emotion symbols. Same clean refined anime illustration.",
+      "reference_images": [
+        "assets/generated-2026-10-14/expressions/whale-happy.png"
+      ],
+      "transparent_background": false,
+      "original_generation_filename": "exec-c80b6fa5-2d78-4d10-a6c1-4ecbf1684a1b.png"
+    },
+    {
+      "file": "expressions/whale-surprised.png",
+      "label": "驚訝",
+      "prompt": "Use case: identity-preserve.\nAsset type: facial expression variant in a six-expression character set.\nInput image 1 is the EXACT EDIT TARGET AND IDENTITY MASTER, not merely a style reference.\nTask: change ONLY the facial expression to SURPRISED: both blue eyes wide round open, slightly smaller irises and pupils, lifted eyebrows, mouth a small open O shape. Clear startled wonder, no smile.\nStrict invariants: preserve the exact same person, face outline, nose, skin tone, head size and position, camera/framing, neck, body, hair shape and individual locks, white frilled headdress, ahoge, whale-fin ears, blue hair bow, eye iris color, maid dress, sapphire brooch, outlines, lighting, colors, and plain pale-blue background. Keep all pixels outside the facial expression area visually unchanged. Do not redraw hairstyle or costume, do not tilt or turn the head, do not move shoulders, do not add objects. Only eyebrows, eyelids, iris/pupil opening and mouth may change (cheeks only slightly for expression).\nOutput one square portrait image exactly matching master canvas and registration, no side by side, no grid, no letters, no captions, no watermarks, no emotion symbols. Same clean refined anime illustration.",
+      "reference_images": [
+        "assets/generated-2026-10-14/expressions/whale-happy.png"
+      ],
+      "transparent_background": false,
+      "original_generation_filename": "exec-4afe1615-58ed-49ce-b358-df67c122f8a3.png"
+    },
+    {
+      "file": "expressions/whale-sleepy.png",
+      "label": "想睡",
+      "prompt": "Use case: identity-preserve.\nAsset type: facial expression variant in a six-expression character set.\nInput image 1 is the EXACT EDIT TARGET AND IDENTITY MASTER, not merely a style reference.\nTask: change ONLY the facial expression to SLEEPY: upper eyelids almost closed and drooping symmetrically, relaxed eyebrows, a small soft open oval yawning mouth. Dreamy tired look, not sad.\nStrict invariants: preserve the exact same person, face outline, nose, skin tone, head size and position, camera/framing, neck, body, hair shape and individual locks, white frilled headdress, ahoge, whale-fin ears, blue hair bow, eye iris color, maid dress, sapphire brooch, outlines, lighting, colors, and plain pale-blue background. Keep all pixels outside the facial expression area visually unchanged. Do not redraw hairstyle or costume, do not tilt or turn the head, do not move shoulders, do not add objects. Only eyebrows, eyelids, iris/pupil opening and mouth may change (cheeks only slightly for expression).\nOutput one square portrait image exactly matching master canvas and registration, no side by side, no grid, no letters, no captions, no watermarks, no emotion symbols. Same clean refined anime illustration.",
+      "reference_images": [
+        "assets/generated-2026-10-14/expressions/whale-happy.png"
+      ],
+      "transparent_background": false,
+      "original_generation_filename": "exec-cf30a807-1477-41f1-8786-65c49bd3255d.png"
+    },
+    {
+      "file": "expressions/whale-serious.png",
+      "label": "認真",
+      "prompt": "Use case: identity-preserve.\nAsset type: facial expression variant in a six-expression character set.\nInput image 1 is the EXACT EDIT TARGET AND IDENTITY MASTER, not merely a style reference.\nTask: change ONLY the facial expression to SERIOUS / concentrating: blue eyes fully focused forward, eyebrows subtly lowered with level calm resolve, mouth closed as a short neutral straight line. Composed confident attention, no smile, no puffed cheeks; clearly distinct from angry.\nStrict invariants: preserve the exact same person, face outline, nose, skin tone, head size and position, camera/framing, neck, body, hair shape and individual locks, white frilled headdress, ahoge, whale-fin ears, blue hair bow, eye iris color, maid dress, sapphire brooch, outlines, lighting, colors, and plain pale-blue background. Keep all pixels outside the facial expression area visually unchanged. Do not redraw hairstyle or costume, do not tilt or turn the head, do not move shoulders, do not add objects. Only eyebrows, eyelids, iris/pupil opening and mouth may change (cheeks only slightly for expression).\nOutput one square portrait image exactly matching master canvas and registration, no side by side, no grid, no letters, no captions, no watermarks, no emotion symbols. Same clean refined anime illustration.",
+      "reference_images": [
+        "assets/generated-2026-10-14/expressions/whale-happy.png"
+      ],
+      "transparent_background": false,
+      "original_generation_filename": "exec-e2472040-0ee0-4dc6-8187-41609fbb8bfa.png"
+    }
+  ]
+}

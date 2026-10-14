@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "created_date": "2026-10-14",
+  "timezone": "Asia/Tokyo",
+  "title": "After the rain, under the elevated station — urban casual fashion",
+  "selection_status": "Selected replacement of the first seaside-café casual generation, following user correction requesting more diverse VISIONS-inspired scenes.",
+  "generation_tool": "image_gen.imagegen (built-in)",
+  "model": "Not exposed by the built-in tool",
+  "tool_arguments": {
+    "prompt": "Use case: stylized-concept.\nAsset type: replacement casual-fashion key visual, ONE original WIDE 16:9 landscape illustration.\nCreative direction: AFTER THE RAIN, UNDER THE ELEVATED STATION — a bold graphic urban fashion illustration with a distinctly limited palette and tactile hand-drawn finish.\n\nInput roles: Image 1 is ONLY the whale-girl's identity reference: recognizable face, blue eyes, long blue gradient hair, whale-flipper ears, one ahoge and one whale tail. Replace her complete outfit with everyday street clothes. Image 2 is a public illustrated yearbook sample spread used ONLY as broad visual research for layered urban storytelling, lively diagonal composition, confident colored shapes, playful editorial drawing and printed-paper texture. Do NOT copy its characters, specific streets, architecture, signs, poses, outfits, artworks, page layout or lettering. This must be one entirely new composition and location.\n\nScene and composition: a rain-cleared urban street corner beneath a modern elevated railway. A dramatic diagonal navy steel girder and cropped platform structure occupy the upper LEFT background; simplified geometric buildings and a muted teal station stair silhouette sit behind the figure. A few broad crosswalk stripes and angular puddle reflections slant across the lower LEFT foreground, giving the illustration movement. The LEFT 55% carries the woman and the interesting city geometry. The RIGHT 40–45% is a calm uninterrupted large light-sage/cream area formed by a simplified sunlit city wall and softly implied overcast sky, with subtle paper texture only, kept clear for a future title. No detailed architecture, figure, hair, tail or sharp crossing lines in this right title zone. Integrate this quiet area naturally into the urban composition.\n\nFigure: same whale-girl, natural mature anime proportions, framed from complete head to just above the knees; walking casually toward frame-left while turning her face back toward the viewer with a relaxed small mischievous smile. Natural moving posture, one shoulder a little forward, slight weight shift. One hand lightly grips the strap of a plain unprinted canvas shoulder tote, while her other hand rests naturally in her trouser pocket. Long blue hair flows leftward behind her stride. Exactly one dark-blue whale tail with rounded double fluke curves coherently behind her hips into the left foreground, remaining within the illustrated left area.\n\nEveryday outfit ONLY: simple cream-colored short casual jacket with a plain collar and sleeves, open over a navy-and-white horizontally striped crewneck T-shirt; loose blue-gray high-waisted wide-leg trousers; plain unprinted gray canvas tote. Tasteful comfortable fully clothed outfit. No apron, no maid headband, no ruffles, no lace, no maid dress, no collar bow, no gold embroidered cuffs, no decorative uniform elements. Small blue side hair bow may remain but keep her head otherwise uncovered.\n\nCharacter identity: long voluminous hair grading from navy/slate blue at crown to pale cyan ends, blue eyes with lively highlights, clearly visible fin-shaped ears on both sides, exactly one forward-curled ahoge. Preserve her recognizable face, but draw it using the same simplified editorial line language as the rest of this illustration. No other people.\n\nArt direction: flat-color paper-cut collage shapes combined with confident fine colored-pencil contours, dry gouache edges, tactile chalky grain and sparse imperfect hand-drawn hatching. Bold designed silhouettes and geometric two-tone shadow planes, not smooth cinematic painting. Palette limited to navy, muted teal, slate blue, cream and a few tiny vermilion accent shapes in the street environment. Strong graphic rhythm, slightly playful urban fashion-magazine feeling; deliberately non-photorealistic, no glossy gradients or 3D lighting. Environmental lighting is diffused bright post-rain daylight; angular wet reflections remain graphic.\n\nImportant scene exclusions: NO sea, coastline, beach, ocean, water horizon, café, restaurant, indoor window scene, drinking cup, mug, coffee or beverage. Puddles on city pavement are the only water.\nText: ABSOLUTELY NONE. No letters, numbers, station names, traffic wording, shop signs, logos, slogans, signatures, watermark, book spread, panel border or collage of separate pictures.\nOutput: one complete original 16:9 artwork; entire hair crown, ahoge and ears safely inside frame; title space remains clear on the right.",
+    "referenced_image_paths": [
+      "/Users/mikotomizimo/Documents/ChatGPT/whale-girl-visual-language/assets/original-design/whale-design.png",
+      "/Users/mikotomizimo/Documents/ChatGPT/whale-art-references/visions-2027/05.webp"
+    ],
+    "transparent_background": false
+  },
+  "output": {
+    "file": "assets/generated-2026-10-14/key-visual/whale-key-visual-casual.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2961068,
+    "sha256": "00140eee3e06c01253bd931ca0d5ab7b335412db06479281395805c9297e4cdf",
+    "png_color_type": 2
+  },
+  "original_generation_file": "/Users/mikotomizimo/.codex-personal/generated_images/01a1383f-4524-77b0-9d8d-ea00f73ed8df/exec-52a97fac-e18b-4415-9b9a-22a920397895.png",
+  "source_references": [
+    {
+      "kind": "direct_image_reference",
+      "role": "Character identity only: face, blue gradient hair, blue eyes, fin ears, ahoge and whale tail. Complete maid costume replaced by casual street clothes.",
+      "local_path": "assets/original-design/whale-design.png",
+      "source_url": "https://github.com/Mizimo/whale-girl-visual-language/blob/main/assets/original-design/whale-design.png",
+      "inspected": true,
+      "passed_to_generation_tool": true
+    },
+    {
+      "kind": "direct_image_reference_for_broad_art_research",
+      "role": "Broad VISIONS urban storytelling, expressive colored shapes, layered street space and tactile printed-paper drawing. Not a scene, character, outfit, composition or lettering copying target.",
+      "local_path": "/Users/mikotomizimo/Documents/ChatGPT/whale-art-references/visions-2027/05.webp",
+      "source_url": "https://visions.pr-pixiv.net/2026/assets/img/sample/05.webp",
+      "source_page": "https://visions.pr-pixiv.net/2026/en/sample/",
+      "publication": "VISIONS 2026",
+      "inspected": true,
+      "passed_to_generation_tool": true,
+      "note": "Local research folder is named visions-2027; page footer and research verification identify the actual official sample as VISIONS2026."
+    },
+    {
+      "kind": "broad_art_research_only",
+      "role": "Compared for everyday fashion pose grammar; not passed to this generation call.",
+      "local_path": "/Users/mikotomizimo/Documents/ChatGPT/whale-art-references/visions-2027/02.webp",
+      "source_url": "https://visions.pr-pixiv.net/2026/assets/img/sample/02.webp",
+      "source_page": "https://visions.pr-pixiv.net/2026/en/sample/",
+      "publication": "VISIONS 2026",
+      "inspected": true,
+      "passed_to_generation_tool": false
+    },
+    {
+      "kind": "broad_art_research_only",
+      "role": "Compared for flattened color and decorative graphic shapes; not passed to this generation call.",
+      "local_path": "/Users/mikotomizimo/Documents/ChatGPT/whale-art-references/visions-2027/03.webp",
+      "source_url": "https://visions.pr-pixiv.net/2026/assets/img/sample/03.webp",
+      "source_page": "https://visions.pr-pixiv.net/2026/en/sample/",
+      "publication": "VISIONS 2026",
+      "inspected": true,
+      "passed_to_generation_tool": false
+    }
+  ],
+  "postprocessing": "None. Selected original generated PNG copied byte-for-byte into the existing casual asset path; no cropping, resizing, recoloring or other edits. Previous generated original remains intact at its tool output path.",
+  "inspection": {
+    "method": "Visual inspection of generatedImage output",
+    "result": "Accepted",
+    "subject": "Recognizable whale-girl with gradient long blue hair, expressive blue eyes, paired fin ears, one curled ahoge and one coherent tail.",
+    "wardrobe": "Cream short casual jacket, navy-and-white striped crewneck shirt, blue-gray wide trousers, plain gray canvas shoulder tote. No maid costume elements.",
+    "style": "Clearly distinct urban graphic illustration using limited navy/teal/cream with tiny vermilion accents, flat shadow planes, chalky gouache grain and hand-drawn contours.",
+    "composition": "Knee-up figure walking and looking back on left, elevated train and diagonal railway structure behind, geometric post-rain pavement reflections. Large calm cream/sage wall on right provides title space.",
+    "exclusions": "No sea, café, cup, text or logos.",
+    "dimensions": "Approximately 16:9 (1672×941), retained as generated."
+  },
+  "superseded": [
+    {
+      "status": "Superseded, original retained outside repository",
+      "reason": "User requested more varied everyday settings and rejected the repetition of seaside café scenes.",
+      "title": "Everyday seaside café — casual fashion editorial",
+      "original_generation_file": "/Users/mikotomizimo/.codex-personal/generated_images/01a1383f-4524-77b0-9d8d-ea00f73ed8df/exec-484b29fe-eb79-4604-8c86-e51e1dc9a07e.png",
+      "output": {
+        "file": "assets/generated-2026-10-14/key-visual/whale-key-visual-casual.png",
+        "width": 1672,
+        "height": 941,
+        "bytes": 2284615,
+        "sha256": "528a4673d4e411a4243623bc9e1a45146f0a95384a598982d5f30d44939c9967",
+        "png_color_type": 2
+      },
+      "tool_arguments": {
+        "prompt": "Use case: illustration-story.\nAsset type: additional contemporary casual-fashion key visual, WIDE 16:9 landscape, half-body illustration.\n\nInput roles: Image 1 is ONLY the whale-girl's identity reference: face, long gradient-blue hair, eyes, whale-fin ears, single ahoge and single whale tail. Her outfit must be COMPLETELY REPLACED by modern everyday clothing in this new image. Do not retain any maid costume elements. Image 2 is a public illustrated yearbook sample spread used only for broad delicate fashion-illustration grammar: restrained flat shapes, soft dusty colors, expressive fine pencil contours and a faint gouache/paper grain. Do not copy its characters, poses, clothes, layouts, locations, typography, logos or individual artworks. Make one wholly new illustration, never a page spread or collage.\n\nPrimary scene: a quiet seaside café window on a cool bright morning, with the whale-girl taking a relaxed break in everyday clothes. A natural mature anime half-body portrait on the RIGHT 55% of a wide landscape image, framed from her head through the hips. She stands in a gentle three-quarter pose with relaxed shoulders, looks toward the viewer with a small soft confident smile, and holds one plain white ceramic mug naturally in one hand near her chest. Her other hand rests softly on a simple café window ledge. No pose copied from either reference.\n\nCOSTUME REPLACEMENT: an open, relaxed light-blue knit cardigan with plain ribbed cuffs over a simple opaque white crewneck cotton T-shirt. A navy high-waisted everyday skirt is just visible at the lower edge. A tiny sapphire pendant on a delicate chain may provide identity continuity. Modern, tasteful, fully clothed and modest casual clothing with a comfortable natural fit. Absolutely NO maid headdress or any headband, NO apron, NO white ruffled uniform, NO lace shoulder pieces, NO maid dress, NO black collar bow, NO gold embroidered uniform cuffs. The head is uncovered except for one small simple blue hair bow at the side.\n\nIdentity: preserve the same recognizably gentle blue-eyed face; bright blue eye highlights; voluminous long hair flowing from deep muted navy-blue at the crown to pale cyan tips; exactly one forward-curled ahoge; dark-blue whale-flipper-shaped ears on both sides. Exactly one coherent naturally attached dark-blue whale tail with a rounded forked fluke, curving behind her at the far right. A few airy hair strands move in the sea breeze.\n\nEnvironment and layout: a softly painted pale blue café interior at the far right, simple white window architecture, subtle reflected ocean light and a gently suggested sea beyond. LEFT 40–45% must remain useful QUIET TITLE SPACE: broad pale cool sky and a soft distant sea gradient with little detail, no hard mullions, no character, no mug, no plants or hair crossing the center-left title region. A restrained horizontal horizon may sit low in the left zone. Do not add lettering anywhere. The figure and environment belong to the same calm softly shaded scene, with believable window-light falloff.\n\nArt direction: contemporary fashion-editorial anime illustration, delicate fine pencil-like contours, subtle gouache texture and visible paper grain, matte restrained dusty navy/powder-blue/cyan/ivory palette, simplified elegant planes, soft cool daylight. Less glossy and less photorealistic than a cinematic render; expressive illustrated textile folds and fine knitted texture. Harmonious, airy, intimate everyday atmosphere. Preserve attractive natural adult proportions, not chibi.\n\nConstraints: one complete original 16:9 composition, one character, one mug, two natural hands, one whale tail. Full head, fin ears and ahoge within the frame. No text, titles, letters, signs, logos, symbols, watermark, signatures, ornamental borders, collage panels, maid accessories or additional people.",
+        "referenced_image_paths": [
+          "/Users/mikotomizimo/Documents/ChatGPT/whale-girl-visual-language/assets/original-design/whale-design.png",
+          "/Users/mikotomizimo/Documents/ChatGPT/whale-art-references/visions-2027/06.webp"
+        ],
+        "transparent_background": false
+      },
+      "source_references": [
+        {
+          "kind": "direct_image_reference",
+          "role": "Character identity only: face, blue gradient hair, eyes, fin ears, ahoge and whale tail. All maid costume elements intentionally replaced with casual clothes.",
+          "local_path": "assets/original-design/whale-design.png",
+          "source_url": "https://github.com/Mizimo/whale-girl-visual-language/blob/main/assets/original-design/whale-design.png",
+          "inspected": true,
+          "passed_to_generation_tool": true
+        },
+        {
+          "kind": "direct_image_reference_for_broad_art_research",
+          "role": "Broad delicate contemporary fashion illustration language: muted palette, fine expressive contours, graphic simplification and subtle paper-like grain. Not a character, outfit, pose, layout or scene copying target.",
+          "local_path": "/Users/mikotomizimo/Documents/ChatGPT/whale-art-references/visions-2027/06.webp",
+          "source_url": "https://visions.pr-pixiv.net/2026/assets/img/sample/06.webp",
+          "source_page": "https://visions.pr-pixiv.net/2026/en/sample/",
+          "publication": "VISIONS 2026",
+          "inspected": true,
+          "passed_to_generation_tool": true,
+          "note": "Local research folder is named visions-2027; research verified its file is byte-identical to the official VISIONS2026 sample URL. Attribution uses the actual 2026 source."
+        },
+        {
+          "kind": "broad_art_research_only",
+          "role": "Everyday window-lit environmental atmosphere and layered painted space, examined earlier in the same task; not passed to this generation call.",
+          "local_path": "/Users/mikotomizimo/Documents/ChatGPT/whale-art-references/visions-2027/01.webp",
+          "source_url": "https://visions.pr-pixiv.net/2026/assets/img/sample/01.webp",
+          "source_page": "https://visions.pr-pixiv.net/2026/en/sample/",
+          "publication": "VISIONS 2026",
+          "inspected": true,
+          "passed_to_generation_tool": false
+        }
+      ],
+      "note": "These metadata describe the previous generation only; the repository asset at output.file now contains the selected urban version."
+    }
+  ]
+}

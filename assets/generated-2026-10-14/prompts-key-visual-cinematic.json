@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-10-14",
+  "timezone": "Asia/Tokyo",
+  "title": "Cinematic coastal window light",
+  "generation_tool": "image_gen.imagegen (built-in)",
+  "model": "Not exposed by the built-in tool",
+  "tool_arguments": {
+    "prompt": "Use case: illustration-story.\nAsset type: cinematic landscape key visual for a presentation cover, 16:9 wide image.\nInput images: Image 1 is the character identity reference ONLY: preserve this whale-girl maid's recognizable design. Image 2 is a public illustrated yearbook sample spread used ONLY as broad research for luminous daylight, layered painted space, clean cinematic perspective, and the feeling of air in an environment. Do not copy any artwork, arrangement, location, character, object collection, printed page layout, signature, typography or logo from Image 2. Create a completely new single composition, never a collage or page spread.\n\nPrimary request: an original high-end anime cinematic key visual of the whale-girl maid standing beside an open window in a calm coastal room. Half-body portrait, framed from waist upward. Place her face and body prominently in the RIGHT 55% of the picture, turned slightly toward the sea while glancing warmly at the viewer with a small confident, faintly teasing smile. One relaxed hand rests lightly on the window sill, with natural anatomy. A soft ocean breeze lifts a few long blue hair strands. Show one curved dark blue whale tail and its rounded double fluke at the far-right edge behind her.\n\nScene: a beautifully painted airy coastal interior, cool blue-white painted window frame, open window facing a distant calm turquoise sea and a spacious pale cerulean sky. A translucent white curtain on the far right catches the breeze. A sunlit sill and a little softly painted interior depth at the lower right establish believable space. Strong but gentle daylight creates long, soft-edged diagonal window shadows and luminous blue reflected light on the dress and hair. Hazy sea air and very restrained light bloom. The environment is tangible and rich in painted light, not a blank backdrop or pasted-on sticker.\n\nComposition: WIDE 16:9, the left 40–45% is an uninterrupted quiet expanse of pale sky and softly graded distant sea, with very low detail and low contrast, intentionally clear for a future title. Keep window mullions, sharp architectural edges, the character, hair, tail and other busy elements out of this left title zone. The horizon is a single restrained soft line in the lower part of the quiet area. The right half carries the portrait and dimensional window architecture. Her whole head, lace headdress and ahoge remain uncropped.\n\nCharacter invariants from Image 1: voluminous long hair grading from deep muted blue to luminous pale blue tips; one forward-curled ahoge; bright blue eyes; dark-blue whale-flipper-shaped ears on both sides; white ruffled lace maid headdress and small blue side bow. Fully clothed elegant deep sea-blue maid dress with white frilled apron, white ruffled bodice and shoulder details, black neck bow with a sapphire centerpiece, subtle gold cuff embroidery. Preserve a single coherent attached whale tail. No whale logo on the apron.\n\nStyle/medium: painterly animation-background craftsmanship with delicate visible brush textures and sophisticated atmospheric depth, combined with a luminous clean cel-painted anime portrait. Avoid photorealism and avoid glossy 3D. Light must unify figure and environment. Cool ocean blue, muted navy, pale cyan and white dominate; restrained soft sunlit ivory highlights. Serene, intelligent, quietly welcoming mood.\n\nText: absolutely none anywhere. No letters, words, titles, decorative writing, signature, watermark, logo, border, frame, panels or additional people. Deliver one complete original landscape illustration.",
+    "referenced_image_paths": [
+      "/Users/mikotomizimo/Documents/ChatGPT/whale-girl-visual-language/assets/original-design/whale-design.png",
+      "/Users/mikotomizimo/Documents/ChatGPT/whale-art-references/visions-2027/01.webp"
+    ],
+    "transparent_background": false
+  },
+  "output": {
+    "file": "assets/generated-2026-10-14/key-visual/whale-key-visual-cinematic.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2160656,
+    "sha256": "9e852f7be105da9449127fc8b2b7f77cbac1bcb18fdbde07a03a63871d0b0d08",
+    "png_color_type": 2
+  },
+  "original_generation_file": "/Users/mikotomizimo/.codex-personal/generated_images/01a1383f-4524-77b0-9d8d-ea00f73ed8df/exec-cb0b8c77-6e5c-4f1d-82e8-ea4fb8e339be.png",
+  "source_references": [
+    {
+      "kind": "direct_image_reference",
+      "role": "Character identity and canonical costume reference",
+      "local_path": "assets/original-design/whale-design.png",
+      "source_url": "https://github.com/Mizimo/whale-girl-visual-language/blob/main/assets/original-design/whale-design.png",
+      "inspected": true,
+      "passed_to_generation_tool": true
+    },
+    {
+      "kind": "direct_image_reference_for_broad_art_research",
+      "role": "Broad visual language only: layered space, lucid daylight, clean perspective, painted environmental lighting; not a scene/layout/character copying target",
+      "local_path": "/Users/mikotomizimo/Documents/ChatGPT/whale-art-references/visions-2027/01.webp",
+      "source_url": "https://visions.pr-pixiv.net/2026/assets/img/sample/01.webp",
+      "source_page": "https://visions.pr-pixiv.net/2026/en/sample/",
+      "publication": "VISIONS 2026",
+      "inspected": true,
+      "passed_to_generation_tool": true,
+      "note": "Local research directory is named visions-2027, but this attribution deliberately cites the actual VISIONS2026 official sample source supplied by research. Sample artwork remains outside the project asset directory."
+    }
+  ],
+  "postprocessing": "None: original generated PNG copied byte-for-byte; no cropping, resizing, background or edge edits.",
+  "inspection": {
+    "method": "Visual inspection of generatedImage output",
+    "result": "Accepted",
+    "subject": "Recognizable whale-girl with gradient blue hair, curled ahoge, fin ears, maid headdress, sapphire neck bow and single visible whale tail.",
+    "style": "Luminous anime cel portrait integrated into a painterly coastal interior with dimensional open-window lighting and atmospheric sea view.",
+    "composition": "Half-body character on the right; broad calm sky at upper left usable for a future title. No generated text.",
+    "limitations": "Output aspect ratio is approximately 16:9 (1672 by 941); retained exactly as generated."
+  }
+}

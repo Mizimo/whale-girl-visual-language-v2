@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>大肥魚視覺語言庫 ｜ 簡報元件總覽</title>
+<link rel="stylesheet" href="../templates/deck.css">
+</head>
+<body>
+
+<!-- 1 章節頁：預設深色 -->
+<section class="slide section">
+  <div class="num">01</div>
+  <h2>簡報元件總覽</h2>
+  <p class="lede">每一種頁面和元件各放一頁，照抄寫法就好。</p>
+</section>
+
+<!-- 2 講解框與例子框 -->
+<section class="slide">
+  <div class="kicker">元件</div>
+  <h2>講解框與例子框</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="ex">例：C 多利安 ← 從 B♭ 大調的第二音開始。</div>
+    <div class="whale warn">
+      <span class="av"></span>
+      <div class="txt"><span class="who"></span>多利安的第六音是大六度，不是 ♭6。寫錯本小姐會生氣。</div>
+    </div>
+  </div>
+  <div class="pageno"></div>
+</section>
+
+<!-- 3 音級與鍵盤 -->
+<section class="slide">
+  <div class="kicker">樂理元件</div>
+  <h2>C 多利安長這樣</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="degrees" data-label="音級">
+      <span>1<small>C</small></span><span>2<small>D</small></span><span>♭3<small>E♭</small></span><span>4<small>F</small></span><span>5<small>G</small></span><span class="key">6<small>A</small></span><span>♭7<small>B♭</small></span>
+    </div>
+    <div class="keys">
+      <i class="on">1</i><i></i><i class="on">2</i><i class="on">♭3</i><i></i><i class="on">4</i><i></i><i class="on">5</i><i></i><i class="on">6</i><i class="on">♭7</i><i></i>
+    </div>
+  </div>
+  <div class="pageno"></div>
+</section>
+
+<!-- 4 表格：一頁最多四列 -->
+<section class="slide">
+  <div class="kicker">元件</div>
+  <h2>表格一頁最多四列</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <table>
+      <thead><tr><th>調式</th><th>日文</th><th class="num">起點</th><th>特徵音</th></tr></thead>
+      <tbody>
+        <tr><td>Dorian</td><td>ドリアン</td><td class="num">2</td><td class="key">6</td></tr>
+        <tr><td>Phrygian</td><td>フリジアン</td><td class="num">3</td><td>♭2</td></tr>
+        <tr><td>Lydian</td><td>リディアン</td><td class="num">4</td><td>♯4</td></tr>
+        <tr><td>Mixolydian</td><td>ミクソリディアン</td><td class="num">5</td><td>♭7</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pageno"></div>
+</section>
+
+<!-- 5 引言頁 -->
+<section class="slide quote">
+  <blockquote>調式不是新的音階，是同一組音換一個家。</blockquote>
+  <p class="cite">—— 大肥魚</p>
+  <div class="pageno"></div>
+</section>
+
+<!-- 6 深色內容頁 -->
+<section class="slide deep">
+  <div class="kicker">深海</div>
+  <h2>任何一頁都能換成深色</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <p>在 <code>section</code> 上加 <code>deep</code>，裡面的元件自動換成深海那組顏色。</p>
+    <dl class="terms">
+      <dt>ドリアン<span>Dorian</span></dt><dd>自然小調把第六音升成大六度。</dd>
+      <dt>ミクソリディアン<span>Mixolydian</span></dt><dd>大調把第七音降成小七度。</dd>
+    </dl>
+  </div>
+  <div class="pageno"></div>
+</section>
+
+<!-- 7 重點 -->
+<section class="slide">
+  <div class="kicker">收尾</div>
+  <h2>這一回帶走三件事</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="summary">
+      <ul>
+        <li>多利安＝自然小調把第六音升半音。</li>
+        <li>特徵音決定調式的味道。</li>
+        <li>名字跟起點一起記。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pageno"></div>
+</section>
+
+</body>
+</html>

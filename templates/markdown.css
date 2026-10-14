@@ -1,0 +1,85 @@
+/* 大肥魚視覺語言庫 ｜ Markdown 筆記預覽 CSS（VS Code）
+ * 用法：在 VS Code 設定裡加
+ *     "markdown.styles": ["templates/markdown.css"]
+ * 路徑相對於工作區。預覽就會套用同一組配色、字體；VS Code 是深色主題時自動換成深海那組。
+ * 規則跟 A4 一致：不用表格、不用分隔線、一段一個意思（見 README 的「Markdown 筆記」）。
+ */
+@import "tokens.css";
+
+.vscode-body.vscode-dark, .vscode-body.vscode-high-contrast:not(.vscode-high-contrast-light) {
+  --c-paper: var(--c-deep);
+  --c-title: var(--c-on-deep);
+  --c-ink: var(--c-on-deep);
+  --c-ink-2: var(--c-on-deep-2);
+  --c-ink-3: var(--c-on-deep-3);
+  --c-primary: var(--c-accent-on-deep);
+  --c-accent: var(--c-accent-on-deep);
+  --c-tint: var(--c-deep-2);
+  --c-tint-2: var(--c-deep-2);
+  --c-code-bg: var(--c-deep-2);
+  --c-line: var(--c-line-on-deep);
+  --c-line-strong: var(--c-line-strong-on-deep);
+}
+
+.vscode-body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--c-ink);
+  background: var(--c-paper);
+  max-width: 46em;
+  margin: 0 auto;
+  padding: var(--sp-7) var(--sp-8);
+  text-autospace: normal;
+}
+
+.vscode-body h1, .vscode-body h2, .vscode-body h3 { color: var(--c-title); line-height: 1.4; font-weight: 700; border: 0; }
+.vscode-body h1 {
+  font-size: 1.6em;
+  margin: 0 0 var(--sp-6);
+  padding-bottom: var(--sp-3);
+  border-bottom: var(--rule) solid var(--c-primary);
+}
+.vscode-body h2 { font-size: 1.3em; margin: var(--sp-8) 0 var(--sp-4); }
+.vscode-body h3 { font-size: 1em; margin: var(--sp-6) 0 var(--sp-2); }
+.vscode-body p { margin: 0 0 var(--sp-5); }
+.vscode-body ul, .vscode-body ol { margin: 0 0 var(--sp-5); padding-left: 1.4em; }
+.vscode-body li { margin-bottom: var(--sp-2); }
+.vscode-body li::marker { color: var(--c-primary); }
+.vscode-body ol > li::marker { font-weight: 700; }
+.vscode-body strong { color: var(--c-title); }
+.vscode-body a { color: var(--c-primary); text-decoration-thickness: 1px; text-underline-offset: .2em; }
+
+/* 術語、和弦記號 */
+.vscode-body code {
+  font-family: var(--font-mono);
+  font-size: .9em;
+  color: var(--c-title);
+  background: var(--c-code-bg);
+  padding: .08em .4em;
+  border-radius: var(--radius-s);
+}
+.vscode-body pre {
+  background: var(--c-code-bg);
+  border-radius: var(--radius-s);
+  padding: var(--sp-5) var(--sp-6);
+  overflow-x: auto;
+}
+.vscode-body pre code { background: none; padding: 0; color: var(--c-ink); }
+
+/* 引用＝例子框：譜例、指令、引文 */
+.vscode-body blockquote {
+  margin: var(--sp-5) 0;
+  padding: var(--sp-3) var(--sp-5);
+  background: var(--c-tint-2);
+  border-left: var(--doc-bar) solid var(--c-line-strong);
+  color: var(--c-ink);
+}
+.vscode-body blockquote > :last-child { margin-bottom: 0; }
+
+/* 規則上不用，但萬一用了也不要太搶眼 */
+.vscode-body hr { border: 0; border-top: 1px solid var(--c-line); margin: var(--sp-7) 0; }
+.vscode-body table { border-collapse: collapse; }
+.vscode-body th, .vscode-body td { border: 0; border-bottom: 1px solid var(--c-line); padding: var(--sp-2) var(--sp-4); }
+.vscode-body th { border-bottom: var(--rule) solid var(--c-primary); color: var(--c-title); }
+.vscode-body img { max-width: 100%; border-radius: var(--radius-s); }

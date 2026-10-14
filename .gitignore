@@ -1,0 +1,8 @@
+.DS_Store
+*.pdf
+!templates/*.pdf
+!examples/*.pdf
+
+# tools/fetch_fonts.py 下載的字體
+fonts/
+__pycache__/

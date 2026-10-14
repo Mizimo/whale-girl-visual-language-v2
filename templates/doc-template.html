@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>文件標題</title>
+<!-- 素材路徑依你的檔案位置調整：assets/ 跟 templates/ 同層 -->
+<link rel="stylesheet" href="doc.css">
+<style>
+  /* 每頁頁首左邊的文件標題；頁碼會自動算 */
+  :root { --running-title: "課程名 ｜ 第 N 回"; }
+</style>
+</head>
+<body>
+
+<!-- ── 封面（不放頁首）──────────────────── -->
+<section class="page">
+  <div class="cover">
+    <img src="../assets/original-design/whale-avatar.png" alt="鯨魚娘">
+    <h2>（爵士）和聲學 2　第 6 回</h2>
+    <p class="lede">Marty Hicks 老師　／　モード（Modes）</p>
+    <p class="credit">
+      角色插圖：<b>phoiex/AAAAGENT</b> 的 original-design 素材（AI 輔助製作）<br>
+      原始設計參考 fornarwhal/deepseek-whale-girl-icon ｜ CC BY-NC-SA 4.0 ｜ 僅供非商業使用
+    </p>
+  </div>
+</section>
+
+<!-- ── 內頁 ───────────────────────────── -->
+<section class="page">
+  <h2>這頁的主題</h2>
+  <ul>
+    <li>重點一，中文說明，術語保留原文（ドリアン、ターゲットノート）。</li>
+    <li>重點二，和弦寫成 <code>Im7</code>、<code>V7</code>、<code>♭IIImaj7</code>，降記號用 ♭ 不用 b。</li>
+    <li>重點三。
+      <ul>
+        <li>需要補充的細節縮一層。</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>小標</h3>
+  <p>小標跟正文同字級，只用粗體和標題色區分。</p>
+
+  <p class="ex">例：C 多利安 ← 從 B♭ 大調來</p>
+
+  <!-- 講解框：加 tip／warn／mix／fact／review 換種類，頭像和標籤會自動跟著換（見 docs/COMPONENTS.md） -->
+  <div class="whale">
+    <span class="av"></span>
+    <div class="txt">
+      <span class="who"></span>
+      補一段原稿沒寫出來的推理。講解框一頁最多一個，多了會讓版面失去焦點。
+    </div>
+  </div>
+
+  <figure>
+    <img src="你的圖.png" alt="圖說">
+    <figcaption>原講義第 N 頁</figcaption>
+  </figure>
+
+  <div class="summary">
+    <ul>
+      <li>這一頁要帶走的東西，最多四條。</li>
+    </ul>
+  </div>
+</section>
+
+</body>
+</html>
