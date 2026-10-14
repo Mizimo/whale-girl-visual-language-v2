@@ -20,6 +20,34 @@ html {
   text-rendering: geometricPrecision;
 }
 
+/* ── 旁白 ─────────────────────────────── */
+/* 一句感想配一張小臉，像坐在旁邊講。簡報每一頁都可以放一個，放在內容的最後面。
+ * <p class="aside tip">白鍵從 D 開始數，就是多利安喔。</p>
+ * 種類跟講解框一樣：不加是講解，tip／warn／mix／fact／review 換表情。
+ * 只留表情不寫字就留空：<p class="aside tip"></p> */
+.aside {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  margin: var(--stack) 0 0;
+  font-size: var(--fs-label);
+  line-height: 1.5;
+  color: var(--c-ink-2);
+}
+.aside::before {
+  content: "";
+  flex: none;
+  width: max(34px, calc(var(--av) * .8));
+  height: max(34px, calc(var(--av) * .8));
+  border-radius: 50%;
+  background: center / cover no-repeat url("../assets/generated-2026-10-14/avatars/whale-serious.png");
+}
+.aside.tip::before { background-image: url("../assets/generated-2026-10-14/avatars/whale-happy.png"); }
+.aside.warn::before { background-image: url("../assets/generated-2026-10-14/avatars/whale-angry.png"); }
+.aside.mix::before { background-image: url("../assets/generated-2026-10-14/avatars/whale-troubled.png"); }
+.aside.fact::before { background-image: url("../assets/generated-2026-10-14/avatars/whale-surprised.png"); }
+.aside.review::before { background-image: url("../assets/generated-2026-10-14/avatars/whale-sleepy.png"); }
+
 /* ── 表情一覽 ─────────────────────────── */
 /* 講解框的頭像在 A4 上只有 34px，六個排在一起看不清表情；要示範表情就用這個排一排。
  * <div class="faces"><figure><img src="…/whale-happy.png" alt=""><figcaption>開心</figcaption></figure>…</div> */
