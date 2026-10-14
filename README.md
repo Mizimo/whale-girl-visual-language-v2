@@ -207,8 +207,6 @@ HTML 都可以直接改內容再重新輸出，改配色只要動 `templates/tok
 
 ## 檔案放哪裡
 
-內容按用途分在「這裡有什麼」，這裡是按目錄的位置。
-
 
 - **[`AGENTS.md`](AGENTS.md)**　接手的第一份。這個 repo 是什麼、三件比素材重要的事、以及「怎麼寫一份給 agent 的讀者簡報」
 - **`assets/`**　素材本體與來源標註 → [assets/README.md](assets/README.md)
