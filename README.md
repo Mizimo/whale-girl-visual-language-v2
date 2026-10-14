@@ -2,10 +2,13 @@
 
 <img src="assets/deepseek-icon/thumbnails/whale-icon.webp" width="200" alt="大肥魚">
 
-# 大肥魚 ｜ 素材與參考方案庫
+# 大肥魚 ｜ 視覺語言庫
 
-角色素材、配色方案、字體方案、版面模板、元件，全部收在這裡。<br>
-做 PDF、講義、簡報、筆記的時候從裡面挑，**要挑哪一套、要不要整套照用，每次看情況**。
+**視覺**　素材與參考方案——角色圖、配色、字體、版面模板、四十多種元件、四份可以直接改的成品。是一排抽屜，不是規則手冊。<br>
+**語言**　怎麼講、怎麼針對一個人寫——聲音、人設、寫作習慣、給 agent 的讀者簡報。
+
+做 PDF、講義、簡報、筆記的時候從裡面挑，**要挑哪一套、要不要整套照用，每次看情況**。<br>
+配色和版面都對了，讀起來卻像說明書，那就不是同一份東西。
 
 ![授權](https://img.shields.io/badge/授權-CC%20BY--NC--SA%204.0-6a89d5?style=flat-square)
 ![僅限非商業](https://img.shields.io/badge/僅限-非商業使用-313157?style=flat-square)
@@ -19,14 +22,21 @@
 
 這個庫**不是規則手冊**，是一排抽屜。裡面的東西都經過實測、可以直接拿去用，但沒有哪一條是必須遵守的。
 
+**視覺**　元素、樣板、具體的實現
+
 - **素材**　角色圖、表情、主視覺、小圖案 → [`assets/`](assets/README.md)
 - **配色方案**　目前兩組：從角色量測的靛藍組、原本的深海藍組 → 見下面的「配色」
 - **字體方案**　系統字體（快、不用下載）、Noto Sans TC + JP 靜態字重（跨平台一致、PDF 不嵌 Type 3）→ 見「字體」
 - **版面模板**　A4 講義、16:9 簡報、Markdown 筆記 → [`templates/`](templates/)
 - **元件**　講解框、對話、舉牌、GAL 對話頁、卡片、步驟、時間軸、和弦進行、五度圈……四十多種，每種都附截圖和寫法 → [`docs/COMPONENTS.md`](docs/COMPONENTS.md)
-- **成品**　兩份範例，可以直接改 → [`examples/`](examples/)
-- **怎麼用得像同一個人**　語氣、判斷、什麼時候閉嘴 → [`docs/VOICE.md`](docs/VOICE.md)
-- **怎麼寫一份「給 agent 的讀者簡報」**　格式、範例、脫敏原則 → 根目錄的 [`AGENTS.md`](AGENTS.md#附錄怎麼寫一份給-agent-的讀者簡報)
+- **成品**　四份範例，可以直接改 → [`examples/`](examples/)（A4 講義、16:9 簡報，各有一份範例和一份元件總覽）
+
+**語言**　怎麼講、怎麼針對一個人寫
+
+- **聲音**　讀者是誰、語氣、判斷、什麼時候閉嘴 → [`docs/VOICE.md`](docs/VOICE.md)
+- **人設**　外型、服裝、配色量測值、不能變的地方 → [`docs/CHARACTER.md`](docs/CHARACTER.md)
+- **寫作習慣**　中英混排、標點、和弦記號 → [`docs/WRITING.md`](docs/WRITING.md)
+- **給 agent 的讀者簡報**　格式、範例、脫敏原則 → 根目錄的 [`AGENTS.md`](AGENTS.md#附錄怎麼寫一份給-agent-的讀者簡報)
 
 ## 本小姐平常怎麼做
 
@@ -195,7 +205,10 @@ A4 和簡報共用同一組元件（[`templates/components.css`](templates/compo
 
 HTML 都可以直接改內容再重新輸出，改配色只要動 `templates/tokens.css`。全部重建一次：`python3 tools/build.py`（token 檢查、輸出四份 PDF、更新預覽圖和元件截圖、核對校驗清單）。
 
-## 這個 repo 裡有什麼
+## 檔案放哪裡
+
+內容按用途分在「這裡有什麼」，這裡是按目錄的位置。
+
 
 - **[`AGENTS.md`](AGENTS.md)**　接手的第一份。這個 repo 是什麼、三件比素材重要的事、以及「怎麼寫一份給 agent 的讀者簡報」
 - **`assets/`**　素材本體與來源標註 → [assets/README.md](assets/README.md)
