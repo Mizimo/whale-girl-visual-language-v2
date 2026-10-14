@@ -20,8 +20,19 @@
   --sign-w: 46mm;  /* 舉牌的寬度 */
 }
 
+/* ── 紙張 ─────────────────────────────── */
+/* 預設 A4 直向。要橫向就把 --paper 改成 `A4 landscape`、--page-h 改成 210mm；
+ * A5 是 `A5` / 210mm，Letter 是 `Letter` / 279mm。--page-h 只管章節頁的高度，
+ * 要跟著紙張走。
+ * 橫向之後內容寬從 182mm 變成 269mm，一行會到五十幾個中文字，太長不好讀——
+ * 正文可以用 --doc-body 調大一點，或把內容分成兩欄。 */
+:root {
+  --paper: A4;
+  --page-h: 297mm;
+}
+
 @page {
-  size: A4;
+  size: var(--paper);
   margin: 13mm 14mm 11mm 14mm;
 }
 
@@ -135,7 +146,7 @@ figcaption { font-size: var(--doc-micro); color: var(--c-ink-3); margin-top: var
 @page chapter { margin: 0; }
 .chapter {
   position: relative;
-  height: 297mm;
+  height: var(--page-h);
   margin-bottom: -1px;  /* 剛好一頁高，扣掉捨入誤差，免得多出一張白紙 */
   padding: 0 26mm 34mm;
   display: flex;

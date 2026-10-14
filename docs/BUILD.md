@@ -40,15 +40,33 @@ python3 tools/shots.py whale ex    # 只截這幾個
 
 每次只留下一個元件和包著它的那幾層、把周圍的空白裁掉。A4 的元件照 A4 內容寬排、兩倍解析度；簡報的整張投影片照原尺寸截。截完會順手把 [COMPONENTS.md](COMPONENTS.md) 裡 A4 元件圖的 width 改成實際寬度的一半。
 
-## 改配色、字級
+## 改紙張、配色、字級
 
-只動 [`templates/tokens.css`](../templates/tokens.css)，然後：
+**紙張**　`templates/doc.css` 開頭的 `--paper` 和 `--page-h`：`A4` / `297mm` 是預設，
+`A4 landscape` / `210mm` 是橫向，`A5` / `210mm`、`Letter` / `279mm` 也吃。整份一起換。
+
+**配色、字級**　只動 [`templates/tokens.css`](../templates/tokens.css)，然後：
 
 ```bash
 python3 tools/tokens.py
 ```
 
 色表、字級表、`docs/palette.svg`、講義範例裡的色塊都會跟著更新。
+
+## 重建之後 PDF 的位元組會不一樣
+
+Chrome 每次產 PDF 都會寫新的 `/CreationDate` 和 `/ID`，所以就算內容一個字都沒改，`git status` 還是會顯示四份 PDF 變了。要比對有沒有真的動到內容，看頁數和文字：
+
+```bash
+python3 -c "
+import pathlib, pypdfium2 as pdfium
+for p in sorted(pathlib.Path('examples').glob('*.pdf')):
+    d = pdfium.PdfDocument(p); w, h = d[0].get_size()
+    print(p.name, len(d), '頁', f'{w/72*25.4:.0f} x {h/72*25.4:.0f} mm')
+"
+```
+
+內容沒變就 `git checkout -- examples/` 退掉，別讓它混進 diff。
 
 ## 每台機器輸出的要一樣
 

@@ -106,15 +106,26 @@
 
 ## 版面
 
-三種載體，共用同一組配色、字級和元件。
+三種載體，共用同一組配色、字級和元件。紙張不綁 A4——預設是它，但橫向、A5、Letter 都只是改兩個變數的事。
 
-### A4 文件
+### 紙本文件
 
 <img src="docs/preview/handout.png" width="880" alt="A4 講義範例">
 
 封面是 58mm 圓形頭像加標題，最下面放署名。內頁的頁首自動產生：左邊文件標題、右邊「頁碼 / 總頁數」，下面一條 2px 主色線，內容溢到下一頁也會有。文件標題寫在 HTML 開頭：`:root { --running-title: "課程名 ｜ 第 6 回"; }`，封面不放頁首。頁面 A4、邊距 13～14mm。以前手寫在 section 裡的 `.head` 照樣能用。
 
 文件長到十頁以上、或分成好幾章的時候，每章開頭插一頁**章節頁**（`.chapter`）：大編號、章名、一句話，右下角一條尾巴，加 `.watermark` 換成線稿、加 `.deep` 整頁深色。它不套頁首，翻起來知道自己在哪。短文件不要插，會空。看長相：[A4 元件總覽](examples/components.pdf) 最後兩頁。
+
+紙張預設 **A4 直向**。要橫向就在 [`templates/doc.css`](templates/doc.css) 的 `:root` 改兩行：
+
+```css
+--paper: A4 landscape;
+--page-h: 210mm;
+```
+
+A5 是 `A5` / `210mm`，Letter 是 `Letter` / `279mm`。整份一起換——`@page` 讀不到個別元素的變數，所以沒辦法只讓某幾頁橫向。
+
+橫向之後內容寬從 182mm 變成 269mm，一行會到五十幾個中文字，太長不好讀：正文用 `--doc-body` 調大一點，或把內容分兩欄。
 
 骨架在 [`templates/doc-template.html`](templates/doc-template.html)，版式在 [`templates/doc.css`](templates/doc.css)。怎麼輸出、踩過什麼坑 → [`docs/BUILD.md`](docs/BUILD.md)。
 
