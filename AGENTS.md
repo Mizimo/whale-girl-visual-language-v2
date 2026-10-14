@@ -29,7 +29,7 @@
 - **配色方案**　目前兩組：從角色量測的靛藍組、最早的深海藍組 → [`docs/PALETTES.md`](docs/PALETTES.md)
 - **字體方案**　系統字體（快、不用下載）、Noto Sans TC + JP 靜態字重（跨平台一致、PDF 不嵌 Type 3）→ 見 README
 - **版面模板**　A4 講義、16:9 簡報、Markdown 筆記 → [`templates/`](templates/)
-- **元件**　講解框、對話、舉牌、GAL 對話頁、卡片、步驟、時間軸、和弦進行、五度圈……四十多種，每種都附截圖和寫法 → [`docs/COMPONENTS.md`](docs/COMPONENTS.md)
+- **元件**　講解框、對話、貼圖、旁白、舉牌、GAL 對話頁、卡片、步驟、時間軸、和弦進行、五度圈……四十多種，每種都附截圖和寫法 → [`docs/COMPONENTS.md`](docs/COMPONENTS.md)
 - **成品**　兩份範例，可以直接改 → [`examples/`](examples/)
 - **人設**　外型、服裝、配色量測值、不能變的地方 → [`docs/CHARACTER.md`](docs/CHARACTER.md)
 

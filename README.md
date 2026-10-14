@@ -143,7 +143,7 @@ A4 和簡報共用同一組元件（[`templates/components.css`](templates/compo
 
 <img src="docs/preview/components.png" width="880" alt="A4 元件總覽">
 
-- **角色**　講解框（六種表情）、對話泡泡、貼圖、印章、舉牌、GAL 對話頁
+- **角色**　講解框（六種表情）、對話泡泡、貼圖、旁白、印章、舉牌、GAL 對話頁
 - **重點與比較**　例子框、重點框、標籤框、對錯對照、公式、大數字、卡片、兩欄對照、表格
 - **流程與結構**　步驟、時間軸、檢核清單、目錄、連載進度
 - **教材**　練習題、選擇題（學生版一個 class 就把答案藏起來）、姓名欄、術語表、對照翻譯、參考資料、分欄、日文讀音
@@ -179,7 +179,7 @@ A4 和簡報共用同一組元件（[`templates/components.css`](templates/compo
 
 - [A4 講義範例](examples/handout.pdf)（3 頁）　封面、配色頁、元件頁，對應 `templates/doc.css`
 - [16:9 簡報範例](examples/deck.pdf)（6 頁）　封面、原則兩頁、版面、選圖、收尾，對應 `templates/deck.css`
-- [A4 元件總覽](examples/components.pdf)（13 頁）　每個元件各放一個實際的樣子，最後兩頁是章節頁
+- [A4 元件總覽](examples/components.pdf)（14 頁）　每個元件各放一個實際的樣子，最後兩頁是章節頁
 - [簡報元件總覽](examples/components-deck.pdf)（23 頁）　每種頁型和元件各一頁，含 GAL 對話頁、目錄頁、半版圖、收尾頁
 
 HTML 都可以直接改內容再重新輸出，改配色只要動 `templates/tokens.css`。全部重建一次：`python3 tools/build.py`（token 檢查、輸出四份 PDF、更新預覽圖和元件截圖、核對校驗清單）。
