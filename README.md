@@ -88,21 +88,12 @@
 
 ## 字體與字級
 
-- 中文：**Noto Sans TC**。執行一次 `pip install fonttools` 和 `python3 tools/fetch_fonts.py`，會在 `fonts/` 做出 Regular、Bold 兩個靜態字重（不進 git），輸出時優先用它；沒有的話找系統裝的 Noto，再沒有才退到 PingFang TC、微軟正黑體。
+- 中文：**Noto Sans TC**，做成 Regular、Bold 兩個靜態字重放在 `fonts/`（不進 git，跑一次 `tools/fetch_fonts.py` 就有，見[建置](docs/BUILD.md)）。輸出時優先用它；沒有的話找系統裝的 Noto，再沒有才退到 PingFang TC、微軟正黑體。
 - 日文：**Noto Sans JP**，同一支 `fetch_fonts.py` 一起做。補的是 Noto Sans TC 沒有的日文漢字（楽、徴、続、録……）；加了 `lang="ja"` 的段落會改成日文字形優先。
 - 等寬（和弦記號、程式）：`"SF Mono"`, `Menlo`, `Consolas`, `"DejaVu Sans Mono"`，裡面的中文接回 Noto Sans TC。
 - 音樂記號（♭ ♮ ♯）：Noto 的這三個字是全形字寬，和弦記號會排成「B ♭ 7」。`fetch_fonts.py` 會從 Noto Sans TC 抽出這三個字、收緊左右空白，做成 **WG Accidentals**（只改字寬、不改字形），排在字體清單最前面、只管這三個字。沒跑過的話退到 Apple Symbols、Segoe UI Symbol 或 DejaVu Sans，不會被系統換成怪字形。
 
 用 `fonts/` 的靜態字重有兩個好處：每台機器輸出的 PDF 長得一樣，字型也會以一般的 CID 字型嵌入。系統的 PingFang、可變字型、CFF 外框的 OpenType，Chrome 都會嵌成 Type 3，有些閱讀器和印刷流程會處理不好。
-
-### 每台機器輸出的要一樣
-
-這幾件事是踩過才穩下來的，換機器或接到 CI 之前先確認：
-
-- **先跑一次 `python3 tools/fetch_fonts.py`。** `fonts/` 不進 git；沒跑的話不只用不到 Noto 的靜態字重，還少了 `WGAccidentals`——升降記號會掉到系統的 Apple Symbols 或 DejaVu，字寬和字重都不對。
-- **抗鋸齒要固定。** macOS 的 Chrome 預設用 sub-pixel（LCD）抗鋸齒，Linux／headless 用 grayscale，同一份字型看起來會粗一級。`components.css` 的 `html` 已經關掉 sub-pixel、改用 geometricPrecision；這幾行不要拿掉。
-- **等寬字型現在還是靠系統。** `--font-mono` 排到 `"DejaVu Sans Mono"`：Linux 有，macOS 會落到 Andale Mono，字重差一點。要完全一致得再從 Noto 系列抽一組等寬字型進來（還沒做，記在這裡）。
-- **截圖很吃 Chrome。** `tools/shots.py` 一次要開六十幾次 headless，偶爾會卡住；逾時已經放寬到 300 秒並重試三次，還是卡就先把殘留的 `--headless` 程序清掉再跑。
 
 字級大概是這幾階，需要的時候自己插：
 
@@ -125,13 +116,7 @@
 
 文件長到十頁以上、或分成好幾章的時候，每章開頭插一頁**章節頁**（`.chapter`）：大編號、章名、一句話，右下角一條尾巴，加 `.watermark` 換成線稿、加 `.deep` 整頁深色。它不套頁首，翻起來知道自己在哪。短文件不要插，會空。看長相：[A4 元件總覽](examples/components.pdf) 最後兩頁。
 
-骨架在 [`templates/doc-template.html`](templates/doc-template.html)，版式在 [`templates/doc.css`](templates/doc.css)：
-
-```bash
-python3 templates/build_pdf.py 你的檔案.html 輸出.pdf
-```
-
-需要 Chrome 131 以後的版本，Chromium、Edge 也可以。macOS、Linux、Windows 都會自動找，找不到就用 `--chrome 路徑` 指定。輸出後會檢查兩件事：PDF 頁數比 section 多，代表有一頁塞不下，直接失敗；有 Type 3 字型就提醒你先抓字體。
+骨架在 [`templates/doc-template.html`](templates/doc-template.html)，版式在 [`templates/doc.css`](templates/doc.css)。怎麼輸出、踩過什麼坑 → [`docs/BUILD.md`](docs/BUILD.md)。
 
 ### 16:9 簡報
 
@@ -144,7 +129,7 @@ python3 templates/build_pdf.py 你的檔案.html 輸出.pdf
 - 換章節時插一頁章節頁（`.slide.section`，預設深色）；一句話撐一整頁用引言頁（`.slide.quote`）。任何一頁加 `.deep` 都能換成深色。
 - 另外還有目錄頁、半版圖、GAL 對話頁、收尾頁，長相和寫法見 [docs/COMPONENTS.md 的「簡報頁型」](docs/COMPONENTS.md#簡報頁型)。
 
-版式在 [`templates/deck.css`](templates/deck.css)，起點是 [`templates/deck-template.html`](templates/deck-template.html)。輸出指令跟 A4 一樣。
+版式在 [`templates/deck.css`](templates/deck.css)，起點是 [`templates/deck-template.html`](templates/deck-template.html)。怎麼輸出 → [`docs/BUILD.md`](docs/BUILD.md)。
 
 ### Markdown 筆記
 
@@ -209,7 +194,7 @@ HTML 都可以直接改內容再重新輸出，改配色只要動 `templates/tok
 
 - **[`AGENTS.md`](AGENTS.md)**　接手的第一份。這個 repo 是什麼、三件比素材重要的事、以及「怎麼寫一份給 agent 的讀者簡報」
 - **`assets/`**　素材本體與來源標註 → [assets/README.md](assets/README.md)
-- **`docs/`**　[聲音](docs/VOICE.md)、[配色方案](docs/PALETTES.md)、[元件](docs/COMPONENTS.md)、[寫作習慣](docs/WRITING.md)、[人設](docs/CHARACTER.md)、[素材來源與授權](docs/SOURCES.md)、[許願清單](docs/ART-REQUEST.md)、配色 SVG、預覽圖
+- **`docs/`**　[建置與輸出](docs/BUILD.md)、[聲音](docs/VOICE.md)、[配色方案](docs/PALETTES.md)、[元件](docs/COMPONENTS.md)、[寫作習慣](docs/WRITING.md)、[人設](docs/CHARACTER.md)、[素材來源與授權](docs/SOURCES.md)、[許願清單](docs/ART-REQUEST.md)、配色 SVG、預覽圖
 - **`templates/`**　`tokens.css`（顏色、字體、字級）、`components.css`（共用元件）、`doc.css`（A4）、`deck.css`（16:9）、`markdown.css`（VS Code 筆記預覽）、三份模板、`build_pdf.py`
 - **`tools/`**　`build.py`（一次重建全部）、`tokens.py`（色表、字級表、對比檢查）、`derive.py`（縮圖、頭像、反白圖示、輕量版）、`previews.py`（README 預覽圖）、`shots.py`（COMPONENTS.md 的元件截圖）、`checksums.py`（校驗清單）、`fetch_fonts.py`（下載字體）
 - **`examples/`**　上面那四份成品
