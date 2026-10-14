@@ -60,12 +60,34 @@ window.__seek = async (t) => {
 - `data-duration` 省略就播到影片結束；比影片長會被切掉
 - `amix` 一定要 `normalize=0`。預設是全部除以軌數，加了第二軌音樂反而變小聲
 - **淡出要自己處理**——音樂忽然斷掉很難聽，但那是編曲的事，渲染器不管
-- 音樂自己做的話，Logic Pro 輸出 48kHz 立體聲就好；渲染器會編成 AAC 192k
+- 音樂交給 Logic Pro 或自己合成都可以，48kHz 立體聲就好；渲染器會編成 AAC 192k
+
+## 自己編一首
+
+沒現成音樂的話，這個 repo 有一個合成器：[`tools/synth.py`](../tools/synth.py)。純 Python 標準庫，**不用 numpy**——一首 20 秒的曲子只有幾百萬個樣本，跑四秒半就夠。加法合成：一個音就是幾個正弦波（基頻疊泛音）乘上一條指數衰減的包絡。
+
+引擎跟樂譜分開放，所以改曲子不用碰合成程式：
+
+- **`tools/synth.py`**　只懂聲音——`tone()`／`kick()`／`hat()`／`bubble()`、混音、正規化、寫 WAV
+- **`examples/deep-etude/score.py`**　只懂音樂——BPM、和弦、旋律、配器的常數，加一個 `build(mix, meta)`
+
+```
+python3 tools/synth.py examples/deep-etude/score.py -o examples/deep-etude/bgm.wav
+python3 tools/midi.py  examples/deep-etude/score.py     # 同一份樂譜，輸出 MIDI
+python3 tools/checkmidi.py                              # 把 .mid 讀回來驗格式
+```
+
+**卡點是免費的。** 卡點的本質是「第 t 秒的畫面必須對」，而逐幀渲染本來就在問「第 t 秒長什麼樣」。所以把節拍時間灌進 `animation-delay` 就對齊了——不需要任何即時同步，也不用對拍。`examples/deep-etude/beats.json` 是那首的節拍表（每拍、每小節、和弦變化、旋律音）。
+
+**MIDI 和 WAV 的分工**：WAV 是死的，音色鎖在波形裡；MIDI 只記「哪個音、什麼時候、多大力」，用 General MIDI 編號，拉進 GarageBand 就能換樂器。同一份樂譜兩種輸出，想玩就改 MIDI，想直接發就用 WAV。
+
+一個落差要注意：WAV 版的泡泡音是「頻率往上滑」的，MIDI 的音符滑不了（要滑得用 pitch bend，那會變成一堆自動化曲線、在 DAW 裡很難編輯），所以 MIDI 版換成一個短促的裝飾音。
 
 ## 踩過的坑
 
 - **動畫不能超過 `data-duration`。** 曾經有一個泡泡是 3.7 秒開始、跑 2.6 秒，總共 6.5 秒，而影片只有 6 秒——最後 0.5 秒被硬切掉，看起來像畫面閃了一下。
-- **渲染速度大約 5 fps。** 一支 30fps、6 秒的影片（180 幀）要 40 秒左右；1 分鐘的影片要 12 分鐘。`--scale 2` 是 supersampling，畫質更好但慢四倍。
+- **速度差很多。** 有滿版點陣圖的頁面大約 5 fps（6 秒的影片要 40 秒）；純 CSS 畫面的頁面可以到 19 fps（20 秒的影片十幾秒渲完）。元素越多的頁面越慢——《深海練習曲》從 11 fps 掉到 7.6 fps，因為泡泡一顆一顆疊上去。`--scale 2` 是 supersampling，畫質更好但慢四倍。
+- **不要把渲染器的輸出 pipe 到 `head` 或 `tail`。** `node tools/render.mjs … | tail -3` 有可能在 `tail` 讀完就退出時讓 node 吃到 SIGPIPE，噴出 `Node.js v25.6.1` 和一段看起來像當掉的堆疊——其實渲染是好的。要留輸出就 `> log 2>&1`，或者 `--keep` 之後再去看。
 - **幀不會自動清掉。** `--keep` 會把 PNG 留在輸出檔旁邊的 `.frames/`，除錯用；預設是渲完就刪。
 
 ## 什麼時候該換成 HyperFrames

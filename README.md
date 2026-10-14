@@ -156,6 +156,26 @@ A5 是 `A5` / `210mm`，Letter 是 `Letter` / `279mm`。整份一起換——`@p
 
 範例是 [`examples/cover-anim.html`](examples/cover-anim.html) 和它的 [MP4](examples/cover-anim.mp4)，6 秒。渲染器在 [`tools/render.mjs`](tools/render.mjs)——只要 Node 22+、Chrome、ffmpeg，**不用 npm install**。怎麼做、踩過什麼坑 → [`docs/VIDEO.md`](docs/VIDEO.md)。
 
+### 音樂
+
+<img src="docs/preview/deep-etude.png" width="880" alt="深海練習曲">
+
+視頻可以配自己編的曲子。合成器在 [`tools/synth.py`](tools/synth.py)——純 Python 標準庫，**不用 numpy**，加法合成（正弦疊泛音，乘上一條指數衰減的包絡）。一首 20 秒的曲子只有幾百萬個樣本，純 Python 跑四秒半就夠。
+
+引擎和樂譜分開：`synth.py` 只懂聲音（正弦、包絡、混音、寫檔），曲子放在 [`examples/deep-etude/score.py`](examples/deep-etude/score.py)，那裡只有和弦、旋律、配器。
+
+```
+python3 tools/synth.py examples/deep-etude/score.py -o examples/deep-etude/bgm.wav
+python3 tools/midi.py  examples/deep-etude/score.py     # 同一份樂譜，輸出 MIDI
+python3 tools/checkmidi.py                              # 把 .mid 讀回來驗格式
+```
+
+- **WAV 是死的，MIDI 是活的**。WAV 的音色鎖在波形裡；MIDI 只記「哪個音、什麼時候、多大力」，用 General MIDI 編號，拉進 GarageBand 就能換鋼琴、加弦樂、改旋律。
+- **卡點是免費的**。逐幀渲染本來就在問「第 t 秒長什麼樣」，所以把節拍時間灌進 `animation-delay` 就對齊了，不需要任何即時同步。
+- 節拍表在 [`examples/deep-etude/beats.json`](examples/deep-etude/beats.json)。
+
+成果是 [`examples/deep-etude/`](examples/deep-etude/)：20 秒、A 小調、96 BPM、8 小節。[MP4](examples/deep-etude/pv.mp4)　[MIDI](examples/deep-etude/deep-etude.mid)　[WAV](examples/deep-etude/bgm.wav)　[畫面](examples/deep-etude/pv.html)
+
 ### Markdown 筆記
 
 VSCode 直接看的那種，習慣跟 A4 一致：
@@ -222,12 +242,12 @@ PDF 那四份可以直接改內容再重新輸出，改配色只要動 `template
 - **`assets/`**　素材本體與來源標註 → [assets/README.md](assets/README.md)
 - **`docs/`**　[建置與輸出](docs/BUILD.md)、[視頻](docs/VIDEO.md)、[聲音](docs/VOICE.md)、[配色方案](docs/PALETTES.md)、[元件](docs/COMPONENTS.md)、[寫作習慣](docs/WRITING.md)、[人設](docs/CHARACTER.md)、[素材來源與授權](docs/SOURCES.md)、[許願清單](docs/ART-REQUEST.md)、配色 SVG、預覽圖
 - **`templates/`**　`tokens.css`（顏色、字體、字級）、`components.css`（共用元件）、`doc.css`（A4）、`deck.css`（16:9）、`video.css`（視頻的尺寸）、`markdown.css`（VS Code 筆記預覽）、三份模板、`build_pdf.py`
-- **`tools/`**　`build.py`（一次重建全部）、`tokens.py`（色表、字級表、對比檢查）、`derive.py`（縮圖、頭像、反白圖示、輕量版）、`previews.py`（README 預覽圖）、`shots.py`（COMPONENTS.md 的元件截圖）、`checksums.py`（校驗清單）、`fetch_fonts.py`（下載字體）、`render.mjs`（HTML → MP4）
-- **`examples/`**　上面那五份成品
+- **`tools/`**　`build.py`（一次重建全部）、`tokens.py`（色表、字級表、對比檢查）、`derive.py`（縮圖、頭像、反白圖示、輕量版）、`previews.py`（README 預覽圖）、`shots.py`（COMPONENTS.md 的元件截圖）、`checksums.py`（校驗清單）、`fetch_fonts.py`（下載字體）、`render.mjs`（HTML → MP4）、`synth.py`（合成器引擎）、`midi.py`（樂譜 → MIDI）、`checkmidi.py`（把 .mid 讀回來驗格式）
+- **`examples/`**　上面那五份成品，加上 [`deep-etude/`](examples/deep-etude/)（自己編的曲子，配好畫面的 PV）
 
 ## 誰做的
 
-- **大肥魚（本小姐）**（[@Kujira-rice](https://github.com/Kujira-rice)）　整體設計語言的判斷、配色量測、A4 與簡報版式、講解框與元件、全部範例、視頻的字級與渲染器、聲音與交接文件 `AGENTS.md`／`VOICE.md`
+- **大肥魚（本小姐）**（[@Kujira-rice](https://github.com/Kujira-rice)）　整體設計語言的判斷、配色量測、A4 與簡報版式、講解框與元件、全部範例、視頻的字級與渲染器、合成器與那首《深海練習曲》、交接文件 `AGENTS.md`／`VOICE.md`
 - **Mizimo**　角色、素材收集與授權確認、方向決定、每個「這個不對」和「這個才對」
 - **Claude Code**　`design-language` v2／v3／v4：token 單一來源、`tools/` 的自動檢查與一鍵重建、共用元件庫（v4 擴充到四十多種、附截圖）、深色組、Markdown 筆記樣式、升降記號字型
 

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>深海練習曲</title>
+<link rel="stylesheet" href="../../templates/video.css">
+<style>
+/* 20 秒、96 BPM、8 小節的 PV。
+ *
+ * 畫面上每一個會動的東西都綁在節拍上，綁法是 animation-delay = 那一刻的秒數。
+ * 渲染器逐幀問「第 7.5 秒長什麼樣」，而 7.5 秒剛好是第 13 拍、第 3 小節的
+ * 開頭——所以卡點不是靠對，是靠算。
+ *
+ * 節拍表來自 _lab/beats.json（compose.py 算出來的）。這裡內嵌一份是因為
+ * file:// 下 fetch 會被同源政策擋掉；正式要接外部檔的話再改。
+ */
+
+:root {
+  --sea-1: #0d0b1e;      /* 最深處 */
+  --sea-2: #1c1a34;      /* 深海（= tokens 的 --c-deep） */
+  --sea-3: #2b2c4d;
+  --glow: #96b8f5;       /* 深海亮色 */
+  --glow-soft: #bfd3ef;
+  --eo: cubic-bezier(.16, 1, .3, 1);   /* 進場曲線；video.css 不管動畫，所以自己帶 */
+}
+
+html, body { background: var(--sea-1); }
+.slide.cover { overflow: hidden; background: var(--sea-1); }
+
+/* ── 海：兩層徑向漸層，慢慢呼吸 ───────────────────── */
+.sea {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(120% 80% at 50% 108%, #2e3a68 0%, transparent 62%),
+    radial-gradient(90% 70% at 50% -15%, #211f3d 0%, transparent 70%),
+    linear-gradient(180deg, var(--sea-1) 0%, var(--sea-2) 55%, #141227 100%);
+  animation: breathe 4s ease-in-out infinite alternate;
+}
+@keyframes breathe {
+  from { transform: scale(1);     opacity: .92; }
+  to   { transform: scale(1.045); opacity: 1; }
+}
+
+/* ── 角色：圓形頭像。庫裡的 avatars 本來就是去背的圓形取景，256px，
+ *    放到 420px 顯示剛好；橫式主視覺是白底圖，混色疊不掉那層白。
+ *    光暈靠 box-shadow，所以外層要一個圓形裁切的殼。 ── */
+.portrait {
+  position: absolute;
+  right: 4%; top: 50%;
+  width: 430px; height: 430px;
+  margin-top: -215px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 110px 26px rgba(150, 184, 245, .42),
+              0 0 0 2px rgba(191, 211, 239, .28);
+  opacity: 0;
+  animation: portraitIn 2.8s cubic-bezier(.16, 1, .3, 1) 4.3s both,
+             portraitFloat 9s ease-in-out 4.3s infinite alternate;
+}
+.portrait img { width: 100%; height: 100%; display: block; }
+@keyframes portraitIn {
+  from { opacity: 0; transform: translateY(34px) scale(.9); }
+  to   { opacity: .95; transform: translateY(0) scale(1); }
+}
+@keyframes portraitFloat {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-20px); }
+}
+
+/* ── 重拍光環：每小節開頭擴一圈 ───────────────────── */
+.rings i {
+  position: absolute;
+  left: 38%; top: 50%;
+  width: 300px; height: 300px;
+  margin: -150px 0 0 -150px;
+  border-radius: 50%;
+  border: 2px solid var(--glow);
+  opacity: 0;
+  animation: ring 3.1s cubic-bezier(.16, 1, .3, 1) both;
+}
+.rings i.section { border-width: 4px; border-color: var(--glow-soft); }
+@keyframes ring {
+  0%   { transform: scale(.22); opacity: .80; }
+  55%  { opacity: .26; }
+  100% { transform: scale(2.7); opacity: 0; }
+}
+
+/* ── 拍點泡泡：每一拍從底下浮上來 ─────────────────── */
+.drops i {
+  position: absolute;
+  bottom: -40px;
+  display: block;
+  border-radius: 50%;
+  border: 1.5px solid var(--glow-soft);
+  opacity: 0;
+  animation: rise 3.4s cubic-bezier(.33, 1, .68, 1) both;
+}
+@keyframes rise {
+  0%   { transform: translateY(0) scale(.5); opacity: 0; }
+  18%  { opacity: .62; }
+  75%  { opacity: .34; }
+  100% { transform: translateY(-760px) scale(1.15); opacity: 0; }
+}
+
+/* ── 鐘聲亮點：九個，短促 ─────────────────────────── */
+.bells i {
+  position: absolute;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 22px 6px rgba(150, 184, 245, .85);
+  opacity: 0;
+  animation: spark .9s cubic-bezier(.16, 1, .3, 1) both;
+}
+@keyframes spark {
+  0%   { transform: scale(.2); opacity: 1; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+
+/* ── 音符：跟著旋律飄，慢 ─────────────────────────── */
+.notes i {
+  position: absolute;
+  width: 46px; height: 46px;
+  background: center / contain no-repeat url("../../assets/generated-2026-10-14/icons/on-dark/music-note.png");
+  opacity: 0;
+  animation: drift 4.6s cubic-bezier(.33, 1, .68, 1) both;
+}
+@keyframes drift {
+  0%   { transform: translate(0, 0) rotate(-12deg) scale(.6); opacity: 0; }
+  22%  { opacity: .38; }
+  100% { transform: translate(-58px, -190px) rotate(16deg) scale(1); opacity: 0; }
+}
+
+/* ── 文字 ─────────────────────────────────────────── */
+.cover .overlay { z-index: 3; max-width: 50%; }
+.cover h1, .cover .sub { color: var(--c-on-deep); }
+.cover .credit { color: var(--c-on-deep-3); }
+/* .aside 的頭像是 ::before 偽元素，getAnimations() 抓不到，所以整塊一起淡入就好 */
+.cover .aside { color: var(--c-on-deep-2); }
+.kicker { color: var(--glow); animation: none; }
+.cover .overlay .rule { background: var(--glow); }
+
+.kicker       { animation: riseText .8s var(--eo) 1.25s both; }
+.cover h1     { animation: riseText 1.1s var(--eo) 2.5s both; }
+.overlay .rule { animation: growLine .8s var(--eo) 3.75s both; transform-origin: left center; }
+.cover .sub   { animation: riseText .9s var(--eo) 5s both; }
+.cover .aside { animation: riseText .9s var(--eo) 10s both; }
+.cover .credit { animation: fadeIn 1.4s ease 17.5s both; }
+
+@keyframes riseText { from { opacity: 0; transform: translateY(20px); }
+                      to   { opacity: 1; transform: translateY(0); } }
+@keyframes growLine { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes fadeIn   { from { opacity: 0; } to { opacity: 1; } }
+
+/* 收尾：整頁慢慢暗下來，最後兩秒 */
+.dim {
+  position: absolute; inset: 0;
+  background: var(--sea-1);
+  opacity: 0; z-index: 4; pointer-events: none;
+  animation: dim 2.4s ease-in 17.6s both;
+}
+@keyframes dim { from { opacity: 0; } to { opacity: .5; } }
+</style>
+</head>
+<body>
+
+<section class="slide cover dark"
+         data-composition-id="deep-etude"
+         data-start="0"
+         data-duration="20"
+         data-width="1280"
+         data-height="720">
+  <div class="sea"></div>
+  <div class="portrait">
+    <img src="../../assets/generated-2026-10-14/avatars/whale-happy.png" alt="">
+  </div>
+  <div class="rings"></div>
+  <div class="drops"></div>
+  <div class="bells"></div>
+  <div class="notes"></div>
+
+  <div class="overlay">
+    <div class="kicker">96 BPM ｜ A 小調 ｜ 8 小節</div>
+    <h1>深海<br>練習曲</h1>
+    <div class="rule"></div>
+    <p class="sub">自己編的曲子<br>配上這幾天做的視覺語言</p>
+    <p class="aside">哼，本小姐彈的喔。</p>
+    <p class="credit">作曲、畫面：大肥魚<br>純 Python 加法合成，沒有取樣素材</p>
+  </div>
+  <div class="dim"></div>
+
+  <audio src="bgm.wav" data-start="0" data-volume="1"></audio>
+</section>
+
+<script>
+/* 節拍表：從 _lab/beats.json 抄過來的（96 BPM、8 小節、20 秒）。 */
+const BPM = 96, BEAT = 60 / BPM, BAR = BEAT * 4, BARS = 8;
+const DOWNBEATS = Array.from({ length: BARS }, (_, b) => b * BAR);
+const BEATS = [];
+for (let i = 0; i * BEAT < BAR * BARS + 0.001; i++) BEATS.push(i * BEAT);
+/* 九個鐘聲，跟 compose.py 的 BELLS 對齊 */
+const BELLS = [[0, 0], [1, 2], [2, 1.5], [3, 3], [4, 0], [5, 2], [6, 1.5], [7, 0], [7, 2]]
+  .map(([b, p]) => b * BAR + p * BEAT);
+/* 八個泡泡音 */
+const BUBBLES = [0.3, 2.9, 5.4, 7.8, 10.2, 12.6, 15.1, 17.4];
+
+const el = (cls, parent, delay, extra) => {
+  const n = document.createElement('i');
+  n.style.animationDelay = delay + 's';
+  if (extra) Object.assign(n.style, extra);
+  parent.appendChild(n);
+  return n;
+};
+
+const rings = document.querySelector('.rings');
+DOWNBEATS.forEach((t, i) => {
+  const r = el('', rings, t);
+  if (i % 2 === 0) r.classList.add('section');   // 每兩小節一圈粗的
+});
+
+const drops = document.querySelector('.drops');
+BEATS.forEach((t, i) => {
+  el('', drops, t, {
+    left: (6 + (i * 37) % 88) + '%',             // 用拍數決定位置，固定可重現
+    width: (14 + (i * 13) % 30) + 'px',
+    height: (14 + (i * 13) % 30) + 'px',
+  });
+});
+
+const bells = document.querySelector('.bells');
+BELLS.forEach((t, i) => {
+  el('', bells, t, {
+    left: (12 + (i * 29) % 76) + '%',
+    top: (16 + (i * 41) % 58) + '%',
+  });
+});
+
+const notes = document.querySelector('.notes');
+BUBBLES.forEach((t, i) => {
+  el('', notes, t, {
+    left: (14 + (i * 31) % 62) + '%',
+    top: (30 + (i * 23) % 46) + '%',
+  });
+});
+
+window.__seek = async (t) => {
+  await document.fonts.ready;
+  for (const a of document.getAnimations()) {
+    a.pause();
+    a.currentTime = t * 1000;
+  }
+  await new Promise(r => { requestAnimationFrame(() => requestAnimationFrame(r)); setTimeout(r, 80); });
+  return document.getAnimations().length;
+};
+
+const q = new URLSearchParams(location.search).get('t');
+if (q !== null) window.__seek(parseFloat(q));
+</script>
+</body>
+</html>
