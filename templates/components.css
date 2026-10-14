@@ -10,7 +10,23 @@
  * 每個元件的寫法和長相見 docs/COMPONENTS.md；實際排出來的樣子在 examples/components*.pdf。
  */
 
-html { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+html {
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+  /* macOS 的 sub-pixel 抗鋸齒會讓同一份字型看起來比 Linux／CI 粗一級。
+   * 關掉之後輸出的字重才跟別的機器對得上。 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+}
+
+/* ── 表情一覽 ─────────────────────────── */
+/* 講解框的頭像在 A4 上只有 34px，六個排在一起看不清表情；要示範表情就用這個排一排。
+ * <div class="faces"><figure><img src="…/whale-happy.png" alt=""><figcaption>開心</figcaption></figure>…</div> */
+.faces { display: flex; flex-wrap: wrap; gap: var(--sp-5); margin: var(--stack) 0 0; }
+.faces figure { margin: 0; text-align: center; }
+.faces img { width: var(--s, 60px); height: var(--s, 60px); border-radius: 50%; display: block; }
+.faces figcaption { font-size: var(--fs-micro); color: var(--c-ink-3); margin-top: .35em; }
 
 /* ── 深海：深色頁 ─────────────────────── */
 /* 把一組淺色 token 換成深色那組，裡面的元件不用改寫就會跟著變。

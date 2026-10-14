@@ -526,7 +526,7 @@ A4 講義和 16:9 簡報共用同一組元件，寫法一樣，字級和間距�
 
 十二個調照五度排一圈，關係小調在內圈，調號在圈外。
 
-<img src="preview/c/fifths.webp" width="293" alt="五度圈">
+<img src="preview/c/fifths.webp" width="292" alt="五度圈">
 
 ```html
 <ol class="fifths">
