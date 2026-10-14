@@ -20,6 +20,7 @@ import pathlib
 import re
 import subprocess
 import sys
+import time
 import tempfile
 
 from PIL import Image, ImageChops
@@ -71,9 +72,20 @@ def shoot(chrome: str, src: pathlib.Path, name: str, medium: str, tmp: pathlib.P
            "--run-all-compositor-stages-before-draw", "--virtual-time-budget=5000",
            f"--force-device-scale-factor={SCALE.get(medium, 1)}", f"--window-size={w},{h}",
            f"--screenshot={png}", page.as_uri()]
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
-    if r.returncode != 0 or not png.exists():
-        raise RuntimeError(f"截圖失敗：{name}\n{r.stderr[-800:]}")
+    # 偶爾會卡住（Chrome 開太多次之後），放寬逾時並重試幾次
+    for attempt in range(3):
+        png.unlink(missing_ok=True)
+        try:
+            r = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+            err = r.stderr
+        except subprocess.TimeoutExpired:
+            r, err = None, "逾時"
+        if r is not None and r.returncode == 0 and png.exists():
+            break
+        print(f"  重試 {name}（{attempt + 1}/3）：{err[-200:]}", flush=True)
+        time.sleep(3)
+    else:
+        raise RuntimeError(f"截圖失敗：{name}\n{err[-800:]}")
     im = Image.open(png).convert("RGB")
     out = OUT / f"{name}.webp"
     if medium == "doc":
