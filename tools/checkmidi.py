@@ -27,8 +27,13 @@ def read_vlq(b: bytes, i: int) -> tuple[int, int]:
 
 
 def main() -> int:
-    path = (pathlib.Path(sys.argv[1]) if len(sys.argv) > 1
-            else ROOT / "examples" / "deep-etude" / "deep-etude.mid")
+    if len(sys.argv) > 1:
+        path = pathlib.Path(sys.argv[1])
+    else:
+        # 預設先找自己旁邊的 .mid——打包出去之後就是這種情形；
+        # 找不到才回頭找 repo 裡的範例
+        beside = sorted(HERE.glob("*.mid"))
+        path = beside[0] if beside else ROOT / "examples" / "deep-etude" / "deep-etude.mid"
     raw = path.read_bytes()
 
     if raw[:4] != b"MThd":
