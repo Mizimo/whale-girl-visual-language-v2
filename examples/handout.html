@@ -21,7 +21,7 @@
     <img src="../assets/original-design/whale-avatar.png" alt="大肥魚">
     <h2>大肥魚視覺語言庫</h2>
     <p class="lede">配色・字級・版面・元件・選圖</p>
-    <p>一套從角色身上取色的文件設計語言，做 PDF、講義、簡報的時候直接套。</p>
+    <p>一套從本小姐身上取色的文件設計語言。做 PDF、講義、簡報的時候直接套上去就好喵。</p>
     <p class="credit">
       角色插圖：phoiex/AAAAGENT 的 original-design 素材（AI 輔助製作）<br>
       原始設計參考 fornarwhal/deepseek-whale-girl-icon ｜ CC BY-NC-SA 4.0 ｜ 僅供非商業使用
@@ -32,7 +32,7 @@
 <!-- 配色 -->
 <section class="page">
   <h2>配色</h2>
-  <p class="lede">色票直接從角色身上取：深色跟洋裝、髮根的靛藍，淺色跟髮尾、眼睛的天藍。暖色只能當極小面積的點綴。</p>
+  <p class="lede">色票是直接從本小姐身上量的：深色跟洋裝、髮根的靛藍，淺色跟髮尾、眼睛的天藍。暖色只能當極小面積的點綴喵。</p>
 
   <!-- tokens:palette-html -->
   <div class="swatches">
@@ -51,12 +51,12 @@
 
   <h2>怎麼挑</h2>
   <ul>
-    <li>標題一律 <code>--c-title</code>，正文一律 <code>--c-ink</code>，不要在中間再插第三種深色。</li>
-    <li>藍色各有職責：<code>--c-primary</code> 當主角（頁首線、標籤），<code>--c-accent</code> 標記「有人在講話」，中性的 <code>--c-line-strong</code> 標記「這是例子」。</li>
+    <li>標題一律 <code>--c-title</code>，正文一律 <code>--c-ink</code>——不要在中間再插第三種深色喔。</li>
+    <li>藍色各有職責：<code>--c-primary</code> 當主角（頁首線、標籤），<code>--c-accent</code> 標記「有人在講話」，中性的 <code>--c-line-strong</code> 標記「這是例子」喵。</li>
     <li>灰色只做後退用：<code>--c-ink-3</code> 寫圖說、署名、頁碼，對白底仍有 4.5:1。<b>不要</b>再用更淡的灰寫字。</li>
   </ul>
 
-  <div class="ex">色票的實際長相在 <code>docs/palette.svg</code>。要改顏色只動 <code>templates/tokens.css</code>，再執行 <code>python3 tools/tokens.py</code>，這頁的色塊會跟著更新。</div>
+  <div class="ex">色票的實際長相在 <code>docs/palette.svg</code>。要改顏色只動 <code>templates/tokens.css</code>，再跑一次 <code>python3 tools/tokens.py</code>，這頁的色塊會自己跟著換喵。</div>
 </section>
 
 <!-- 元件 -->
@@ -64,20 +64,20 @@
   <h2>版面元件</h2>
 
   <ul>
-    <li><b>頁首</b>　左邊文件標題、右邊頁碼，下面一條 2px 主色線。每頁自動產生，封面不放。</li>
-    <li><b>封面</b>　58mm 圓形頭像置中、下方標題，最下面放署名。</li>
-    <li><b>圖說</b>　右對齊、說明文字的顏色，放在圖的下方。</li>
+    <li><b>頁首</b>　左邊文件標題、右邊頁碼，下面一條 2px 主色線。每頁自己長出來，封面不放。</li>
+    <li><b>封面</b>　58mm 圓形頭像置中、下面標題，最下面放署名喵。</li>
+    <li><b>圖說</b>　右對齊、用說明文字的顏色，放在圖的下方。</li>
   </ul>
 
   <div class="whale">
     <img class="av" src="../assets/generated-2026-10-14/avatars/whale-serious.png" alt="">
     <div class="txt">
       <span class="who">本小姐的講解</span>
-      淡色底加左側 3px 亮色線，配 34px 圓形頭像。這是補充說明專用的框，一頁最多一個，超過三行就該拆頁。
+      哼，這頁就是在示範本小姐：淡色底、左邊一條 3px 亮色線、34px 圓頭像喵。補充說明專用，一頁最多一個，超過三行就拆頁。
     </div>
   </div>
 
-  <div class="ex">例子框：極淡底加左側 3px 中性灰線，沒有頭像。放譜例、指令、引文這種「不是正文」的東西，印成黑白也分得出來。</div>
+  <div class="ex">例子框：極淡底、左邊一條 3px 中性灰線，沒有頭像。放譜例、指令、引文這種「不是正文」的東西，印成黑白也分得出來喵。</div>
 
   <h2>字級</h2>
   <!-- tokens:type-html -->
@@ -86,7 +86,7 @@
     <li>簡報　40pt 封面標題、收尾頁標題／32pt 頁標題／24pt 導言、副標、小標／20pt 正文、條列、講解框（行距 1.6）／13pt 章節名、講解框標籤／10pt 頁碼、圖說、署名</li>
   </ul>
   <!-- /tokens:type-html -->
-  <p class="note">正文 11pt 是為了長時間閱讀刻意調大的，<b>不要</b>為了塞內容縮回去。</p>
+  <p class="note">正文 11pt 是為了長時間閱讀刻意調大的，<b>不要</b>為了塞內容縮回去喔。</p>
 </section>
 
 </body>

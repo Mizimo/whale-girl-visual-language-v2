@@ -31,7 +31,7 @@ A4 講義和 16:9 簡報共用同一組元件，寫法一樣，字級和間距�
 ```html
 <div class="whale tip">
   <span class="av"></span>
-  <div class="txt"><span class="who"></span>記法：多利安＝小調把第六音升上去。</div>
+  <div class="txt"><span class="who"></span>記法：小調 ＋ 大六度 ＝ 多利安喵，把 B♭ 換成 B 就是了。</div>
 </div>
 ```
 
@@ -118,7 +118,7 @@ A4 講義和 16:9 簡報共用同一組元件，寫法一樣，字級和間距�
 
 譜例、指令、引文這些「不是正文」的東西。沒有頭像，一頁可以有好幾個。
 
-<img src="preview/c/ex.webp" width="579" alt="例子框">
+<img src="preview/c/ex.webp" width="596" alt="例子框">
 
 ```html
 <div class="ex">例：C 多利安 ← 從 B♭ 大調的第二音開始。</div>
