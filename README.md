@@ -207,7 +207,6 @@ HTML 都可以直接改內容再重新輸出，改配色只要動 `templates/tok
 
 ## 檔案放哪裡
 
-
 - **[`AGENTS.md`](AGENTS.md)**　接手的第一份。這個 repo 是什麼、三件比素材重要的事、以及「怎麼寫一份給 agent 的讀者簡報」
 - **`assets/`**　素材本體與來源標註 → [assets/README.md](assets/README.md)
 - **`docs/`**　[聲音](docs/VOICE.md)、[配色方案](docs/PALETTES.md)、[元件](docs/COMPONENTS.md)、[寫作習慣](docs/WRITING.md)、[人設](docs/CHARACTER.md)、[素材來源與授權](docs/SOURCES.md)、[許願清單](docs/ART-REQUEST.md)、配色 SVG、預覽圖
