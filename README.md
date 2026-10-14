@@ -23,7 +23,7 @@
 - **配色方案**　目前兩組：從角色量測的靛藍組、原本的深海藍組 → 見下面的「配色」
 - **字體方案**　系統字體（快、不用下載）、Noto Sans TC + JP 靜態字重（跨平台一致、PDF 不嵌 Type 3）→ 見「字體」
 - **版面模板**　A4 講義、16:9 簡報、Markdown 筆記 → [`templates/`](templates/)
-- **元件**　講解框、例子框、重點框、表格、音級、鍵盤圖、術語表、練習題 → [`docs/COMPONENTS.md`](docs/COMPONENTS.md)
+- **元件**　講解框、對話、舉牌、GAL 對話頁、卡片、步驟、時間軸、和弦進行、五度圈……四十多種，每種都附截圖和寫法 → [`docs/COMPONENTS.md`](docs/COMPONENTS.md)
 - **成品**　兩份範例，可以直接改 → [`examples/`](examples/)
 - **怎麼用得像同一個人**　語氣、判斷、什麼時候閉嘴 → [`docs/VOICE.md`](docs/VOICE.md)
 - **怎麼寫一份「給 agent 的讀者簡報」**　格式、範例、脫敏原則 → 根目錄的 [`AGENTS.md`](AGENTS.md#附錄怎麼寫一份給-agent-的讀者簡報)
@@ -79,8 +79,9 @@
 ## 字體與字級
 
 - 中文：**Noto Sans TC**。執行一次 `pip install fonttools` 和 `python3 tools/fetch_fonts.py`，會在 `fonts/` 做出 Regular、Bold 兩個靜態字重（不進 git），輸出時優先用它；沒有的話找系統裝的 Noto，再沒有才退到 PingFang TC、微軟正黑體。
+- 日文：**Noto Sans JP**，同一支 `fetch_fonts.py` 一起做。補的是 Noto Sans TC 沒有的日文漢字（楽、徴、続、録……）；加了 `lang="ja"` 的段落會改成日文字形優先。
 - 等寬（和弦記號、程式）：`"SF Mono"`, `Menlo`, `Consolas`, `"DejaVu Sans Mono"`，裡面的中文接回 Noto Sans TC。
-- 音樂記號（♭ ♮ ♯）：Noto Sans TC 本身就有。退到 PingFang 時會自動改用 Apple Symbols、Segoe UI Symbol 或 DejaVu Sans，不會被系統換成怪字形。
+- 音樂記號（♭ ♮ ♯）：Noto 的這三個字是全形字寬，和弦記號會排成「B ♭ 7」。`fetch_fonts.py` 會從 Noto Sans TC 抽出這三個字、收緊左右空白，做成 **WG Accidentals**（只改字寬、不改字形），排在字體清單最前面、只管這三個字。沒跑過的話退到 Apple Symbols、Segoe UI Symbol 或 DejaVu Sans，不會被系統換成怪字形。
 
 用 `fonts/` 的靜態字重有兩個好處：每台機器輸出的 PDF 長得一樣，字型也會以一般的 CID 字型嵌入。系統的 PingFang、可變字型、CFF 外框的 OpenType，Chrome 都會嵌成 Type 3，有些閱讀器和印刷流程會處理不好。
 
@@ -120,6 +121,7 @@ python3 templates/build_pdf.py 你的檔案.html 輸出.pdf
 - 要配圖就左右分：文字 52%、圖 48%，垂直置中。
 - 簡報字放大：標題 32pt、正文 20pt、行距 1.6。頁碼留空 `<div class="pageno"></div>` 會自動填。
 - 換章節時插一頁章節頁（`.slide.section`，預設深色）；一句話撐一整頁用引言頁（`.slide.quote`）。任何一頁加 `.deep` 都能換成深色。
+- 另外還有目錄頁、半版圖、GAL 對話頁、收尾頁，長相和寫法見 [docs/COMPONENTS.md 的「簡報頁型」](docs/COMPONENTS.md#簡報頁型)。
 
 版式在 [`templates/deck.css`](templates/deck.css)，起點是 [`templates/deck-template.html`](templates/deck-template.html)。輸出指令跟 A4 一樣。
 
@@ -137,19 +139,17 @@ VSCode 直接看的那種，習慣跟 A4 一致：
 
 ## 元件
 
-A4 和簡報共用同一組元件（[`templates/components.css`](templates/components.css)），寫法一樣，大小跟著載體走。每個元件的寫法和規則在 [docs/COMPONENTS.md](docs/COMPONENTS.md)，實際的樣子看 [A4 元件總覽](examples/components.pdf) 和 [簡報元件總覽](examples/components-deck.pdf)。
+A4 和簡報共用同一組元件（[`templates/components.css`](templates/components.css)），寫法一樣，大小跟著載體走。每個元件的截圖和寫法在 [docs/COMPONENTS.md](docs/COMPONENTS.md)，排在一起的樣子看 [A4 元件總覽](examples/components.pdf) 和 [簡報元件總覽](examples/components-deck.pdf)。
 
 <img src="docs/preview/components.png" width="880" alt="A4 元件總覽">
 
-- **講解框**　鯨魚娘出場說話。分成講解、訣竅、警告、易混、冷知識、複習六種，靠表情和標籤區分，不換顏色
-- **例子框**　譜例、指令、引文
-- **重點框**　放在頁尾，整理這一頁要帶走的東西
-- **表格**　並列比較。簡報一頁最多四列
-- **音級**、**鍵盤圖**　樂理專用，特徵音實心標出來
-- **術語表**　原文、另一種寫法、中文說明
-- **練習題**　附答案框，學生版加一個 class 就把答案藏起來
-- **兩欄對照**　兩個東西並排比較
-- **深海**　任何一頁都能換成深色；簡報章節頁預設深色
+- **角色**　講解框（六種表情）、對話泡泡、貼圖、印章、舉牌、GAL 對話頁
+- **重點與比較**　例子框、重點框、標籤框、對錯對照、公式、大數字、卡片、兩欄對照、表格
+- **流程與結構**　步驟、時間軸、檢核清單、目錄、連載進度
+- **教材**　練習題、選擇題（學生版一個 class 就把答案藏起來）、姓名欄、術語表、對照翻譯、參考資料、分欄、日文讀音
+- **樂理**　音級、鍵盤圖、和弦進行（含反覆記號）、節奏格、五度圈
+- **裝飾**　波浪線、泡泡、浮水印；任何一頁加 `.deep` 都能換成深海
+- **頁型**　A4 章節頁；簡報的目錄頁、半版圖、GAL 對話頁、收尾頁
 
 ## 選圖
 
@@ -168,7 +168,8 @@ A4 和簡報共用同一組元件（[`templates/components.css`](templates/compo
 - **背景** → `assets/gal-view/bedroom-bg.png`（室內）、`assets/maid-atelier/palace-night.webp`（夜景）
 - **UI 框線** → `assets/gal-view/dialogue-box.png`
 - **小圖案** → `assets/generated-2026-10-14/icons/`；放在深色底上用 `icons/on-dark/` 的白描邊版
-- **教學動作、浮水印線稿** → `assets/generated-2026-10-14/`
+- **教學動作、浮水印線稿** → `assets/generated-2026-10-14/`（舉牌元件用的就是 `teaching/` 那張空白板子）
+- **輕量版** → 各資料夾底下的 `lite/`：不透明的圖轉成 JPEG、小圖示縮到 256px。Chrome 會把 JPEG 原樣嵌進 PDF，PNG 卻會被無損重壓，一張插圖就要 2–3 MB；模板的預設圖都用這一組。要最好的畫質就在 HTML 裡直接指原圖
 
 混用多組的時候挑同一個色系。角色的基準造型、不能改的地方和講解框的語氣在 [docs/CHARACTER.md](docs/CHARACTER.md)；完整清單、尺寸與授權在 [assets/](assets/README.md)。
 
@@ -178,10 +179,10 @@ A4 和簡報共用同一組元件（[`templates/components.css`](templates/compo
 
 - [A4 講義範例](examples/handout.pdf)（3 頁）　封面、配色頁、元件頁，對應 `templates/doc.css`
 - [16:9 簡報範例](examples/deck.pdf)（6 頁）　封面、原則兩頁、版面、選圖、收尾，對應 `templates/deck.css`
-- [A4 元件總覽](examples/components.pdf)（5 頁）　橫幅封面、文字、六種講解框、樂理元件、練習題
-- [簡報元件總覽](examples/components-deck.pdf)（7 頁）　章節頁、講解框、音級與鍵盤、表格、引言頁、深色頁、重點頁
+- [A4 元件總覽](examples/components.pdf)（13 頁）　每個元件各放一個實際的樣子，最後兩頁是章節頁
+- [簡報元件總覽](examples/components-deck.pdf)（23 頁）　每種頁型和元件各一頁，含 GAL 對話頁、目錄頁、半版圖、收尾頁
 
-HTML 都可以直接改內容再重新輸出，改配色只要動 `templates/tokens.css`。全部重建一次：`python3 tools/build.py`（token 檢查、輸出四份 PDF、更新預覽圖、核對校驗清單）。
+HTML 都可以直接改內容再重新輸出，改配色只要動 `templates/tokens.css`。全部重建一次：`python3 tools/build.py`（token 檢查、輸出四份 PDF、更新預覽圖和元件截圖、核對校驗清單）。
 
 ## 這個 repo 裡有什麼
 
@@ -189,14 +190,14 @@ HTML 都可以直接改內容再重新輸出，改配色只要動 `templates/tok
 - **`assets/`**　素材本體與來源標註 → [assets/README.md](assets/README.md)
 - **`docs/`**　[聲音](docs/VOICE.md)、[配色方案](docs/PALETTES.md)、[元件](docs/COMPONENTS.md)、[寫作習慣](docs/WRITING.md)、[人設](docs/CHARACTER.md)、[素材來源與授權](docs/SOURCES.md)、[許願清單](docs/ART-REQUEST.md)、配色 SVG、預覽圖
 - **`templates/`**　`tokens.css`（顏色、字體、字級）、`components.css`（共用元件）、`doc.css`（A4）、`deck.css`（16:9）、`markdown.css`（VS Code 筆記預覽）、三份模板、`build_pdf.py`
-- **`tools/`**　`build.py`（一次重建全部）、`tokens.py`（色表、字級表、對比檢查）、`derive.py`（縮圖、頭像、反白圖示）、`previews.py`（README 預覽圖）、`checksums.py`（校驗清單）、`fetch_fonts.py`（下載字體）
+- **`tools/`**　`build.py`（一次重建全部）、`tokens.py`（色表、字級表、對比檢查）、`derive.py`（縮圖、頭像、反白圖示、輕量版）、`previews.py`（README 預覽圖）、`shots.py`（COMPONENTS.md 的元件截圖）、`checksums.py`（校驗清單）、`fetch_fonts.py`（下載字體）
 - **`examples/`**　上面那四份成品
 
 ## 誰做的
 
 - **大肥魚（本小姐）**（[@Kujira-rice](https://github.com/Kujira-rice)）　整體設計語言的判斷、配色量測、A4 與簡報版式、講解框與元件、全部範例、聲音與交接文件 `AGENTS.md`／`VOICE.md`
 - **Mizimo**　角色、素材收集與授權確認、方向決定、每個「這個不對」和「這個才對」
-- **Claude Code**　`design-language` v2／v3：token 單一來源、`tools/` 的自動檢查與一鍵重建、共用元件庫、深色組、Markdown 筆記樣式
+- **Claude Code**　`design-language` v2／v3／v4：token 單一來源、`tools/` 的自動檢查與一鍵重建、共用元件庫（v4 擴充到四十多種、附截圖）、深色組、Markdown 筆記樣式、升降記號字型
 
 ## 署名與授權
 

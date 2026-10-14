@@ -17,6 +17,7 @@
   --gap: var(--sp-6);
   --stack: var(--sp-6);
   --av: 56px;
+  --sign-w: 300px;  /* 舉牌的寬度 */
 }
 
 /* 1280 × 720 px，剛好 16:9 */
@@ -30,6 +31,7 @@
 body {
   font-family: var(--font-sans);
   color: var(--c-ink);
+  font-size: var(--deck-body);  /* 沒有另外指定字級的元件，一律用正文字級 */
   margin: 0;
   counter-reset: slide;
   text-autospace: normal;  /* 中英之間忘了空格時，自動補 1/8 字寬 */
@@ -45,7 +47,7 @@ section.slide {
   display: flex;
   flex-direction: column;
   break-after: page;
-  background: var(--c-paper);
+  background-color: var(--c-paper);
   color: var(--c-ink);
   counter-increment: slide;
 }
@@ -89,8 +91,9 @@ h1, h2, h3 { text-wrap: balance; }
 .lede { font-size: var(--deck-lede); color: var(--c-ink-2); }
 .muted { color: var(--c-ink-3); }
 
-/* 共用元件在簡報上用正文字級 */
+/* 共用元件在簡報上用正文字級和行距 */
 .whale, .ex, .summary, table, .degrees, .keys, .terms, .quiz, .cols { font-size: var(--deck-body); line-height: var(--deck-leading); }
+.chat, .box, .vs, .formula, .stats, .cards, .steps, .timeline, .checklist, .toc, .choices, .bilingual, .refs, .flow, .prog, .beats { line-height: var(--deck-leading); }
 
 /* ── 排版組合 ───────────────────────── */
 .body { flex: 1 1 auto; min-height: 0; }
@@ -134,9 +137,9 @@ figcaption { font-size: var(--deck-micro); color: var(--c-ink-3); margin-top: 10
   bottom: 64px;
   width: 96px;
   height: 96px;
-  background: center / contain no-repeat url("../assets/generated-2026-10-14/icons/on-dark/whale-tail.png");
+  background: center / contain no-repeat url("../assets/generated-2026-10-14/icons/on-dark/lite/whale-tail.png");
 }
-.slide.section.light::after { background-image: url("../assets/generated-2026-10-14/icons/whale-tail.png"); }
+.slide.section.light::after { background-image: url("../assets/generated-2026-10-14/icons/lite/whale-tail.png"); }
 
 /* ── 引言頁 ─────────────────────────── */
 /* 一句話撐一整頁，左邊一條亮色線，出處放下面。
@@ -201,3 +204,175 @@ figcaption { font-size: var(--deck-micro); color: var(--c-ink-3); margin-top: 10
   color: var(--c-ink-3);
 }
 .pageno:empty::after { content: counter(slide); }
+
+/* ── 新元件在簡報上的尺寸 ───────────── */
+.sticker { --s: 6em; }
+.slide .sticker.pin { position: absolute; top: calc(52px + var(--s) - .5em); right: 88px; margin: 0; }
+hr.wave { --r: 8px; }
+.fifths { --fifths-r: 5.2em; --fifths-d: 2.3em; }
+.beats i { font-size: var(--deck-body); }
+.slide .choices { gap: var(--sp-7) var(--sp-9); font-size: var(--deck-lede); }
+.slide .choices > li::before { font-size: var(--deck-body); }
+
+/* ── 目錄頁 ─────────────────────────── */
+/* 每一段可以在 <small> 補一句；.now 標出現在講到哪裡，其他段落自動變淡。
+ * <section class="slide agenda"><div class="kicker">今天的內容</div><h2>目錄</h2>
+ *   <ol><li>多利安從哪裡來<small>先從大調說起</small></li><li class="now">特徵音</li></ol></section> */
+.slide.agenda ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: agenda;
+  border-top: 1px solid var(--c-line);
+}
+.slide.agenda li {
+  counter-increment: agenda;
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-7);
+  margin: 0;
+  padding: var(--sp-5) var(--sp-4);
+  border-bottom: 1px solid var(--c-line);
+  font-size: var(--deck-lede);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--c-title);
+}
+.slide.agenda li::before {
+  content: counter(agenda, decimal-leading-zero);
+  min-width: 1.6em;
+  color: var(--c-accent);
+  font-variant-numeric: tabular-nums;
+}
+.slide.agenda li small { margin-left: auto; font-size: var(--deck-body); font-weight: 400; color: var(--c-ink-3); }
+.slide.agenda ol:has(> .now) > li:not(.now) { font-weight: 400; color: var(--c-ink-3); }
+.slide.agenda ol:has(> .now) > li:not(.now)::before { color: var(--c-ink-3); }
+.slide.agenda li.now { background: var(--c-tint); box-shadow: inset var(--deck-bar) 0 0 var(--c-primary); }
+
+/* ── 半版圖 ─────────────────────────── */
+/* 圖貼齊左邊、上下滿版，文字在右半；.right 圖在右。
+ * <section class="slide split"><img src="…" alt=""><div class="kicker">…</div><h2>…</h2><p>…</p></section> */
+.slide.split { justify-content: center; padding-left: calc(45% + 64px); }
+.slide.split > img { position: absolute; left: 0; top: 0; width: 45%; height: 100%; object-fit: cover; }
+.slide.split.right { padding-left: 88px; padding-right: calc(45% + 64px); }
+.slide.split.right > img { left: auto; right: 0; }
+.slide.split.right .pageno { right: calc(45% + 24px); }
+
+/* ── 收尾頁 ─────────────────────────── */
+/* 上面自動放一張開心的臉，想換圖就放 <img class="face" src="…">。
+ * <section class="slide end"><h2>下次見喵</h2><p class="lede">下一回：リディアン</p></section> */
+.slide.end { justify-content: center; align-items: center; text-align: center; }
+.slide.end::before, .slide.end > .face {
+  content: "";
+  display: block;
+  width: 200px;
+  height: 200px;
+  margin-bottom: var(--sp-8);
+  border: 4px solid var(--c-accent-soft);
+  border-radius: 50%;
+  object-fit: cover;
+  background: center / cover no-repeat url("../assets/generated-2026-10-14/avatars/whale-happy.png");
+  box-shadow: 0 4px 18px color-mix(in srgb, var(--c-primary) 18%, transparent);
+}
+.slide.end:has(> .face)::before { content: none; }
+.slide.end > .face { background: none; }
+.slide.end h2 { margin: 0 0 var(--sp-5); font-size: var(--deck-display); }
+.slide.end .lede { margin: 0; }
+.slide.end .credit {
+  position: absolute;
+  left: 88px;
+  right: 88px;
+  bottom: 34px;
+  margin: 0;
+  font-size: var(--deck-micro);
+  line-height: 1.6;
+  color: var(--c-ink-3);
+}
+
+/* ── GAL 對話頁 ─────────────────────── */
+/* 臥室背景、立繪、對話框都預設好了，只要寫名字和台詞：
+ * <section class="slide gal"><div class="say"><b>大肥魚</b><p>台詞</p></div></section>
+ * 換背景放 <img class="bg" src="…">，換立繪放 <img class="stand" src="…">；.left 讓人站到左邊。
+ * 對話框上面可以出選項：<ol class="menu"><li>…</li><li class="pick">…</li></ol>，排在人物的另一側。
+ * 對話框是畫好的圖，名牌和台詞的位置照圖量好了，台詞三行以內。 */
+.slide.gal {
+  padding: 0;
+  overflow: hidden;
+  background: center / cover no-repeat url("../assets/gal-view/lite/bedroom-bg.jpg");
+}
+.slide.gal > .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.slide.gal::before, .slide.gal > .stand {
+  content: "";
+  position: absolute;
+  top: 24px;
+  right: 120px;
+  width: 640px;
+  height: 960px;
+  background: top center / contain no-repeat url("../assets/gal-view/whale-girl-tachie.png");
+  object-fit: contain;
+  object-position: top center;
+}
+.slide.gal > .stand { background: none; }
+.slide.gal:has(> .stand)::before { content: none; }
+.slide.gal.left::before, .slide.gal.left > .stand { right: auto; left: 120px; }
+.slide.gal > .say {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  height: 375px;
+  background: 0 -219px / 1280px auto no-repeat url("../assets/gal-view/dialogue-box.png");
+}
+.slide.gal > .say > b {  /* 名牌 */
+  position: absolute;
+  left: 236px;
+  top: 49px;
+  width: 192px;
+  height: 31px;
+  display: grid;
+  place-items: center;
+  font-size: 18pt;
+  line-height: 1;
+  letter-spacing: .08em;
+  color: var(--art-ink);
+}
+.slide.gal > .say > p {  /* 台詞 */
+  position: absolute;
+  left: 232px;
+  right: 150px;
+  top: 126px;
+  height: 130px;
+  margin: 0;
+  font-size: var(--deck-body);
+  line-height: 1.6;
+  color: var(--c-on-deep);
+}
+.slide.gal > .say > p::after { content: "▼"; margin-left: .4em; font-size: .55em; vertical-align: .15em; color: var(--c-accent-on-deep); }
+.slide.gal > .menu {
+  position: absolute;
+  left: 96px;
+  top: 96px;
+  width: 560px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.slide.gal.left > .menu { left: auto; right: 96px; }
+.slide.gal > .menu > li {
+  margin: 0;
+  padding: 12px 28px;
+  text-align: center;
+  font-size: var(--deck-body);
+  line-height: 1.4;
+  color: var(--c-on-deep);
+  background: color-mix(in srgb, var(--c-deep) 86%, transparent);
+  border: 2px solid var(--c-line-strong-on-deep);
+  border-radius: 999px;
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--c-deep) 40%, transparent);
+}
+.slide.gal > .menu > li.pick { border-color: var(--c-accent-on-deep); box-shadow: 0 0 0 3px color-mix(in srgb, var(--c-accent-on-deep) 35%, transparent), 0 4px 16px color-mix(in srgb, var(--c-deep) 40%, transparent); }
+.slide.gal > .menu > li.pick::before { content: "▶"; margin-right: .6em; font-size: .7em; vertical-align: .12em; color: var(--c-accent-on-deep); }
+.slide.gal .pageno { display: none; }

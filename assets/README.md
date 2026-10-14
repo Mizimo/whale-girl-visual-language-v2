@@ -43,6 +43,7 @@
 - `whale-girl-tachie.png`　1024 × 1536 透明立繪，**目前最完整的全身圖**。
 - `bedroom-bg.png`　1672 × 941 臥室背景。
 - `dialogue-box.png`　1672 × 941 透明蕾絲對話框，可直接當 UI 素材。
+- `lite/bedroom-bg.jpg`　背景的 JPEG 輕量版，GAL 對話頁的預設背景用這張（衍生檔，`python3 tools/derive.py` 產生）。
 - 來源 `gal-view` v0.3.3（Yunicon）｜ 插件 MIT，內嵌圖片的個別作者未在文件說明
 
 ## ⑤ generated-2026-10-14 ｜ 自己生的一批
@@ -53,7 +54,7 @@
 
 - 檔案清單、每張的用途與完整預覽 → [generated-2026-10-14/README.md](generated-2026-10-14/README.md)
 - 生成提示詞、引用來源與逐檔 SHA-256 → 同目錄的 `prompts-*.json` 與 `manifest.json`
-- 衍生檔：`avatars/` 是六種表情裁成的講解框頭像（256px），`icons/on-dark/` 是深色底用的白描邊小圖案，都由 `python3 tools/derive.py` 從原圖產生
+- 衍生檔：`avatars/` 是六種表情裁成的講解框頭像（256px），`icons/on-dark/` 是深色底用的白描邊小圖案；各資料夾底下的 `lite/` 是模板用的輕量版（教學動作、主視覺轉 JPEG，小圖示縮到 256px，線稿縮到 640px）。都由 `python3 tools/derive.py` 從原圖產生
 - 授權：19 張按本庫 CC BY-NC-SA 4.0 整理；Q 版參照的社群圖片授權另計，**不另外授 CC**，只在本 repo 自用
 
 ## ⑥ deepseek-icon ｜ 圓角圖標

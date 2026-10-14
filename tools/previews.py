@@ -19,8 +19,9 @@ from PIL import Image
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 GAP = 12
 A4, SLIDE = (396, 560), (640, 360)
-CELL = {"handout": A4, "deck": SLIDE, "components": A4, "components-deck": SLIDE}
-COLS = {"handout": 3, "deck": 3, "components": 3, "components-deck": 3}
+A4_SMALL, SLIDE_SMALL = (330, 467), (480, 270)  # 元件總覽頁數多，格子小一點
+CELL = {"handout": A4, "deck": SLIDE, "components": A4_SMALL, "components-deck": SLIDE_SMALL}
+COLS = {"handout": 3, "deck": 3, "components": 5, "components-deck": 4}
 
 
 def background() -> str:

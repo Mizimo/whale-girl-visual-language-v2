@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""從原圖產生衍生圖：README 預覽縮圖、講解框頭像、深底用的反白小圖示。
+"""從原圖產生衍生圖：README 預覽縮圖、講解框頭像、深底用的反白小圖示、給模板用的輕量版。
 
 用法：
     python3 tools/derive.py
@@ -34,6 +34,23 @@ THUMBS = [
 # 雙眼在畫面約 48% 高度、兩眼間距約佔寬度 20%
 AVATAR_BOX = (87, 0, 1153, 1066)
 AVATAR_SIZE = 256
+
+# 輕量版（各資料夾底下的 lite/）：CSS 預設和範例 PDF 用這一組。
+# 不透明的圖轉 JPEG，Chrome 會原樣嵌進 PDF；PNG 會被無損重壓，一張插圖就要 2–3 MB。
+# 透明的小圖示縮到用得到的大小。要最好的畫質，在 HTML 裡直接指原圖就好。
+LITE_JPEG = [
+    "gal-view/bedroom-bg.png",
+    "generated-2026-10-14/teaching/whale-teaching-blank-sign.png",
+    "generated-2026-10-14/teaching/whale-teaching-notebook.png",
+    "generated-2026-10-14/teaching/whale-teaching-pointer.png",
+    "generated-2026-10-14/key-visual/whale-key-visual-editorial.png",
+]
+LITE_PNG = {  # 檔名樣式：長邊
+    "generated-2026-10-14/icons/*.png": 256,
+    "generated-2026-10-14/icons/on-dark/*.png": 256,
+    "generated-2026-10-14/line-art/whale-line-art-transparent.png": 640,
+}
+JPEG_QUALITY = 88
 
 
 def thumb(rel: str) -> pathlib.Path:
@@ -85,8 +102,27 @@ def icons_on_dark() -> list[pathlib.Path]:
     return outs
 
 
+def lite() -> list[pathlib.Path]:
+    outs = []
+    for rel in LITE_JPEG:
+        src = ASSETS / rel
+        out = src.parent / "lite" / (src.stem + ".jpg")
+        out.parent.mkdir(exist_ok=True)
+        Image.open(src).convert("RGB").save(out, "JPEG", quality=JPEG_QUALITY, optimize=True)
+        outs.append(out)
+    for pattern, size in LITE_PNG.items():
+        for src in sorted(ASSETS.glob(pattern)):
+            out = src.parent / "lite" / src.name
+            out.parent.mkdir(exist_ok=True)
+            im = Image.open(src).convert("RGBA")
+            im.thumbnail((size, size), Image.LANCZOS)
+            im.save(out, "PNG", optimize=True)
+            outs.append(out)
+    return outs
+
+
 def main() -> int:
-    made = [thumb(rel) for rel in THUMBS] + avatars() + icons_on_dark()
+    made = [thumb(rel) for rel in THUMBS] + avatars() + icons_on_dark() + lite()
     for p in made:
         print(f"{p.relative_to(ROOT)}  {p.stat().st_size / 1024:.0f} KB")
     return 0

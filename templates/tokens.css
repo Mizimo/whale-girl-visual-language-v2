@@ -21,12 +21,23 @@
   src: url("../fonts/NotoSansTC-Bold.ttf") format("truetype"),
        local("NotoSansTC-Bold"), local("NotoSansCJKtc-Bold");
 }
-/* ♭ ♮ ♯：Noto 本身就有。只有退到 PingFang 這類沒有的字體時，才改用各平台的符號字體，
- * 不然 ♮ 會被系統隨便換一個字形。 */
+/* ♭ ♮ ♯：Noto 的這三個字是全形字寬，和弦記號會排成「B ♭ 7」。fetch_fonts.py 從 Noto Sans TC
+ * 抽出來、收緊左右空白，做成 WG Accidentals，排在字體清單最前面、只管這三個字。
+ * 沒有 fonts/ 的時候退到各平台的符號字體，不然 ♮ 會被系統隨便換一個字形。 */
 @font-face {
   font-family: "WG Accidentals";
-  src: local("AppleSymbols"), local("Apple Symbols"), local("SegoeUISymbol"), local("Segoe UI Symbol"),
+  font-weight: 400;
+  src: url("../fonts/WGAccidentals-Regular.ttf") format("truetype"),
+       local("AppleSymbols"), local("Apple Symbols"), local("SegoeUISymbol"), local("Segoe UI Symbol"),
        local("DejaVuSans"), local("DejaVu Sans");
+  unicode-range: U+266D-266F;
+}
+@font-face {
+  font-family: "WG Accidentals";
+  font-weight: 700;
+  src: url("../fonts/WGAccidentals-Bold.ttf") format("truetype"),
+       local("AppleSymbols"), local("Apple Symbols"), local("SegoeUISymbol"), local("Segoe UI Symbol"),
+       local("DejaVuSans-Bold"), local("DejaVu Sans Bold");
   unicode-range: U+266D-266F;
 }
 /* 日文漢字（楽、徴、続、録、徳…）不在 Noto Sans TC 裡，少了這段會掉到系統的 PingFang，
@@ -92,10 +103,12 @@
   --deck-bar: 4px;   /* 簡報框的左線、標題短線 */
 
   /* ── 字體 ─────────────────────────── */
-  --font-sans: "WG Sans", "WG Sans JP", "WG Accidentals", "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC", sans-serif;
-  --font-mono: "SF Mono", "Andale Mono", Menlo, Consolas, "DejaVu Sans Mono", "WG Sans", "WG Sans JP", "WG Accidentals", monospace;
+  --font-sans: "WG Accidentals", "WG Sans", "WG Sans JP", "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC", sans-serif;
+  --font-mono: "WG Accidentals", "SF Mono", "Andale Mono", Menlo, Consolas, "DejaVu Sans Mono", "WG Sans", "WG Sans JP", monospace;
+  /* lang="ja" 的段落：日文字形優先（同一個漢字，日文和繁中的寫法有時不一樣） */
+  --font-ja: "WG Accidentals", "WG Sans JP", "WG Sans", "Hiragino Sans", "Yu Gothic", "Noto Sans CJK JP", sans-serif;
 
-  /* ── A4 文件字級：固定五階，不要在中間再插一階 ── */
+  /* ── A4 文件字級：平常用這五階，需要的時候自己插（像章節頁的大字） ── */
   --doc-micro:   8pt;    /* 頁碼、圖說、署名 */
   --doc-label:   9.5pt;  /* 頁首標題、講解框標籤 */
   --doc-body:    11pt;   /* 正文、講解框、小標 */
@@ -103,7 +116,7 @@
   --doc-display: 19pt;   /* 封面標題 */
   --doc-leading: 1.7;
 
-  /* ── 16:9 簡報字級：固定六階 ── */
+  /* ── 16:9 簡報字級：平常用這六階 ── */
   --deck-micro:   10pt;  /* 頁碼、圖說、署名 */
   --deck-label:   13pt;  /* 章節名、講解框標籤 */
   --deck-body:    20pt;  /* 正文、條列、講解框 */
@@ -121,4 +134,8 @@
   --key-edge: var(--c-ink-2);
   --key-on: var(--c-primary);
   --key-on-black: var(--c-accent-soft);
+
+  /* 寫在圖上的字（舉牌、GAL 名牌）和貼圖的白邊：底下是畫好的圖，所以一樣不跟著深色頁反轉 */
+  --art-ink: var(--c-title);
+  --art-paper: var(--c-paper);
 }

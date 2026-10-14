@@ -81,4 +81,4 @@ Q 版以 Neko3000 的 chibi 主參考 0067 為主要依據，TreapGoGo 的 Q 版
 
 15 張角色圖的視覺參考為本 repo 的 `original-design`；本次交付 Q 版只使用 Neko3000 chibi 0067 與 TreapGoGo Q 版三視圖作為圖像參考，4 張小圖案由文字提示生成。人設研究參考兩站社群規格，其文件授權不自動涵蓋參考圖片；Q 版保留於 private repo 自用、待 DSH 審核，不另授 CC。其餘 19 張按本庫 CC BY-NC-SA 4.0 整理；VISIONS 試閱圖僅作美術研究，原圖未加入本庫，也不在本庫授權範圍內。完整引用圖、提示詞及已淘汰的生成修訂紀錄保存在各 JSON。
 
-`thumbnails/`、`avatars/`、`icons/on-dark/` 與線稿透明版是為了預覽與排版另外產生的衍生檔，不改動上面任何一張生成原圖。`avatars/` 和 `icons/on-dark/` 可以用 `python3 tools/derive.py` 重新產生。
+`thumbnails/`、`avatars/`、`icons/on-dark/`、各資料夾的 `lite/` 與線稿透明版是為了預覽與排版另外產生的衍生檔，不改動上面任何一張生成原圖。`lite/` 是給模板和 PDF 用的輕量版：不透明的圖轉 JPEG（Chrome 會原樣嵌進 PDF），小圖示縮到 256px。`avatars/`、`icons/on-dark/` 和 `lite/` 都可以用 `python3 tools/derive.py` 重新產生。

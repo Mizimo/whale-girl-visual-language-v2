@@ -17,6 +17,7 @@
   --gap: var(--sp-4);
   --stack: var(--sp-4);
   --av: 34px;
+  --sign-w: 46mm;  /* 舉牌的寬度 */
 }
 
 @page {
@@ -63,10 +64,11 @@ body {
 }
 
 /* 一頁一 section，最後一頁不要多出空白頁 */
-section.page { page: doc; break-after: page; }
+section.page { page: doc; break-after: page; position: relative; }
 section.page:last-child { break-after: auto; }
 /* 封面，以及自己手寫 .head 的舊文件，不套自動頁首 */
 section.page:has(> .cover), section.page:has(> .head) { page: auto; }
+section.page:has(> .chapter) { page: chapter; }
 
 /* 舊版頁首：直接寫在 section 裡的 .head。新文件不用再寫。 */
 .head {
@@ -126,3 +128,46 @@ small { font-size: var(--doc-label); color: var(--c-ink-2); }
 figure { margin: var(--sp-5) 0 0; text-align: center; break-inside: avoid; }
 figure img { width: 100%; border: 1px solid var(--c-line); border-radius: var(--radius-s); }
 figcaption { font-size: var(--doc-micro); color: var(--c-ink-3); margin-top: var(--sp-1); text-align: right; }
+
+/* ── 章節頁 ─────────────────────────── */
+/* 一章開頭單獨一頁：大編號、章名、一句話，不套頁首。加 .deep 變成整頁深色（滿版，不留白邊）。
+ * <section class="page"><div class="chapter"><div class="num">02</div><h2>章名</h2><p class="lede">一句話</p></div></section> */
+@page chapter { margin: 0; }
+.chapter {
+  position: relative;
+  height: 297mm;
+  margin-bottom: -1px;  /* 剛好一頁高，扣掉捨入誤差，免得多出一張白紙 */
+  padding: 0 26mm 34mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+.chapter .num {
+  align-self: flex-start;
+  padding-bottom: var(--sp-6);
+  margin-bottom: var(--sp-7);
+  border-bottom: var(--doc-bar) solid var(--c-accent);
+  font-size: calc(var(--doc-display) * 1.5);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .04em;
+  color: var(--c-accent);
+  font-variant-numeric: tabular-nums;
+}
+.chapter h2 { margin: 0 0 var(--sp-5); font-size: calc(var(--doc-display) * 1.5); line-height: 1.3; }
+.chapter .lede { max-width: 75%; margin: 0; font-size: var(--doc-title); line-height: 1.6; }
+.chapter::after {
+  content: "";
+  position: absolute;
+  right: 26mm;
+  bottom: 24mm;
+  width: 24mm;
+  height: 24mm;
+  background: center / contain no-repeat url("../assets/generated-2026-10-14/icons/lite/whale-tail.png");
+}
+.chapter.deep::after { background-image: url("../assets/generated-2026-10-14/icons/on-dark/lite/whale-tail.png"); }
+.chapter.watermark::after { content: none; }  /* 有線稿就不放尾巴 */
+
+/* 貼圖加 .pin：貼在這一頁內容區的右上角 */
+.page .sticker.pin { position: absolute; top: calc(var(--s) - .5em); right: 0; margin: 0; }

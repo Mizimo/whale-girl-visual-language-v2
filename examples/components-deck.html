@@ -7,15 +7,28 @@
 </head>
 <body>
 
-<!-- 1 章節頁：預設深色 -->
-<section class="slide section">
+<!-- 章節頁：預設深色 -->
+<section class="slide section" data-shot="deck-section">
   <div class="num">01</div>
   <h2>簡報元件總覽</h2>
   <p class="lede">每一種頁面和元件各放一頁，照抄寫法就好。</p>
 </section>
 
-<!-- 2 講解框與例子框 -->
-<section class="slide">
+<!-- 目錄頁 -->
+<section class="slide agenda" data-shot="deck-agenda">
+  <div class="kicker">今天的內容</div>
+  <h2>第 6 回：調式</h2>
+  <ol>
+    <li>多利安從哪裡來<small>先從大調說起</small></li>
+    <li class="now">特徵音<small>大六度</small></li>
+    <li>聽聽看<small>〈So What〉</small></li>
+    <li>練習題<small>五題</small></li>
+  </ol>
+  <div class="pageno"></div>
+</section>
+
+<!-- 講解框與例子框 -->
+<section class="slide" data-shot="deck-whale">
   <div class="kicker">元件</div>
   <h2>講解框與例子框</h2>
   <div class="rule"></div>
@@ -29,8 +42,54 @@
   <div class="pageno"></div>
 </section>
 
-<!-- 3 音級與鍵盤 -->
-<section class="slide">
+<!-- 對話與貼圖 -->
+<section class="slide" data-shot="deck-chat">
+  <div class="kicker">角色元件</div>
+  <h2>對話與貼圖</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="chat">
+      <p class="me">老師，多利安跟自然小調差在哪？</p>
+      <p class="tip">只差第六音喵。多利安是大六度，自然小調是小六度。</p>
+      <p class="me">那 C 多利安要從哪裡找？</p>
+      <p>從 B♭ 大調的第二音開始彈，就是 C 多利安。</p>
+    </div>
+  </div>
+  <span class="sticker pin tip">讚喵！</span>
+  <div class="pageno"></div>
+</section>
+
+<!-- 舉牌 -->
+<section class="slide" data-shot="deck-sign">
+  <div class="two-col body">
+    <div class="txt">
+      <div class="kicker">角色元件</div>
+      <h2>舉牌</h2>
+      <div class="rule"></div>
+      <p>板子上的字跟著板子縮放，寬度用 <code>--sign-w</code> 調。</p>
+      <p>簡報上加 <code>.upper</code>，只露上半身。</p>
+    </div>
+    <div class="pic"><div class="sign upper" style="--sign-w: 400px; margin-inline: auto"><p>多利安<br>＝小調＋大六度</p></div></div>
+  </div>
+  <div class="pageno"></div>
+</section>
+
+<!-- GAL 對話頁 -->
+<section class="slide gal" data-shot="deck-gal">
+  <div class="say"><b>大肥魚</b><p>今天講多利安。先說好，本小姐只講一次……騙你的，聽不懂就舉手喵。</p></div>
+</section>
+
+<!-- GAL 對話頁：選項 -->
+<section class="slide gal" data-shot="deck-gal-menu">
+  <ol class="menu">
+    <li class="pick">大六度（6）</li>
+    <li>小六度（♭6）</li>
+  </ol>
+  <div class="say"><b>大肥魚</b><p>那本小姐考考你：多利安的第六音是哪一個？</p></div>
+</section>
+
+<!-- 音級與鍵盤 -->
+<section class="slide" data-shot="deck-keys">
   <div class="kicker">樂理元件</div>
   <h2>C 多利安長這樣</h2>
   <div class="rule"></div>
@@ -45,10 +104,46 @@
   <div class="pageno"></div>
 </section>
 
-<!-- 4 表格：一頁最多四列 -->
-<section class="slide">
+<!-- 和弦進行與節奏 -->
+<section class="slide" data-shot="deck-prog">
+  <div class="kicker">樂理元件</div>
+  <h2>多利安的兩和弦循環</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="prog repeat"><span>Dm7<small>Im7</small></span><span class="key">G7<small>IV7</small></span><span>Dm7<small>Im7</small></span><span class="key">G7<small>IV7</small></span></div>
+    <div class="beats" data-label="3＋3＋2">
+      <span><i class="on accent">1</i><i>&amp;</i></span><span><i>2</i><i class="on accent">&amp;</i></span><span><i>3</i><i>&amp;</i></span><span><i class="on accent">4</i><i>&amp;</i></span>
+    </div>
+  </div>
+  <div class="pageno"></div>
+</section>
+
+<!-- 五度圈 -->
+<section class="slide" data-shot="deck-fifths">
+  <div class="two-col body">
+    <div class="txt">
+      <div class="kicker">樂理元件</div>
+      <h2>五度圈</h2>
+      <div class="rule"></div>
+      <p>C 多利安＝B♭ 大調從第二音開始。</p>
+      <p>先在圈上找到 B♭，往上一個全音就是 C。</p>
+    </div>
+    <div class="pic">
+      <ol class="fifths">
+        <li data-sig="0">C<small>Am</small></li><li data-sig="1♯">G<small>Em</small></li><li data-sig="2♯">D<small>Bm</small></li>
+        <li data-sig="3♯">A<small>F♯m</small></li><li data-sig="4♯">E<small>C♯m</small></li><li data-sig="5♯">B<small>G♯m</small></li>
+        <li data-sig="6♯">F♯<small>D♯m</small></li><li data-sig="5♭">D♭<small>B♭m</small></li><li data-sig="4♭">A♭<small>Fm</small></li>
+        <li data-sig="3♭">E♭<small>Cm</small></li><li class="key" data-sig="2♭">B♭<small>Gm</small></li><li data-sig="1♭">F<small>Dm</small></li>
+      </ol>
+    </div>
+  </div>
+  <div class="pageno"></div>
+</section>
+
+<!-- 表格：一頁最多四列 -->
+<section class="slide" data-shot="deck-table">
   <div class="kicker">元件</div>
-  <h2>表格一頁最多四列</h2>
+  <h2>調式和它們的特徵音</h2>
   <div class="rule"></div>
   <div class="body">
     <table>
@@ -64,15 +159,99 @@
   <div class="pageno"></div>
 </section>
 
-<!-- 5 引言頁 -->
-<section class="slide quote">
+<!-- 卡片 -->
+<section class="slide" data-shot="deck-cards">
+  <div class="kicker">重點與比較</div>
+  <h2>多利安的三個特徵</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="cards">
+      <div><img src="../assets/generated-2026-10-14/icons/lite/music-note.png" alt=""><h3>起點</h3><p>從大調的第二音開始。</p></div>
+      <div><img src="../assets/generated-2026-10-14/icons/lite/whale-tail.png" alt=""><h3>特徵音</h3><p>大六度，小調裡帶一點亮。</p></div>
+      <div><img src="../assets/generated-2026-10-14/icons/lite/water-splash.png" alt=""><h3>代表曲</h3><p>〈So What〉的 A 段。</p></div>
+    </div>
+  </div>
+  <div class="pageno"></div>
+</section>
+
+<!-- 步驟 -->
+<section class="slide" data-shot="deck-steps">
+  <div class="kicker">流程與結構</div>
+  <h2>三步驟聽出多利安</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <ol class="steps">
+      <li><h3>彈 C 大調</h3><p>從 C 彈到 C，記住這組音。</p></li>
+      <li><h3>換起點</h3><p>同一組音從 D 開始彈。</p></li>
+      <li><h3>唱第六音</h3><p>邊彈邊唱出 B，記住它的顏色。</p></li>
+    </ol>
+  </div>
+  <div class="pageno"></div>
+</section>
+
+<!-- 時間軸 -->
+<section class="slide" data-shot="deck-timeline">
+  <div class="kicker">流程與結構</div>
+  <h2>調式的名字從哪裡來</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <ol class="timeline across">
+      <li><time>古希臘</time>多利安、弗里吉亞、呂底亞，原本是地名。</li>
+      <li><time>9 世紀</time>教會調式借用這些名字，音階卻對不上。</li>
+      <li><time>1547</time>格拉雷安加上 Ionian、Aeolian。</li>
+      <li class="key"><time>1959</time>〈So What〉的 A 段用 D 多利安。</li>
+    </ol>
+  </div>
+  <div class="pageno"></div>
+</section>
+
+<!-- 公式與大數字 -->
+<section class="slide" data-shot="deck-formula">
+  <div class="kicker">重點與比較</div>
+  <h2>一句話記住</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="formula"><span>自然小調</span><i>＋</i><span>大六度</span><i>＝</i><span class="key">多利安</span></div>
+    <div class="stats"><div><b>7</b>個調式</div><div><b>12</b>個調</div><div><b>84</b>種組合</div></div>
+  </div>
+  <div class="pageno"></div>
+</section>
+
+<!-- 對錯對照 -->
+<section class="slide" data-shot="deck-vs">
+  <div class="kicker">重點與比較</div>
+  <h2>和弦記號這樣寫</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <div class="vs">
+      <div class="no">Bb7、C#m7、CΔ7</div>
+      <div class="yes">B♭7、C♯m7、Cmaj7</div>
+    </div>
+  </div>
+  <span class="sticker pin warn">不准寫 b！</span>
+  <div class="pageno"></div>
+</section>
+
+<!-- 選擇題 -->
+<section class="slide" data-shot="deck-choices">
+  <div class="kicker">練習</div>
+  <h2>D 多利安的特徵音是哪一個？</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <ol class="choices"><li>A</li><li class="correct">B</li><li>B♭</li><li>C♯</li></ol>
+  </div>
+  <div class="pageno"></div>
+</section>
+
+<!-- 引言頁 -->
+<section class="slide quote" data-shot="deck-quote">
   <blockquote>調式不是新的音階，是同一組音換一個家。</blockquote>
   <p class="cite">—— 大肥魚</p>
   <div class="pageno"></div>
 </section>
 
-<!-- 6 深色內容頁 -->
-<section class="slide deep">
+<!-- 深色內容頁 -->
+<section class="slide deep" data-shot="deck-deep">
   <div class="kicker">深海</div>
   <h2>任何一頁都能換成深色</h2>
   <div class="rule"></div>
@@ -86,8 +265,32 @@
   <div class="pageno"></div>
 </section>
 
-<!-- 7 重點 -->
-<section class="slide">
+<!-- 半版圖 -->
+<section class="slide split" data-shot="deck-split">
+  <img src="../assets/generated-2026-10-14/teaching/lite/whale-teaching-notebook.jpg" alt="" style="object-position: 50% 24%">
+  <div class="kicker">版面</div>
+  <h2>半版圖</h2>
+  <div class="rule"></div>
+  <p>圖貼齊左邊、上下滿版，文字放右半。</p>
+  <p>圖要放右邊就加 <code>.right</code>。</p>
+  <div class="pageno"></div>
+</section>
+
+<!-- 波浪線與浮水印 -->
+<section class="slide watermark" data-shot="deck-decor">
+  <div class="kicker">裝飾</div>
+  <h2>波浪線與浮水印</h2>
+  <div class="rule"></div>
+  <div class="body">
+    <p>段落之間插一條 <code>&lt;hr class="wave"&gt;</code>：</p>
+    <hr class="wave">
+    <p>這一頁的 section 加了 <code>.watermark</code>，右下角淡淡印一張線稿。</p>
+  </div>
+  <div class="pageno"></div>
+</section>
+
+<!-- 重點 -->
+<section class="slide" data-shot="deck-summary">
   <div class="kicker">收尾</div>
   <h2>這一回帶走三件事</h2>
   <div class="rule"></div>
@@ -101,6 +304,13 @@
     </div>
   </div>
   <div class="pageno"></div>
+</section>
+
+<!-- 收尾頁 -->
+<section class="slide end bubbles" data-shot="deck-end">
+  <h2>今天就到這裡喵</h2>
+  <p class="lede">下一回：リディアン（Lydian）</p>
+  <p class="credit">角色插圖：phoiex/AAAAGENT original-design 與 2026-10-14 衍生圖（AI 輔助製作），CC BY-NC-SA 4.0，僅供非商業使用<br>GAL 頁素材：gal-view 插件（Yunicon），授權見 docs/SOURCES.md</p>
 </section>
 
 </body>

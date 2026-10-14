@@ -3,7 +3,7 @@
 # original-design 一組另有上游自己的 assets.json 可對照
 # 由 python3 tools/checksums.py 產生，不要手改
 
-ca01e316f379559ffb53b0f177cc5278634a9eb5c0eb58725ca500df366800bb       4606  assets/README.md
+696d92b537ad71089bceae0229a1962e66d1d46a8918de5f8016420c9053b39d       4890  assets/README.md
 
 # deepseek-icon
 292e867e3e2d38ece7621a25012c11961a1b12d12ed043f7c69af5f2c66f642d      90174  assets/deepseek-icon/thumbnails/whale-icon.webp
@@ -19,12 +19,13 @@ dcc456613dbb1102a4b7ef636a8b622371e33b763489d6249c434fb54248ba5c     255988  ass
 # gal-view
 aec515495cc79bd2fbb7c63808ca021ae1d62f9544f5f6eb9996813683d35bbd    1956121  assets/gal-view/bedroom-bg.png
 e473b8875fe382f23647a16f11d4a7103acedbc24213893893d34b1c28271233    1270213  assets/gal-view/dialogue-box.png
+547b5dc1163f67b05051f4e8743bf44ff60f807b1d7faf17b0635242c98918ce     280547  assets/gal-view/lite/bedroom-bg.jpg
 9abf823ffb9e514cae1632ef4b997a2ec70c3b730e14567d4f90c283756d0c96      47466  assets/gal-view/thumbnails/bedroom-bg.webp
 b9279719b9c87945a1fb8eead4d6f6cf882f9a2cbbd88f9c5ae890b0d6451334      60906  assets/gal-view/thumbnails/whale-girl-tachie.webp
 fecdca1603cd4c2704584d90907407383207070e4a2806f7975a74c919317f17    1082506  assets/gal-view/whale-girl-tachie.png
 
 # generated-2026-10-14
-e8b302d3ffc99fe2c5c784004ff64da482c4b7918f6c2e8355a61de68beab601       7988  assets/generated-2026-10-14/README.md
+fea742fdc3c7570dd10f2d9bbcf4a5250bae7cb4ab66676aba43fc3f6c959ea2       8155  assets/generated-2026-10-14/README.md
 b7be1632afaa40fb4207dd0aea1402772fd8149340f8e5fd1deefc97bbe40ed3     109650  assets/generated-2026-10-14/avatars/whale-angry.png
 588e150e7d662c1b07ebdb131d91cd7daf920bc1dd4b8d108c85b3c591906299     112120  assets/generated-2026-10-14/avatars/whale-happy.png
 56a779c0191150c754d8fd464fe5d706097de55ba94ee05da600e0a2c28c4a72     108165  assets/generated-2026-10-14/avatars/whale-serious.png
@@ -38,7 +39,15 @@ f436601193dd8fbd2dda79e291e1a616032e963ae6d377761e704459bb966033    2052098  ass
 ba29512ce2f2ab5214b119cdb5cc4b9c0b65c12a0511b8757890129bfb89403f    2013660  assets/generated-2026-10-14/expressions/whale-sleepy.png
 8b492805827710aee46d80d4ac2498777285e0315f62455343ca70c32609e6d4    2052156  assets/generated-2026-10-14/expressions/whale-surprised.png
 79f6413e334820d53ba09425c7331cb33d1b21089aa1ff9dde44ead8b305035e    1992101  assets/generated-2026-10-14/expressions/whale-troubled.png
+6f31744c7a209f1859c3c6c5ca6324e22d47297c804e0259912849893e14d9d5      27417  assets/generated-2026-10-14/icons/lite/music-note.png
+e7e92eb6081dda420f161d3b3d37330d535915960c9a1564099f109f3bf0199f      36077  assets/generated-2026-10-14/icons/lite/rice-bowl.png
+e8c60eb5b6f5f9fea742308b8dafade11187da0f1a205367293c1fb969c07be8      31762  assets/generated-2026-10-14/icons/lite/water-splash.png
+d439839f49282e54a63ae6ccff9180052a076bee4ba45dd41b1606250b99c277      30512  assets/generated-2026-10-14/icons/lite/whale-tail.png
 1451e907b99061c7daffcc3647a6ff702a5d18ccf9208d247de4fee028b64fff     491662  assets/generated-2026-10-14/icons/music-note.png
+6a094c1ee759b792267c01ac4777150281aaffca50b13f8ec0fab9816101ec5e      20614  assets/generated-2026-10-14/icons/on-dark/lite/music-note.png
+707a2115a2fc0a9c2c659ce2c5c5d9b1a01e15982eb23657ca216e5215a6492e      32766  assets/generated-2026-10-14/icons/on-dark/lite/rice-bowl.png
+a69e7b2e50a106594fbc3100ae2956f74bff8c3db05a98cadf3415dbb588c0ba      26343  assets/generated-2026-10-14/icons/on-dark/lite/water-splash.png
+4962b58d97000590e08de7220f9929f5cd710d13279962a182481c409f3fe48f      26499  assets/generated-2026-10-14/icons/on-dark/lite/whale-tail.png
 96c0e04e9126be1e639405b9b0ba5094ed7cca4db342eedf2376d7a7f69f21c2     253996  assets/generated-2026-10-14/icons/on-dark/music-note.png
 f1af75f91682762d36468198c9e7e4a0a0d1609118179387adb037485353d068     467203  assets/generated-2026-10-14/icons/on-dark/rice-bowl.png
 2df9bd4ecf1877d613d56a340d4a5999e3a849cf215ebf0c683732cbc7dab46b     301291  assets/generated-2026-10-14/icons/on-dark/water-splash.png
@@ -46,11 +55,13 @@ f1af75f91682762d36468198c9e7e4a0a0d1609118179387adb037485353d068     467203  ass
 1a29d5091b30c16cb6bf11a3e12d3b0db4af46bedc2699ec2e345965e4f5268e     696823  assets/generated-2026-10-14/icons/rice-bowl.png
 082c8fbcab6d25cc1647b2ce50d0024964e176fea39c15b7f07d1b655fd8c18f     505330  assets/generated-2026-10-14/icons/water-splash.png
 cf484d294c023f5adab80693b807bfa134da06e08eaea1a17f34fb4daf10a892     523528  assets/generated-2026-10-14/icons/whale-tail.png
+a75d9e1f993e2c420ea8a31b7cdb7086b09cc63f7469bc6ea8b5fc5b3b002fc1     273941  assets/generated-2026-10-14/key-visual/lite/whale-key-visual-editorial.jpg
 882a4872c21cb41462fb83d2f9f1cd699c1e9ba543dab7312d694c4658399314    2033740  assets/generated-2026-10-14/key-visual/whale-key-visual-16x9.png
 00140eee3e06c01253bd931ca0d5ab7b335412db06479281395805c9297e4cdf    2961068  assets/generated-2026-10-14/key-visual/whale-key-visual-casual.png
 9e852f7be105da9449127fc8b2b7f77cbac1bcb18fdbde07a03a63871d0b0d08    2160656  assets/generated-2026-10-14/key-visual/whale-key-visual-cinematic.png
 c03099a974dd7b9154fc993bdced73044b2f6b1ad898b5dc8ec55dcccefa3066    2322618  assets/generated-2026-10-14/key-visual/whale-key-visual-editorial.png
 4be240be130cd4f8f346c63a3679fe65bb981ea365b8cc5a4b8d3e6a8164ac5a    2468266  assets/generated-2026-10-14/key-visual/whale-key-visual-ink-print.png
+568fe6e3c7984ae2e9ccb03ee8a4fd3e34378949ff91530dfb8fa3a1de806497     333949  assets/generated-2026-10-14/line-art/lite/whale-line-art-transparent.png
 5420690a684893bd32ac4b0936c2b32c75e3ef75d944dfde5cdc76ca225eadad     947932  assets/generated-2026-10-14/line-art/whale-line-art-transparent.png
 fa8bdae6f62822c62c83d393edcb253b98b1c9b3f418906d473eb0fb52312206    1864753  assets/generated-2026-10-14/line-art/whale-line-art.png
 4609d6130f244b1c7917c66fc8f265af587e8139f369938dbf023cd7c7f914cd       8953  assets/generated-2026-10-14/manifest.json
@@ -62,6 +73,9 @@ fa8bdae6f62822c62c83d393edcb253b98b1c9b3f418906d473eb0fb52312206    1864753  ass
 b139c0105a240cfd37d99aea2666b366f9cebefc32fce03a50315acd796bbb64       7254  assets/generated-2026-10-14/prompts-key-visual-ink-print.json
 5d3d326e0db4dfb93a041dd870e713fc59d9ad458d7a4e1e75a9c8350bfd3147       8125  assets/generated-2026-10-14/prompts-key-visual.json
 67a94e8ba9b48af2ee2c636d67b3c8ede9070587130e5e193b930368d0a07cd1      34979  assets/generated-2026-10-14/prompts-teaching.json
+60c8fd86e0d6d3a78b760e002545965c6e6c02c2ed6d678de4dfe70fa055c7d7     210830  assets/generated-2026-10-14/teaching/lite/whale-teaching-blank-sign.jpg
+2996893007a0558121681600b9f00eb0d682021b318d8dbd38a24d8a9d88d4df     232380  assets/generated-2026-10-14/teaching/lite/whale-teaching-notebook.jpg
+285cb427a4f1508de69b7d5afc3b2409e2f959f4023a2e27c8ade146806e1ace     195863  assets/generated-2026-10-14/teaching/lite/whale-teaching-pointer.jpg
 cc485e736f9ec8e8badca9cc800bc5d7250cbf86c9e81a337e1b346103e4126b    1686569  assets/generated-2026-10-14/teaching/whale-teaching-blank-sign.png
 d097abeeeae1855a95d18e9dc668823001907d4cdccb9af053ff5b0456ee596f    1806408  assets/generated-2026-10-14/teaching/whale-teaching-notebook.png
 f1d4ea76f6d042edc6634d6e06e3d9cedebae9e5cee7ea5f20363fa54c2ed0f5    1774140  assets/generated-2026-10-14/teaching/whale-teaching-pointer.png

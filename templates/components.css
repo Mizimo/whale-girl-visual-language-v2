@@ -7,7 +7,7 @@
  *   --gap      頭像與文字、格子之間的距離
  *   --stack    區塊上下的間距
  *   --av       講解框頭像的直徑
- * 每個元件的用法、什麼時候用，見 docs/COMPONENTS.md。
+ * 每個元件的寫法和長相見 docs/COMPONENTS.md；實際排出來的樣子在 examples/components*.pdf。
  */
 
 html { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
@@ -29,12 +29,12 @@ html { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   --c-code-bg: var(--c-deep-2);
   --c-line: var(--c-line-on-deep);
   --c-line-strong: var(--c-line-strong-on-deep);
-  background: var(--c-paper);
+  background-color: var(--c-paper);  /* 只換底色，.bubbles 這類背景圖案才疊得上去 */
   color: var(--c-ink);
 }
 
 /* ── 行內 ───────────────────────────── */
-/* 和弦記號、程式碼。降記號一律寫 ♭（U+266D），不要用小寫 b。 */
+/* 和弦記號、程式碼。降記號寫 ♭（U+266D）比小寫 b 好認。 */
 code {
   font-family: var(--font-mono);
   font-size: .9em;
@@ -59,8 +59,7 @@ ol > li::marker { font-weight: 700; }
 }
 
 /* ── 講解框（鯨魚娘出場的地方）───────── */
-/* 亮色線＋頭像＋標籤。一頁最多一個，超過三行就拆頁。
- * 種類用表情和標籤區分，不換顏色：
+/* 亮色線＋頭像＋標籤。種類用表情和標籤區分，不換顏色：
  *   （不加）講解　認真　　.tip 訣竅　開心　　.warn 警告　生氣
  *   .mix 易混　　苦惱　　.fact 冷知識　驚訝　　.review 複習　想睡
  * 頭像寫成 <span class="av"></span> 就會照種類自動換；要用別張圖就寫 <img class="av" src="…">。
@@ -106,7 +105,7 @@ ol > li::marker { font-weight: 700; }
 
 /* ── 重點框（這一頁要帶走的東西）────── */
 /* 上緣一條主色線、沒有底色，跟左線的兩種框一眼就分得開。標籤預設「本頁重點」，
- * 要換就寫 data-label="…"。放在頁面最後。 */
+ * 要換就寫 data-label="…"。通常放在頁面最後。 */
 .summary {
   border-top: var(--rule) solid var(--c-primary);
   border-bottom: 1px solid var(--c-line);
@@ -127,7 +126,7 @@ ol > li::marker { font-weight: 700; }
 .summary > :last-child { margin-bottom: 0; }
 
 /* ── 表格 ───────────────────────────── */
-/* 只在 A4 和簡報用；Markdown 筆記照舊不用表格。表頭下一條主色線，列與列之間細線。
+/* 表頭下一條主色線，列與列之間細線。（Markdown 筆記用的是 markdown.css 自己那一套。）
  * 要特別指出的格子加 class="key"（粗體＋淡底，印黑白靠粗體）。數字欄加 class="num" 靠右。 */
 table {
   width: 100%;
@@ -320,3 +319,944 @@ td.key:first-child, th.key:first-child { padding-left: calc(var(--pad-x) * .75);
 .cols { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--pad-x) * 2); margin: var(--stack) 0; }
 .cols > * > :first-child { margin-top: 0; }
 .cols > * > :last-child { margin-bottom: 0; }
+
+/* ══ 角色 ══════════════════════════════ */
+
+/* ── 對話 ───────────────────────────── */
+/* 一問一答的聊天泡泡。不加 class 是鯨魚娘，表情跟講解框一樣用 .tip .warn .mix .fact .review 換；
+ * .me 是讀者那一側，靠右、主色底。鯨魚娘用同一個表情連講兩句時，第二句不再重複頭像。
+ * <div class="chat"><p class="me">老師，多利安跟小調差在哪？</p><p class="tip">只差第六音喵。</p></div> */
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  margin: var(--stack) 0;
+  break-inside: avoid;
+}
+.chat > * {
+  position: relative;
+  align-self: flex-start;
+  max-width: 80%;
+  margin: 0 0 0 calc(var(--av) + var(--gap));
+  padding: calc(var(--pad-y) * .55) calc(var(--pad-x) * .9) calc(var(--pad-y) * .6);
+  background: var(--c-tint);
+  border-radius: var(--sp-1) calc(var(--radius-m) * 2) calc(var(--radius-m) * 2);
+  line-height: 1.6;
+}
+.chat > :not(.me)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(-1 * (var(--av) + var(--gap)));
+  width: var(--av);
+  height: var(--av);
+  border-radius: 50%;
+  background: center / cover no-repeat url("../assets/generated-2026-10-14/avatars/whale-serious.png");
+}
+.chat > .tip::before { background-image: url("../assets/generated-2026-10-14/avatars/whale-happy.png"); }
+.chat > .warn::before { background-image: url("../assets/generated-2026-10-14/avatars/whale-angry.png"); }
+.chat > .mix::before { background-image: url("../assets/generated-2026-10-14/avatars/whale-troubled.png"); }
+.chat > .fact::before { background-image: url("../assets/generated-2026-10-14/avatars/whale-surprised.png"); }
+.chat > .review::before { background-image: url("../assets/generated-2026-10-14/avatars/whale-sleepy.png"); }
+/* 同一個表情連講：省略頭像，泡泡的尖角也收回去 */
+.chat > :not(.me, .tip, .warn, .mix, .fact, .review) + :not(.me, .tip, .warn, .mix, .fact, .review),
+.chat > .tip + .tip, .chat > .warn + .warn, .chat > .mix + .mix, .chat > .fact + .fact, .chat > .review + .review {
+  border-top-left-radius: calc(var(--radius-m) * 2);
+}
+.chat > :not(.me, .tip, .warn, .mix, .fact, .review) + :not(.me, .tip, .warn, .mix, .fact, .review)::before,
+.chat > .tip + .tip::before, .chat > .warn + .warn::before, .chat > .mix + .mix::before,
+.chat > .fact + .fact::before, .chat > .review + .review::before { content: none; }
+.chat > .me {
+  align-self: flex-end;
+  margin: 0;
+  background: var(--c-primary);
+  color: var(--c-paper);
+  border-radius: calc(var(--radius-m) * 2) var(--sp-1) calc(var(--radius-m) * 2) calc(var(--radius-m) * 2);
+}
+.chat > .me code { background: color-mix(in srgb, var(--c-paper) 20%, transparent); color: inherit; }
+
+/* ── 貼圖 ───────────────────────────── */
+/* 一張圓臉配一句短話，像聊天軟體的貼圖。表情的寫法跟講解框一樣。
+ * <span class="sticker warn">不准寫 b！</span>
+ * 平常跟著文字排；加 .pin 貼到這一頁的右上角。 */
+.sticker {
+  --s: 4.6em;
+  position: relative;
+  isolation: isolate;
+  display: inline-block;
+  margin: calc(var(--s) - .5em) .4em 0;
+  padding: .12em .8em .18em;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--c-paper);
+  white-space: nowrap;
+  rotate: -6deg;
+}
+.sticker:nth-of-type(even) { rotate: 4deg; }  /* 一排好幾張時左右交錯 */
+.sticker::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 1em;
+  background: var(--c-primary);
+  box-shadow: 0 0 0 .2em var(--art-paper);
+}
+.sticker::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  left: 50%;
+  bottom: calc(100% - .5em);
+  width: var(--s);
+  height: var(--s);
+  translate: -50% 0;
+  border-radius: 50%;
+  background: center / cover no-repeat url("../assets/generated-2026-10-14/avatars/whale-serious.png");
+  box-shadow: 0 0 0 .2em var(--art-paper), 0 .15em .6em color-mix(in srgb, var(--c-deep) 25%, transparent);
+}
+.sticker.tip::before { background-image: url("../assets/generated-2026-10-14/avatars/whale-happy.png"); }
+.sticker.warn::before { background-image: url("../assets/generated-2026-10-14/avatars/whale-angry.png"); }
+.sticker.mix::before { background-image: url("../assets/generated-2026-10-14/avatars/whale-troubled.png"); }
+.sticker.fact::before { background-image: url("../assets/generated-2026-10-14/avatars/whale-surprised.png"); }
+.sticker.review::before { background-image: url("../assets/generated-2026-10-14/avatars/whale-sleepy.png"); }
+
+/* ── 印章 ───────────────────────────── */
+/* 斜斜蓋在標題旁邊或角落。留空就是「本小姐認證」；.round 是圓章，適合兩三個字。
+ * <h2>多利安 <span class="stamp">必考</span></h2> */
+.stamp {
+  display: inline-block;
+  padding: .1em .41em .12em .55em;  /* 右邊扣掉字距，字才會置中 */
+  border: .26em double var(--c-primary);
+  border-radius: var(--radius-m);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: .14em;
+  color: var(--c-primary);
+  white-space: nowrap;
+  vertical-align: middle;
+  rotate: -8deg;
+  margin: 0 .4em;
+}
+.stamp:empty::before { content: "本小姐認證"; }
+.stamp.round {
+  display: inline-grid;
+  place-items: center;
+  width: 4.6em;
+  height: 4.6em;
+  padding: 0 0 0 .06em;
+  border-radius: 50%;
+  line-height: 1.2;
+  letter-spacing: .06em;
+  text-align: center;
+  white-space: normal;
+}
+.stamp.round:empty::before { content: "本小姐\A認證"; white-space: pre; }
+
+/* ── 舉牌 ───────────────────────────── */
+/* 鯨魚娘舉著一塊白板，字寫在板子上。寬度用 --sign-w 調，字會跟著板子縮放；一行八個字、三行以內最好看。
+ * 只要上半身（簡報上比較好放）就加 .upper。
+ * <div class="sign"><p>多利安<br>＝小調＋大六度</p></div> */
+.sign {
+  --crop: 1;  /* 圖從上往下露出多少 */
+  container-type: inline-size;
+  position: relative;
+  overflow: hidden;
+  flex: none;
+  width: var(--sign-w);
+  aspect-ratio: 937 / calc(1678 * var(--crop));
+  border-radius: var(--radius-m);
+  break-inside: avoid;
+}
+.sign.upper { --crop: .6; }
+.sign::before {  /* 整張圖畫出來、超出的部分讓外框裁掉，PDF 裡的 JPEG 才會原樣嵌入 */
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  aspect-ratio: 937 / 1678;
+  background: center / 100% 100% no-repeat url("../assets/generated-2026-10-14/teaching/lite/whale-teaching-blank-sign.jpg");
+}
+.sign > * {
+  position: absolute;
+  left: 22%;
+  top: calc(27.5% / var(--crop));
+  width: 56%;
+  height: calc(16.5% / var(--crop));
+  margin: 0;
+  align-content: center;
+  text-align: center;
+  font-size: 7cqw;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--art-ink);
+  text-wrap: balance;
+}
+
+/* ══ 重點與比較 ════════════════════════ */
+
+/* ── 標籤框 ─────────────────────────── */
+/* 外框加一個壓在框線上的標籤，放定義、公式、規則原文這種要框起來的東西。標籤預設「定義」。
+ * <div class="box" data-label="定義">調式：同一組音換一個主音。</div> */
+.box {
+  position: relative;
+  margin: calc(var(--stack) * 1.5) 0 var(--stack);
+  padding: calc(var(--pad-y) * 1.1) var(--pad-x) calc(var(--pad-y) * .85);
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--radius-m);
+  break-inside: avoid;
+}
+.box::before {
+  content: attr(data-label);
+  position: absolute;
+  top: 0;
+  left: calc(var(--pad-x) - .5em);
+  translate: 0 -50%;
+  padding: 0 .5em;
+  background: var(--c-paper);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: .06em;
+  color: var(--c-primary);
+}
+.box:not([data-label])::before { content: "定義"; }
+.box > :last-child { margin-bottom: 0; }
+
+/* ── 對錯對照 ───────────────────────── */
+/* 左邊是常見的錯、右邊是對的。標籤預設「× 常見錯誤」「✓ 正確」，用 data-label 換。
+ * <div class="vs"><div class="no">Bb7、C#m7</div><div class="yes">B♭7、C♯m7</div></div> */
+.vs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+  margin: var(--stack) 0;
+  break-inside: avoid;
+}
+.vs > * { padding: calc(var(--pad-y) * .7) var(--pad-x) calc(var(--pad-y) * .8); border-radius: var(--radius-m); }
+.vs > *::before {
+  display: block;
+  margin-bottom: var(--sp-2);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+.vs > .no { border: 1px dashed var(--c-line-strong); color: var(--c-ink-2); }
+.vs > .no::before { content: "×　常見錯誤"; color: var(--c-ink-3); }
+.vs > .yes { border: 1px solid var(--c-primary); background: var(--c-tint); }
+.vs > .yes::before { content: "✓　正確"; color: var(--c-primary); }
+.vs > [data-label]::before { content: attr(data-label); }
+.vs > * > :last-child { margin-bottom: 0; }
+
+/* ── 公式 ───────────────────────────── */
+/* 「A ＋ B ＝ C」式的記法。<span> 是一塊，<i> 是運算符號，.key 那塊實心填色；<small> 補一行小字。
+ * <div class="formula"><span>自然小調</span><i>＋</i><span>大六度</span><i>＝</i><span class="key">多利安</span></div> */
+.formula {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-4) var(--sp-5);
+  margin: calc(var(--stack) * 1.25) 0;
+  font-size: calc(var(--fs-body) * 1.2);
+  break-inside: avoid;
+}
+.formula > span {
+  padding: .35em .85em .4em;
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--radius-m);
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  color: var(--c-title);
+}
+.formula > span small { display: block; font-size: var(--fs-micro); font-weight: 400; color: var(--c-ink-3); }
+.formula > i { font-style: normal; font-weight: 700; color: var(--c-primary); }
+.formula > .key { background: var(--c-primary); border-color: var(--c-primary); color: var(--c-paper); }
+.formula > .key small { color: var(--c-paper); }
+
+/* ── 大數字 ─────────────────────────── */
+/* 幾個數字一字排開，數字下面一行說明。<small> 寫單位。
+ * <div class="stats"><div><b>7</b>個調式</div><div><b>12</b>個調</div><div><b>84</b>種組合</div></div> */
+.stats {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  margin: var(--stack) 0;
+  break-inside: avoid;
+}
+.stats > * {
+  padding: 0 var(--pad-x);
+  border-left: 1px solid var(--c-line);
+  text-align: center;
+  color: var(--c-ink-2);
+  line-height: 1.5;
+}
+.stats > :first-child { border-left: 0; }
+.stats b {
+  display: block;
+  font-size: calc(var(--fs-title) * 1.6);
+  line-height: 1.15;
+  color: var(--c-primary);
+  font-variant-numeric: tabular-nums;
+}
+.stats b small { margin-left: .08em; font-size: .45em; }
+
+/* ── 卡片 ───────────────────────────── */
+/* 幾個並列的重點，一排自動排二到四張。卡片頂端可以放 <img> 小圖示或 <span class="n">01</span>。
+ * <div class="cards"><div><h3>起點</h3><p>大調的第二音。</p></div>…</div> */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9em), 1fr));
+  gap: var(--gap);
+  margin: var(--stack) 0;
+}
+.cards > * {
+  padding: calc(var(--pad-y) * .9) var(--pad-x) var(--pad-y);
+  border: 1px solid var(--c-line);
+  border-top: var(--bar) solid var(--c-accent);
+  border-radius: var(--radius-s);
+  break-inside: avoid;
+}
+.cards h3 { margin: 0 0 var(--sp-2); font-size: inherit; line-height: 1.4; color: var(--c-title); }
+.cards p { margin: 0; color: var(--c-ink-2); }
+.cards img { display: block; width: 2.4em; height: 2.4em; object-fit: contain; margin: 0 0 var(--sp-4); }
+.cards .n {
+  display: block;
+  margin-bottom: var(--sp-3);
+  font-size: var(--fs-title);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--c-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ══ 流程與結構 ════════════════════════ */
+
+/* ── 步驟 ───────────────────────────── */
+/* 有先後順序的幾步：圓圈編號自動產生，中間用線連起來。預設橫排；直排加 .down。
+ * <ol class="steps"><li><h3>彈 C 大調</h3><p>從 C 彈到 C。</p></li>…</ol> */
+.steps {
+  --dot: 2.1em;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: var(--gap);
+  margin: var(--stack) 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+  break-inside: avoid;
+}
+.steps > li {
+  counter-increment: step;
+  position: relative;
+  margin: 0;
+  padding-top: calc(var(--dot) + var(--sp-5));
+}
+.steps > li::before {
+  content: counter(step);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--dot);
+  height: var(--dot);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--c-primary);
+  color: var(--c-paper);
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.steps > li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--dot) / 2 - .5px);
+  left: calc(var(--dot) + var(--sp-4));
+  right: calc(var(--sp-4) - var(--gap));
+  height: 1px;
+  background: var(--c-line-strong);
+}
+.steps h3 { margin: 0 0 var(--sp-2); font-size: inherit; line-height: 1.4; color: var(--c-title); }
+.steps p { margin: 0; color: var(--c-ink-2); }
+.steps.down { grid-auto-flow: row; grid-auto-columns: auto; gap: calc(var(--gap) * 1.5); }
+.steps.down > li { min-height: var(--dot); padding: calc((var(--dot) - 1.4em) / 2) 0 0 calc(var(--dot) + var(--gap)); }
+.steps.down > li:not(:last-child)::after {
+  top: calc(var(--dot) + var(--sp-3));
+  bottom: calc(var(--sp-3) - var(--gap) * 1.5);
+  left: calc(var(--dot) / 2 - .5px);
+  right: auto;
+  width: 1px;
+  height: auto;
+}
+
+/* ── 時間軸 ─────────────────────────── */
+/* 一條線串起幾個時間點。<time> 寫年份、日期或第幾回，後面接說明；.key 那一點實心。橫排加 .across。
+ * <ol class="timeline"><li><time>1959</time>《Kind of Blue》發行。</li>…</ol> */
+.timeline {
+  --when: 5.5em;
+  --dot: .75em;
+  margin: var(--stack) 0;
+  padding: 0;
+  list-style: none;
+}
+.timeline > li {
+  position: relative;
+  margin: 0;
+  padding: 0 0 var(--stack) calc(var(--when) + var(--gap) * 2 + var(--dot));
+  break-inside: avoid;
+}
+.timeline > li > time {
+  position: absolute;
+  left: 0;
+  width: var(--when);
+  text-align: right;
+  font-weight: 700;
+  color: var(--c-primary);
+  font-variant-numeric: tabular-nums;
+}
+.timeline > li::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: calc(.5lh - var(--dot) / 2);
+  left: calc(var(--when) + var(--gap));
+  width: var(--dot);
+  height: var(--dot);
+  box-sizing: border-box;
+  border: var(--rule) solid var(--c-primary);
+  border-radius: 50%;
+  background: var(--c-paper);
+}
+.timeline > li.key::before { background: var(--c-primary); }
+.timeline > li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: .5lh;
+  bottom: -.5lh;
+  left: calc(var(--when) + var(--gap) + var(--dot) / 2 - .5px);
+  width: 1px;
+  background: var(--c-line-strong);
+}
+.timeline.across { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: var(--gap); }
+.timeline.across > li { padding: calc(var(--dot) + var(--sp-5)) 0 0; }
+.timeline.across > li > time { position: static; display: block; width: auto; text-align: left; }
+.timeline.across > li::before { top: 0; left: 0; }
+.timeline.across > li:not(:last-child)::after {
+  top: calc(var(--dot) / 2 - .5px);
+  bottom: auto;
+  left: calc(var(--dot) + var(--sp-3));
+  right: calc(var(--sp-3) - var(--gap));
+  width: auto;
+  height: 1px;
+}
+
+/* ── 檢核清單 ───────────────────────── */
+/* 方框留給讀者自己勾；.done 已經打勾。
+ * <ul class="checklist"><li class="done">分得出自然小調和多利安</li><li>寫得出 D 多利安</li></ul> */
+.checklist { margin: var(--stack) 0; padding: 0; list-style: none; }
+.checklist > li { position: relative; margin: 0 0 var(--sp-3); padding-left: 1.75em; }
+.checklist > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(.5lh - .55em);
+  width: 1.1em;
+  height: 1.1em;
+  box-sizing: border-box;
+  border: 1.5px solid var(--c-line-strong);
+  border-radius: var(--radius-s);
+}
+.checklist > li.done::before { background: var(--c-primary); border-color: var(--c-primary); }
+.checklist > li.done::after {
+  content: "";
+  position: absolute;
+  left: .4em;
+  top: calc(.5lh - .4em);
+  width: .3em;
+  height: .6em;
+  border: solid var(--c-paper);
+  border-width: 0 .13em .13em 0;
+  rotate: 45deg;
+}
+
+/* ── 目錄 ───────────────────────────── */
+/* 編號、標題、點點引線、頁碼。頁碼自己寫（Chrome 算不出跨頁的頁碼）；.sub 是縮一層的小節。
+ * <ol class="toc"><li><a href="#modes">多利安從哪裡來</a><span>3</span></li>…</ol> */
+.toc { margin: var(--stack) 0; padding: 0; list-style: none; counter-reset: toc; }
+.toc > li {
+  counter-increment: toc;
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-4);
+  margin: 0;
+  padding: calc(var(--pad-y) * .5) 0;
+}
+.toc > li::before {
+  content: counter(toc, decimal-leading-zero);
+  flex: none;
+  min-width: 1.7em;
+  font-weight: 700;
+  color: var(--c-accent);
+  font-variant-numeric: tabular-nums;
+}
+.toc > li::after {
+  content: "";
+  order: 1;
+  flex: 1 1 auto;
+  min-width: 2em;
+  border-bottom: 2px dotted var(--c-line-strong);
+  translate: 0 -.3em;
+}
+.toc > li > :first-child { font-weight: 700; color: var(--c-title); text-decoration: none; }
+.toc > li > :last-child:not(:first-child) { order: 2; flex: none; color: var(--c-ink-2); font-variant-numeric: tabular-nums; }
+.toc > li.sub { counter-increment: none; padding-left: calc(1.7em + var(--sp-4)); }
+.toc > li.sub::before { content: none; }
+.toc > li.sub > :first-child { font-weight: 400; color: var(--c-ink); }
+
+/* ══ 行內小東西 ════════════════════════ */
+
+/* ── 標籤 ───────────────────────────── */
+/* 標在標題後面、條列開頭的小膠囊：<span class="tag">基礎</span>；.solid 實心。 */
+.tag {
+  display: inline-block;
+  padding: .02em .6em .06em;
+  border: 1px solid var(--c-primary);
+  border-radius: 1em;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--c-primary);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.tag.solid { background: var(--c-primary); color: var(--c-paper); }
+
+/* ── 難度 ───────────────────────────── */
+/* 一排點，亮 n 個：<span class="level" style="--n: 2"></span>；最多五個點，寫 style="--n: 4; --of: 5"。 */
+.level {
+  --n: 1;
+  --of: 3;
+  --dot: .62em;
+  position: relative;
+  display: inline-block;
+  width: calc(var(--of) * 1em - 1em + var(--dot));
+  height: var(--dot);
+  vertical-align: .02em;
+}
+.level::before, .level::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: 50%;
+}
+.level::after {  /* 全部的點（淡） */
+  background: var(--c-accent-soft);
+  box-shadow:
+    calc(1em * clamp(0, var(--of) - 1, 1)) 0 var(--c-accent-soft),
+    calc(2em * clamp(0, var(--of) - 2, 1)) 0 var(--c-accent-soft),
+    calc(3em * clamp(0, var(--of) - 3, 1)) 0 var(--c-accent-soft),
+    calc(4em * clamp(0, var(--of) - 4, 1)) 0 var(--c-accent-soft);
+}
+.level::before {  /* 亮的點，疊在上面 */
+  z-index: 1;
+  opacity: clamp(0, var(--n), 1);
+  background: var(--c-primary);
+  box-shadow:
+    calc(1em * clamp(0, var(--n) - 1, 1)) 0 var(--c-primary),
+    calc(2em * clamp(0, var(--n) - 2, 1)) 0 var(--c-primary),
+    calc(3em * clamp(0, var(--n) - 3, 1)) 0 var(--c-primary),
+    calc(4em * clamp(0, var(--n) - 4, 1)) 0 var(--c-primary);
+}
+
+/* ── 日文讀音 ───────────────────────── */
+/* <ruby>特徴音<rt>とくちょうおん</rt></ruby>。lang="ja" 的段落會先用日文字形。 */
+rt { font-size: .5em; font-weight: 400; color: var(--c-ink-3); }
+[lang|="ja"] { font-family: var(--font-ja); }
+
+/* ══ 教材 ══════════════════════════════ */
+
+/* ── 選擇題 ─────────────────────────── */
+/* 選項代號 A B C D 自動編，兩欄排；.correct 是答案，學生版（body.no-answers）不標出來。
+ * 放在練習題的 <li> 裡也可以。<ol class="choices"><li>大六度</li><li class="correct">小六度</li>…</ol> */
+.choices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3) var(--gap);
+  margin: var(--sp-3) 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: choice;
+}
+.choices > li { counter-increment: choice; display: flex; align-items: baseline; gap: var(--sp-4); margin: 0; }
+.choices > li::before {
+  content: counter(choice, upper-alpha);
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 1.75em;
+  height: 1.75em;
+  box-sizing: border-box;
+  border: 1px solid var(--c-line-strong);
+  border-radius: 50%;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--c-primary);
+}
+.choices > li.correct::before { background: var(--c-primary); border-color: var(--c-primary); color: var(--c-paper); }
+.no-answers .choices > li.correct::before { background: none; border-color: var(--c-line-strong); color: var(--c-primary); }
+
+/* ── 姓名欄 ─────────────────────────── */
+/* 學習單、小考卷的抬頭：一格一個標籤加一條底線，.short 是窄格。
+ * <div class="fields"><span>姓名</span><span>日期</span><span class="short">得分</span></div> */
+.fields {
+  display: flex;
+  gap: var(--sp-8);
+  margin: 0 0 calc(var(--stack) * 1.5);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  color: var(--c-ink-2);
+  break-inside: avoid;
+}
+.fields > * { flex: 1 1 0; display: flex; align-items: baseline; gap: var(--sp-4); white-space: nowrap; }
+.fields > *::after { content: ""; flex: 1 1 auto; min-width: 3em; border-bottom: 1px solid var(--c-line-strong); }
+.fields > .short { flex: 0 0 9em; }
+
+/* ── 對照翻譯 ───────────────────────── */
+/* 原文和翻譯兩個一組，左右對成一列。最上面可以放兩個 <h3> 當欄名。
+ * <div class="bilingual"><p lang="ja">調式は新しい音階ではない。</p><p>調式不是新的音階。</p>…</div> */
+.bilingual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: calc(var(--pad-x) * 2);
+  margin: var(--stack) 0;
+}
+.bilingual > * { margin: 0; padding: calc(var(--pad-y) * .55) 0; border-top: 1px solid var(--c-line); }
+.bilingual > :where(:nth-child(odd)) { color: var(--c-title); }
+.bilingual > :where(:nth-child(even)) { color: var(--c-ink-2); }
+.bilingual > :nth-last-child(-n + 2) { border-bottom: 1px solid var(--c-line); }
+.bilingual > h3 {
+  padding-top: 0;
+  border-top: 0;
+  font-size: var(--fs-label);
+  letter-spacing: .04em;
+  color: var(--c-primary);
+}
+
+/* ── 參考資料 ───────────────────────── */
+/* 編號自動寫成 [1] [2]。<ol class="refs"><li>Mark Levine，《The Jazz Theory Book》，Sher Music，1995。</li></ol> */
+.refs {
+  margin: var(--stack) 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: ref;
+  font-size: var(--fs-label);
+  color: var(--c-ink-2);
+}
+.refs > li { counter-increment: ref; position: relative; margin: 0 0 var(--sp-2); padding-left: 2.6em; }
+.refs > li::before {
+  content: "[" counter(ref) "]";
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: var(--c-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── 連載進度 ───────────────────────── */
+/* 一格一回，到第 n 回為止塗滿：<div class="series" style="--n: 6; --of: 12">和聲學 2　第 6 回</div> */
+.series {
+  --n: 1;
+  --of: 10;
+  --seg: 1.3em;
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--c-ink-2);
+}
+.series::after {
+  content: "";
+  width: calc(var(--of) * var(--seg));
+  height: .5em;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 calc(var(--seg) - 3px), var(--c-paper) calc(var(--seg) - 3px) var(--seg)),
+    linear-gradient(90deg, var(--c-primary) calc(var(--n) * var(--seg)), var(--c-accent-soft) 0);
+}
+
+/* ── 分欄 ───────────────────────────── */
+/* 長條列、術語、短段落排成兩欄省空間；三欄寫 style="--cols: 3"。<div class="flow">…</div> */
+.flow {
+  columns: var(--cols, 2);
+  column-gap: calc(var(--pad-x) * 2.5);
+  column-rule: 1px solid var(--c-line);
+  margin: var(--stack) 0;
+}
+.flow > * { break-inside: avoid; }
+.flow > :first-child { margin-top: 0; }
+
+/* ══ 樂理 ══════════════════════════════ */
+
+/* ── 和弦進行 ───────────────────────── */
+/* 一個 <span> 一小節，小節線和最後的終止線自動畫；<small> 寫級數，.key 把那一小節標出來。
+ * 兩個和弦擠一小節就寫在同一個 <span> 裡。.repeat 頭尾換成反覆記號。
+ * <div class="prog"><span>Dm7<small>IIm7</small></span><span>G7<small>V7</small></span><span>Cmaj7<small>Imaj7</small></span></div> */
+.prog {
+  --ink: var(--c-title);
+  display: flex;
+  margin: var(--stack) 0;
+  font-variant-numeric: tabular-nums;
+  break-inside: avoid;
+}
+.prog > span {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: .3em .7em .35em;
+  border-left: 1px solid var(--ink);
+  font-size: 1.1em;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.prog > span small {
+  display: block;
+  margin-top: .1em;
+  font-size: var(--fs-label);
+  font-weight: 400;
+  color: var(--c-ink-3);
+}
+.prog > .key { background: var(--c-tint); }
+.prog::after {  /* 終止線：細＋粗 */
+  content: "";
+  flex: none;
+  width: 7px;
+  border-left: 1px solid var(--ink);
+  border-right: 3px solid var(--ink);
+}
+.prog.repeat::before {  /* 反覆開始：粗、細 */
+  content: "";
+  flex: none;
+  width: 6px;
+  border-left: 3px solid var(--ink);
+  border-right: 1px solid var(--ink);
+}
+.prog.repeat > span:first-child { position: relative; border-left: 0; padding-left: calc(.7em + 4px); }
+.prog.repeat > span:last-child { position: relative; padding-right: calc(.7em + 4px); }
+.prog.repeat > span:first-child::before, .prog.repeat > span:last-child::after {  /* 反覆記號的兩點 */
+  content: "";
+  position: absolute;
+  top: calc(50% - 6px);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ink);
+  box-shadow: 0 8px var(--ink);
+}
+.prog.repeat > span:first-child::before { left: 3px; }
+.prog.repeat > span:last-child::after { right: 3px; }
+
+/* ── 節奏格 ─────────────────────────── */
+/* 一個 <span> 一拍，裡面每個 <i> 是一格細分，寫數拍的字（1 & 2 &、1 e & a）。
+ * 要彈的格子加 .on，重音再加 .accent。左邊的名稱寫在 data-label。
+ * <div class="beats" data-label="4/4"><span><i class="on accent">1</i><i>&amp;</i></span>…</div> */
+.beats {
+  display: flex;
+  align-items: stretch;
+  margin: var(--stack) 0;
+  break-inside: avoid;
+}
+.beats[data-label]::before {
+  content: attr(data-label);
+  align-self: center;
+  min-width: 5.5em;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  color: var(--c-primary);
+}
+.beats > span { display: flex; border: 1px solid var(--c-line-strong); border-left-width: 0; }
+.beats > span:first-of-type { border-left-width: 1px; border-radius: var(--radius-s) 0 0 var(--radius-s); }
+.beats > span:last-of-type { border-radius: 0 var(--radius-s) var(--radius-s) 0; }
+.beats i {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .35em;
+  width: 2.4em;
+  padding: .45em 0 .35em;
+  font-size: var(--fs-label);
+  font-style: normal;
+  line-height: 1;
+  color: var(--c-ink-3);
+}
+.beats i + i { border-left: 1px dotted var(--c-line-strong); }
+.beats i::before {
+  content: "";
+  width: 1em;
+  height: 1em;
+  box-sizing: border-box;
+  border: 1.5px solid var(--c-line);
+  border-radius: 50%;
+}
+.beats i.on { color: var(--c-title); font-weight: 700; }
+.beats i.on::before { background: var(--c-primary); border-color: var(--c-primary); }
+.beats i.accent::before { box-shadow: 0 0 0 2px var(--c-paper), 0 0 0 3.5px var(--c-primary); }
+
+/* ── 五度圈 ─────────────────────────── */
+/* 12 個 <li> 從 C 開始、順時針照五度排：大調寫在 li 裡，關係小調寫在 <small>，.key 標出現在講的調。
+ * 調號寫在 data-sig（例如 "2♯"）會排在圈外。大小用 --fifths-r（半徑）和 --fifths-d（圓圈直徑）調。
+ * <ol class="fifths"><li data-sig="0">C<small>Am</small></li><li data-sig="1♯">G<small>Em</small></li>…</ol> */
+@property --fifths-r { syntax: "<length>"; inherits: true; initial-value: 0px; }
+@property --fifths-d { syntax: "<length>"; inherits: true; initial-value: 0px; }
+.fifths {
+  --fifths-r: 6.6em;
+  --fifths-d: 2.5em;
+  --in: .66;
+  position: relative;
+  width: calc(var(--fifths-r) * 2 + var(--fifths-d) + 3em);
+  aspect-ratio: 1;
+  margin: var(--stack) auto;
+  padding: 0;
+  list-style: none;
+  break-inside: avoid;
+}
+.fifths::before, .fifths::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  border-radius: 50%;
+}
+.fifths::before { width: calc(var(--fifths-r) * 2); height: calc(var(--fifths-r) * 2); border: 1px solid var(--c-line-strong); }
+.fifths::after {
+  width: calc(var(--fifths-r) * 2 * var(--in));
+  height: calc(var(--fifths-r) * 2 * var(--in));
+  border: 1px dashed var(--c-line-strong);
+}
+.fifths > li {
+  --i: 0;
+  --a: calc(var(--i) * 30deg);
+  position: absolute;
+  z-index: 1;
+  left: calc(50% - var(--fifths-d) / 2);
+  top: calc(50% - var(--fifths-d) / 2);
+  width: var(--fifths-d);
+  height: var(--fifths-d);
+  margin: 0;
+  translate: calc(sin(var(--a)) * var(--fifths-r)) calc(cos(var(--a)) * var(--fifths-r) * -1);
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  border: 1px solid var(--c-line-strong);
+  border-radius: 50%;
+  background: var(--c-paper);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--c-title);
+  white-space: nowrap;
+}
+.fifths > li small {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate:
+    calc(-50% - sin(var(--a)) * var(--fifths-r) * (1 - var(--in)))
+    calc(-50% + cos(var(--a)) * var(--fifths-r) * (1 - var(--in)));
+  padding: 0 .2em;
+  background: var(--c-paper);  /* 蓋掉穿過去的虛線圈 */
+  font-size: var(--fs-label);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--c-ink-2);
+}
+.fifths > li[data-sig]::after {
+  content: attr(data-sig);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate:
+    calc(-50% + sin(var(--a)) * (var(--fifths-d) / 2 + .9em))
+    calc(-50% - cos(var(--a)) * (var(--fifths-d) / 2 + .9em));
+  font-size: var(--fs-micro);
+  font-weight: 400;
+  color: var(--c-ink-3);
+}
+.fifths > li.key { background: var(--c-primary); border-color: var(--c-primary); color: var(--c-paper); }
+.fifths > li.key small { font-weight: 700; color: var(--c-primary); }
+.fifths > li:nth-child(2) { --i: 1; }
+.fifths > li:nth-child(3) { --i: 2; }
+.fifths > li:nth-child(4) { --i: 3; }
+.fifths > li:nth-child(5) { --i: 4; }
+.fifths > li:nth-child(6) { --i: 5; }
+.fifths > li:nth-child(7) { --i: 6; }
+.fifths > li:nth-child(8) { --i: 7; }
+.fifths > li:nth-child(9) { --i: 8; }
+.fifths > li:nth-child(10) { --i: 9; }
+.fifths > li:nth-child(11) { --i: 10; }
+.fifths > li:nth-child(12) { --i: 11; }
+
+/* ══ 裝飾 ══════════════════════════════ */
+
+/* ── 波浪線 ─────────────────────────── */
+/* 段落之間的裝飾分隔線：<hr class="wave">。顏色跟著亮色走，深色頁會自動換。
+ * 用 mask 畫：PDF 裡是向量，放大也不會糊。 */
+hr.wave {
+  --r: 5px;  /* 波高的一半；線寬跟著等比例變 */
+  width: calc(var(--r) * 36);
+  height: calc(var(--r) * 2);
+  margin: calc(var(--stack) * 1.5) auto;
+  border: 0;
+  background: var(--c-accent);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 10'%3E%3Cpath d='M0 5 Q5 -1 10 5 T20 5 T30 5 T40 5 T50 5 T60 5 T70 5 T80 5 T90 5 T100 5 T110 5 T120 5 T130 5 T140 5 T150 5 T160 5 T170 5 T180 5' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 10'%3E%3Cpath d='M0 5 Q5 -1 10 5 T20 5 T30 5 T40 5 T50 5 T60 5 T70 5 T80 5 T90 5 T100 5 T110 5 T120 5 T130 5 T140 5 T150 5 T160 5 T170 5 T180 5' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
+
+/* ── 泡泡 ───────────────────────────── */
+/* 在 section 加 .bubbles，右下角浮起幾顆泡泡。章節頁、封面、收尾頁最適合。
+ * 泡泡跟 .watermark 用的是同一個位置，兩個擇一。 */
+.bubbles { position: relative; }
+.bubbles:not(.end)::before, .slide.end.bubbles::after {
+  --bub: color-mix(in srgb, var(--c-accent) 45%, transparent);
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  /* 一顆空心泡泡＝一圈底色疊在一圈泡泡色上；用陰影畫是為了在 PDF 裡維持向量 */
+  box-shadow:
+    -150px -232px 0 20.5px var(--c-paper), -150px -232px 0 22px var(--bub),
+    -112px -300px 0 10.8px var(--c-paper), -112px -300px 0 12px var(--bub),
+    -96px -386px 0 6.8px var(--c-paper), -96px -386px 0 8px var(--bub),
+    -178px -334px 0 4px var(--bub),
+    -168px -178px 0 2.5px var(--bub),
+    -134px -446px 0 2px var(--bub);
+}
+
+/* ── 浮水印 ─────────────────────────── */
+/* 在 section（或任何一個框）加 .watermark，右下角淡淡印一張線稿，不會蓋到字。 */
+.watermark { position: relative; isolation: isolate; }
+.watermark::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  bottom: 0;
+  width: min(52%, 120mm);
+  max-height: 100%;
+  aspect-ratio: 1;
+  background: right bottom / contain no-repeat url("../assets/generated-2026-10-14/line-art/lite/whale-line-art-transparent.png");
+  opacity: .1;
+}
+.deep.watermark::before, .deep .watermark::before { filter: invert(1); opacity: .16; }
