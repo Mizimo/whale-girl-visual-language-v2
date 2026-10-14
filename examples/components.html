@@ -16,7 +16,7 @@
     <img src="../assets/generated-2026-10-14/key-visual/lite/whale-key-visual-editorial.jpg" alt="">
     <h2>元件總覽</h2>
     <p class="lede">A4 講義會用到的每一個元件，各放一個實際的樣子。寫講義時照抄這裡的寫法就好喵。</p>
-    <p>封面用的是 <code>.cover.band</code>：上面一條橫式主視覺、標題靠左。想要圓形頭像的封面，就把 <code>band</code> 拿掉喵。</p>
+    <p>封面用的是 <code>.cover.band</code>：上面一條橫式主視覺、標題靠左。想要圓形頭像的封面，就把 <code>band</code> 拿掉。</p>
     <p class="credit">
       角色插圖：phoiex/AAAAGENT 的 original-design 素材（AI 輔助製作）<br>
       原始設計參考 fornarwhal/deepseek-whale-girl-icon ｜ CC BY-NC-SA 4.0 ｜ 僅供非商業使用
@@ -33,7 +33,7 @@
   <h3>小標</h3>
   <p>小標跟正文同字級，只用粗體和標題色分開，不要另外縮小。條列的記號用主色：</p>
   <ul>
-    <li>一條一個意思就好，不要塞第二句喵。
+    <li>一條一個意思就好，不要塞第二句。
       <ul><li>補充的細節縮一層。</li></ul>
     </li>
     <li>兩層以內最好讀，再多一層通常就該拆頁了。</li>
@@ -44,7 +44,7 @@
   </ol>
 
   <h3>例子框</h3>
-  <div class="ex" data-shot="ex">例：C 多利安 ← 從 B♭ 大調的第二音開始。譜例、指令、引文都放這裡，沒有頭像喵。</div>
+  <div class="ex" data-shot="ex">例：C 多利安 ← 從 B♭ 大調的第二音開始。譜例、指令、引文都放這裡，沒有頭像。</div>
 
   <h3>兩欄對照</h3>
   <div class="cols" data-shot="cols">
@@ -62,7 +62,7 @@
 
   <div class="summary" data-shot="summary">
     <ul>
-      <li>重點框放在頁面最後，條列這一頁要帶走的東西喵。</li>
+      <li>重點框放在頁面最後，條列這一頁要帶走的東西。</li>
       <li>上緣一條主色線、沒有底色，跟左線的框一眼就分得開。</li>
     </ul>
   </div>
@@ -71,16 +71,16 @@
 <!-- 講解框 -->
 <section class="page">
   <h2>講解框</h2>
-  <p class="lede">鯨魚娘出場說話的地方。種類靠表情和標籤區分，不換顏色。這頁為了展示放了六個；平常一頁放一個最清楚喵。</p>
+  <p class="lede">鯨魚娘出場說話的地方。種類靠表情和標籤區分，不換顏色。這頁為了展示放了六個、頭像放大到 46px 才看得清表情；平常一頁放一個、用預設的 34px 最清楚。</p>
 
-  <div data-shot="whale">
+  <div data-shot="whale" style="--av: 46px">
     <div class="whale">
       <span class="av"></span>
-      <div class="txt"><span class="who"></span>多利安就是自然小調把第六音升半音——只有這一個音在變喵。不加種類就是講解，表情是認真。</div>
+      <div class="txt"><span class="who"></span>多利安就是自然小調把第六音升半音——只有這一個音在變。不加種類就是講解，表情是認真。</div>
     </div>
     <div class="whale tip">
       <span class="av"></span>
-      <div class="txt"><span class="who"></span>記法：小調 ＋ 大六度 ＝ 多利安，把 B♭ 換成 B 就是了喵。<code>.tip</code>，表情是開心。</div>
+      <div class="txt"><span class="who"></span>記法：多利安＝小調把第六音升上去喵。<code>.tip</code>，表情是開心。</div>
     </div>
     <div class="whale warn">
       <span class="av"></span>
@@ -92,11 +92,11 @@
     </div>
     <div class="whale fact">
       <span class="av"></span>
-      <div class="txt"><span class="who"></span>〈So What〉的 A 段整段都是 D 多利安喵，B 段只是整個升半音。<code>.fact</code>，表情是驚訝。</div>
+      <div class="txt"><span class="who"></span>〈So What〉的 A 段整段都是 D 多利安，B 段只是整個升半音。<code>.fact</code>，表情是驚訝。</div>
     </div>
     <div class="whale review">
       <span class="av"></span>
-      <div class="txt"><span class="who"></span>七個調式的起點是 1 到 7，多利安是第二個……今天先記到這裡喵。<code>.review</code>，表情是想睡。</div>
+      <div class="txt"><span class="who"></span>七個調式的起點是 1 到 7，多利安是第二個……今天先記到這裡。<code>.review</code>，表情是想睡。</div>
     </div>
   </div>
 </section>
@@ -112,7 +112,7 @@
   </div>
 
   <h3>鍵盤圖</h3>
-  <p>一個八度寫 12 個鍵，要亮的加 <code>.on</code>，鍵上可以寫音級。下面是 C 多利安喵。</p>
+  <p>一個八度寫 12 個鍵，要亮的加 <code>.on</code>，鍵上可以寫音級。下面是 C 多利安。</p>
   <div class="keys" data-shot="keys">
     <i class="on">1</i><i></i><i class="on">2</i><i class="on">♭3</i><i></i><i class="on">4</i><i></i><i class="on">5</i><i></i><i class="on">6</i><i class="on">♭7</i><i></i>
   </div>
@@ -143,7 +143,7 @@
 <!-- 練習題 -->
 <section class="page">
   <h2>練習題</h2>
-  <p class="lede">題號自動編。印學生版時在 <code>&lt;body&gt;</code> 加 <code>class="no-answers"</code>：答案框留著、字藏起來，版面跟老師版一模一樣喵。</p>
+  <p class="lede">題號自動編。印學生版時在 <code>&lt;body&gt;</code> 加 <code>class="no-answers"</code>：答案框留著、字藏起來，版面跟老師版一模一樣。</p>
   <ol class="quiz" data-shot="quiz">
     <li>C 多利安是從哪個大調的第幾音開始？
       <div class="answer">B♭ 大調的第二音。</div>
@@ -167,7 +167,7 @@
 <!-- 角色元件 -->
 <section class="page">
   <h2>角色元件</h2>
-  <p class="lede">講解框以外，本小姐還可以用對話、貼圖、印章、舉牌出場喵。</p>
+  <p class="lede">講解框以外，本小姐還可以用對話、貼圖、印章、舉牌出場。</p>
 
   <h3>對話</h3>
   <div class="chat" data-shot="chat">
@@ -187,7 +187,7 @@
   <h3>舉牌</h3>
   <div class="cols" data-shot="sign">
     <div>
-      <p>板子上的字跟著板子縮放，寬度用 <code>--sign-w</code> 調喵。</p>
+      <p>板子上的字跟著板子縮放，寬度用 <code>--sign-w</code> 調。</p>
       <p>一行八個字、三行以內最好看；只要上半身就加 <code>.upper</code>。</p>
     </div>
     <div class="sign" style="justify-self: center"><p>多利安<br>＝小調＋大六度</p></div>
@@ -343,9 +343,9 @@
   <h2>樂理元件（二）</h2>
 
   <h3>和弦進行</h3>
-  <p>一個格子一小節，<code>&lt;small&gt;</code> 寫級數，最後會自己畫上終止線喵。</p>
+  <p>一個格子一小節，<code>&lt;small&gt;</code> 寫級數，最後會自己畫上終止線。</p>
   <div class="prog" data-shot="prog"><span>Dm7<small>IIm7</small></span><span>G7<small>V7</small></span><span class="key">Cmaj7<small>Imaj7</small></span><span>Cmaj7<small>Imaj7</small></span></div>
-  <p>加 <code>.repeat</code> 換成反覆記號。D 多利安的兩和弦循環：G7 裡的 B 就是特徵音喵。</p>
+  <p>加 <code>.repeat</code> 換成反覆記號。D 多利安的兩和弦循環：G7 裡的 B 就是特徵音。</p>
   <div class="prog repeat" data-shot="prog-repeat"><span>Dm7<small>Im7</small></span><span class="key">G7<small>IV7</small></span><span>Dm7<small>Im7</small></span><span class="key">G7<small>IV7</small></span></div>
 
   <h3>節奏格</h3>
@@ -359,7 +359,7 @@
   </div>
 
   <h3>五度圈</h3>
-  <p>C 多利安＝B♭ 大調從第二音開始，所以圈上標的是 B♭ 喵。</p>
+  <p>C 多利安＝B♭ 大調從第二音開始，所以圈上標的是 B♭。</p>
   <ol class="fifths" data-shot="fifths">
     <li data-sig="0">C<small>Am</small></li>
     <li data-sig="1♯">G<small>Em</small></li>
@@ -381,7 +381,7 @@
   <div class="chapter watermark" data-shot="chapter">
     <div class="num">02</div>
     <h2>調式</h2>
-    <p class="lede">同一組音，換一個家。<code>.chapter</code> 是 A4 的章節頁，不套頁首；這一頁另外加了 <code>.watermark</code>，把右下角的尾巴換成線稿喵。</p>
+    <p class="lede">同一組音，換一個家。<code>.chapter</code> 是 A4 的章節頁，不套頁首；這一頁另外加了 <code>.watermark</code>，把右下角的尾巴換成線稿。</p>
   </div>
 </section>
 
@@ -390,7 +390,7 @@
   <div class="chapter deep bubbles" data-shot="chapter-deep">
     <div class="num">03</div>
     <h2>和弦進行</h2>
-    <p class="lede">加 <code>.deep</code> 整頁換成深海（滿版、沒有白邊），<code>.bubbles</code> 再浮幾顆泡泡喵。</p>
+    <p class="lede">加 <code>.deep</code> 整頁換成深海（滿版、沒有白邊），<code>.bubbles</code> 再浮幾顆泡泡。</p>
   </div>
 </section>
 

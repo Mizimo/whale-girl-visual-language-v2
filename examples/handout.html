@@ -21,7 +21,7 @@
     <img src="../assets/original-design/whale-avatar.png" alt="大肥魚">
     <h2>大肥魚視覺語言庫</h2>
     <p class="lede">配色・字級・版面・元件・選圖</p>
-    <p>一套從本小姐身上取色的文件設計語言。做 PDF、講義、簡報的時候直接套上去就好喵。</p>
+    <p>一套從本小姐身上取色的文件設計語言。做 PDF、講義、簡報的時候直接套上去就好。</p>
     <p class="credit">
       角色插圖：phoiex/AAAAGENT 的 original-design 素材（AI 輔助製作）<br>
       原始設計參考 fornarwhal/deepseek-whale-girl-icon ｜ CC BY-NC-SA 4.0 ｜ 僅供非商業使用
@@ -32,7 +32,7 @@
 <!-- 配色 -->
 <section class="page">
   <h2>配色</h2>
-  <p class="lede">色票是直接從本小姐身上量的：深色跟洋裝、髮根的靛藍，淺色跟髮尾、眼睛的天藍。暖色只能當極小面積的點綴喵。</p>
+  <p class="lede">色票是直接從本小姐身上量的：深色跟洋裝、髮根的靛藍，淺色跟髮尾、眼睛的天藍。暖色只能當極小面積的點綴。</p>
 
   <!-- tokens:palette-html -->
   <div class="swatches">
@@ -52,11 +52,11 @@
   <h2>怎麼挑</h2>
   <ul>
     <li>標題一律 <code>--c-title</code>，正文一律 <code>--c-ink</code>——不要在中間再插第三種深色喔。</li>
-    <li>藍色各有職責：<code>--c-primary</code> 當主角（頁首線、標籤），<code>--c-accent</code> 標記「有人在講話」，中性的 <code>--c-line-strong</code> 標記「這是例子」喵。</li>
+    <li>藍色各有職責：<code>--c-primary</code> 當主角（頁首線、標籤），<code>--c-accent</code> 標記「有人在講話」，中性的 <code>--c-line-strong</code> 標記「這是例子」。</li>
     <li>灰色只做後退用：<code>--c-ink-3</code> 寫圖說、署名、頁碼，對白底仍有 4.5:1。<b>不要</b>再用更淡的灰寫字。</li>
   </ul>
 
-  <div class="ex">色票的實際長相在 <code>docs/palette.svg</code>。要改顏色只動 <code>templates/tokens.css</code>，再跑一次 <code>python3 tools/tokens.py</code>，這頁的色塊會自己跟著換喵。</div>
+  <div class="ex">色票的實際長相在 <code>docs/palette.svg</code>。要改顏色只動 <code>templates/tokens.css</code>，再跑一次 <code>python3 tools/tokens.py</code>，這頁的色塊會自己跟著換。</div>
 </section>
 
 <!-- 元件 -->
@@ -65,7 +65,7 @@
 
   <ul>
     <li><b>頁首</b>　左邊文件標題、右邊頁碼，下面一條 2px 主色線。每頁自己長出來，封面不放。</li>
-    <li><b>封面</b>　58mm 圓形頭像置中、下面標題，最下面放署名喵。</li>
+    <li><b>封面</b>　58mm 圓形頭像置中、下面標題，最下面放署名。</li>
     <li><b>圖說</b>　右對齊、用說明文字的顏色，放在圖的下方。</li>
   </ul>
 
@@ -77,7 +77,7 @@
     </div>
   </div>
 
-  <div class="ex">例子框：極淡底、左邊一條 3px 中性灰線，沒有頭像。放譜例、指令、引文這種「不是正文」的東西，印成黑白也分得出來喵。</div>
+  <div class="ex">例子框：極淡底、左邊一條 3px 中性灰線，沒有頭像。放譜例、指令、引文這種「不是正文」的東西，印成黑白也分得出來。</div>
 
   <h2>字級</h2>
   <!-- tokens:type-html -->

@@ -31,7 +31,7 @@ A4 講義和 16:9 簡報共用同一組元件，寫法一樣，字級和間距�
 ```html
 <div class="whale tip">
   <span class="av"></span>
-  <div class="txt"><span class="who"></span>記法：小調 ＋ 大六度 ＝ 多利安喵，把 B♭ 換成 B 就是了。</div>
+  <div class="txt"><span class="who"></span>記法：多利安＝小調把第六音升上去喵。</div>
 </div>
 ```
 
@@ -61,7 +61,7 @@ A4 講義和 16:9 簡報共用同一組元件，寫法一樣，字級和間距�
 
 一張圓臉配一句短話，像聊天軟體的貼圖。
 
-<img src="preview/c/sticker.webp" width="427" alt="貼圖">
+<img src="preview/c/sticker.webp" width="430" alt="貼圖">
 
 ```html
 <span class="sticker warn">不准寫 b！</span>
@@ -74,7 +74,7 @@ A4 講義和 16:9 簡報共用同一組元件，寫法一樣，字級和間距�
 
 斜斜蓋在標題旁邊或角落。
 
-<img src="preview/c/stamp.webp" width="465" alt="印章">
+<img src="preview/c/stamp.webp" width="468" alt="印章">
 
 ```html
 <h2>多利安 <span class="stamp">必考</span></h2>
@@ -118,7 +118,7 @@ A4 講義和 16:9 簡報共用同一組元件，寫法一樣，字級和間距�
 
 譜例、指令、引文這些「不是正文」的東西。沒有頭像，一頁可以有好幾個。
 
-<img src="preview/c/ex.webp" width="596" alt="例子框">
+<img src="preview/c/ex.webp" width="583" alt="例子框">
 
 ```html
 <div class="ex">例：C 多利安 ← 從 B♭ 大調的第二音開始。</div>
@@ -171,7 +171,7 @@ A4 講義和 16:9 簡報共用同一組元件，寫法一樣，字級和間距�
 
 「A ＋ B ＝ C」的記法。
 
-<img src="preview/c/formula.webp" width="396" alt="公式">
+<img src="preview/c/formula.webp" width="398" alt="公式">
 
 ```html
 <div class="formula">
@@ -252,9 +252,9 @@ A4 講義和 16:9 簡報共用同一組元件，寫法一樣，字級和間距�
 
 有先後順序的幾步：圓圈編號自動產生，中間用線連起來。
 
-<img src="preview/c/steps.webp" width="671" alt="步驟">
+<img src="preview/c/steps.webp" width="673" alt="步驟">
 
-<img src="preview/c/steps-down.webp" width="385" alt="直排步驟">
+<img src="preview/c/steps-down.webp" width="388" alt="直排步驟">
 
 ```html
 <ol class="steps">
@@ -270,7 +270,7 @@ A4 講義和 16:9 簡報共用同一組元件，寫法一樣，字級和間距�
 
 一條線串起幾個時間點。
 
-<img src="preview/c/timeline.webp" width="511" alt="時間軸">
+<img src="preview/c/timeline.webp" width="513" alt="時間軸">
 
 ```html
 <ol class="timeline">
@@ -286,7 +286,7 @@ A4 講義和 16:9 簡報共用同一組元件，寫法一樣，字級和間距�
 
 方框留給讀者自己勾，`.done` 已經打勾。
 
-<img src="preview/c/checklist.webp" width="263" alt="檢核清單">
+<img src="preview/c/checklist.webp" width="264" alt="檢核清單">
 
 ```html
 <ul class="checklist">
@@ -334,7 +334,7 @@ A4 講義和 16:9 簡報共用同一組元件，寫法一樣，字級和間距�
 
 ### 標籤與難度
 
-<img src="preview/c/tag.webp" width="287" alt="標籤與難度">
+<img src="preview/c/tag.webp" width="289" alt="標籤與難度">
 
 ```html
 <span class="tag">基礎</span> <span class="tag solid">挑戰</span>
@@ -344,7 +344,7 @@ A4 講義和 16:9 簡報共用同一組元件，寫法一樣，字級和間距�
 
 ### 日文讀音
 
-<img src="preview/c/ruby.webp" width="411" alt="日文讀音">
+<img src="preview/c/ruby.webp" width="413" alt="日文讀音">
 
 ```html
 <ruby lang="ja">特徴音<rt>とくちょうおん</rt></ruby>
@@ -378,7 +378,7 @@ A4 講義和 16:9 簡報共用同一組元件，寫法一樣，字級和間距�
 
 選項代號 A B C D 自動編，兩欄排。
 
-<img src="preview/c/choices.webp" width="428" alt="選擇題">
+<img src="preview/c/choices.webp" width="427" alt="選擇題">
 
 ```html
 <ol class="choices">
@@ -429,7 +429,7 @@ A4 講義和 16:9 簡報共用同一組元件，寫法一樣，字級和間距�
 
 編號自動寫成 [1] [2]。
 
-<img src="preview/c/refs.webp" width="414" alt="參考資料">
+<img src="preview/c/refs.webp" width="415" alt="參考資料">
 
 ```html
 <ol class="refs">
@@ -441,7 +441,7 @@ A4 講義和 16:9 簡報共用同一組元件，寫法一樣，字級和間距�
 
 條列、術語、短段落排成兩欄省空間。
 
-<img src="preview/c/flow.webp" width="560" alt="分欄">
+<img src="preview/c/flow.webp" width="561" alt="分欄">
 
 ```html
 <ul class="flow">
