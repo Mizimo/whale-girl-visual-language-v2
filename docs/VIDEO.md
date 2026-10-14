@@ -10,7 +10,7 @@ node tools/render.mjs examples/cover-anim.html -o examples/cover-anim.mp4
 
 ## 跟簡報差在哪
 
-同一個視覺語言，但視頻是**在手機上、隔著一點距離、只掃一眼**，簡報是投影在牆上、人坐在那裡看。所以 `templates/video.css` 做的事只有一件：把 `tokens.css` 的尺寸換成隔著看也清楚的數字。
+同一個視覺語言，但視頻是**在手機上、隔著一點距離、只掃一眼**，簡報是投影在牆上、人坐在那裡看。所以 [`templates/video.css`](../templates/video.css) 做的事只有一件：把 [`tokens.css`](../templates/tokens.css) 的尺寸換成隔著看也清楚的數字。
 
 - **字級放大約 1.6 倍**　封面標題 64pt（簡報 40pt）、正文 22pt（20pt）
 - **線條加粗**　`--rule` 3px、`--deck-bar` 5px——縮圖上看不見的線就等於沒有

@@ -59,12 +59,14 @@ function parseArgs(argv) {
 
 const args = parseArgs(process.argv.slice(2));
 if (!args.input) {
-  console.error('用法：node render.mjs <composition.html> [-o out.mp4] [--fps 30] [--scale 2] [--keep]');
+  console.error('用法：node tools/render.mjs <composition.html> [-o out.mp4] [--fps 30] [--scale 2] [--keep]');
   process.exit(2);
 }
 const INPUT = path.resolve(args.input);
 if (!existsSync(INPUT)) { console.error(`找不到 ${INPUT}`); process.exit(2); }
-const OUT = path.resolve(args.out || path.basename(INPUT).replace(/\.html?$/, '') + '.mp4');
+// 沒給 -o 就放在 HTML 旁邊，不要丟到當下的工作目錄
+const OUT = path.resolve(args.out
+  || path.join(path.dirname(INPUT), path.basename(INPUT).replace(/\.html?$/, '') + '.mp4'));
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
