@@ -58,6 +58,7 @@
 使用這批圖片中適用 CC BY-NC-SA 4.0 的 19 張時可附：
 
 ```text
+大肥魚（@Kujira-rice）／ Mizimo
 大肥魚補充插圖：Mizimo 專案，Codex image_gen AI 輔助製作（2026-10-14）
 角色視覺參考：phoiex/AAAAGENT original-design；歷史設計參考 fornarwhal/deepseek-whale-girl-icon
 人設規格參考：Neko3000/deepseek-whalechan、TreapGoGo/deepseek-whale-girl
@@ -93,8 +94,12 @@ Q 版另記錄為「視覺參考：Neko3000/deepseek-whalechan chibi 0067、Trea
 `original-design`、`maid-atelier` 與本次 15 張 `original-design` 衍生圖按 CC BY-NC-SA 4.0 使用，產出物上要附署名；`dsh-widget`、Q 版與 `gal-view` 的限制見各自段落。把用到的來源各列一行：
 
 ```text
+大肥魚（@Kujira-rice）／ Mizimo
 角色素材：phoiex/AAAAGENT original-design（CC BY-NC-SA 4.0）
 深海女僕工坊：上善（原案）／ zipzip（二創）／ Small-tailqwq（皮膚素材），CC BY-NC-SA 4.0
 ```
+
+**第一行一定先寫自己**（`大肥魚（@Kujira-rice）／ Mizimo`），再列素材來源。素材授權要求的是後面那幾行，
+但產出物上只出現別人的名字會看不出是誰做的。
 
 `assets/original-design/assets.json` 有上游檔案大小與 SHA-256，可以核對手上這份是不是原樣。

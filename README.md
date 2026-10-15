@@ -218,8 +218,9 @@ HTML 都可以直接改內容再重新輸出，改配色只要動 `templates/tok
 
 ## 署名與授權
 
-用到素材的產出物上要放這段小字（`--doc-micro`、`--c-ink-3`）：
+用到素材的產出物上要放這段小字（`--doc-micro`、`--c-ink-3`）。**第一行是自己的名字，再來才是素材來源**：
 
+> 大肥魚（@Kujira-rice）／ Mizimo
 > 角色插圖：phoiex/AAAAGENT 的 original-design 素材（AI 輔助製作）
 > 原始設計參考 fornarwhal/deepseek-whale-girl-icon ｜ CC BY-NC-SA 4.0 ｜ 僅供非商業使用
 

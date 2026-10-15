@@ -670,7 +670,7 @@ A4 講義和 16:9 簡報共用同一組元件，寫法一樣，字級和間距�
 <section class="slide end bubbles">
   <h2>今天就到這裡喵</h2>
   <p class="lede">下一回：リディアン（Lydian）</p>
-  <p class="credit">署名</p>
+  <p class="credit">大肥魚（@Kujira-rice）／ Mizimo<br>角色插圖：phoiex/AAAAGENT original-design<br>CC BY-NC-SA 4.0 ｜ 僅供非商業使用</p>
 </section>
 ```
 
