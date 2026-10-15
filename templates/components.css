@@ -458,7 +458,10 @@ td.key:first-child, th.key:first-child { padding-left: calc(var(--pad-x) * .75);
   translate: -50% 0;
   border-radius: 50%;
   background: center / cover no-repeat url("../assets/generated-2026-10-14/avatars/whale-serious.png");
-  box-shadow: 0 0 0 .2em var(--art-paper), 0 .15em .6em color-mix(in srgb, var(--c-deep) 25%, transparent);
+  /* 紙邊是向量（不透明、模糊 0）；底下那層柔邊用 drop-shadow，
+     半透明的 box-shadow 在 macOS Preview 會變成一塊正方形。 */
+  box-shadow: 0 0 0 .2em var(--art-paper);
+  filter: drop-shadow(0 .15em .6em color-mix(in srgb, var(--c-deep) 25%, transparent));
 }
 .sticker.tip::before { background-image: url("../assets/generated-2026-10-14/avatars/whale-happy.png"); }
 .sticker.warn::before { background-image: url("../assets/generated-2026-10-14/avatars/whale-angry.png"); }

@@ -272,7 +272,8 @@ hr.wave { --r: 8px; }
   border-radius: 50%;
   object-fit: cover;
   background: center / cover no-repeat url("../assets/generated-2026-10-14/avatars/whale-happy.png");
-  box-shadow: 0 4px 18px color-mix(in srgb, var(--c-primary) 18%, transparent);
+  /* 柔邊用 drop-shadow，不要用半透明 box-shadow（會變成正方形，見 BUILD.md） */
+  filter: drop-shadow(0 4px 18px color-mix(in srgb, var(--c-primary) 18%, transparent));
 }
 .slide.end:has(> .face)::before { content: none; }
 .slide.end > .face { background: none; }
@@ -371,8 +372,13 @@ hr.wave { --r: 8px; }
   background: color-mix(in srgb, var(--c-deep) 86%, transparent);
   border: 2px solid var(--c-line-strong-on-deep);
   border-radius: 999px;
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--c-deep) 40%, transparent);
+  /* 柔邊用 drop-shadow（半透明 box-shadow 在 macOS Preview 會變成方塊） */
+  filter: drop-shadow(0 4px 16px color-mix(in srgb, var(--c-deep) 40%, transparent));
 }
-.slide.gal > .menu > li.pick { border-color: var(--c-accent-on-deep); box-shadow: 0 0 0 3px color-mix(in srgb, var(--c-accent-on-deep) 35%, transparent), 0 4px 16px color-mix(in srgb, var(--c-deep) 40%, transparent); }
+/* 選中的那一項：外圈改用 outline（向量、跟著圓角），柔邊一樣走 drop-shadow */
+.slide.gal > .menu > li.pick {
+  border-color: var(--c-accent-on-deep);
+  outline: 3px solid color-mix(in srgb, var(--c-accent-on-deep) 35%, transparent);
+}
 .slide.gal > .menu > li.pick::before { content: "▶"; margin-right: .6em; font-size: .7em; vertical-align: .12em; color: var(--c-accent-on-deep); }
 .slide.gal .pageno { display: none; }

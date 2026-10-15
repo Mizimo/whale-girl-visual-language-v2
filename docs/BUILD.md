@@ -77,3 +77,40 @@ for p in sorted(pathlib.Path('examples').glob('*.pdf')):
 - **等寬字型現在還是靠系統。** `--font-mono` 排到 `"DejaVu Sans Mono"`：Linux 有，macOS 會落到 Andale Mono，字重差一點。要完全一致得再從 Noto 系列抽一組等寬字型進來（還沒做，記在這裡）。
 - **截圖很吃 Chrome。** `tools/shots.py` 一次要開六十幾次 headless，偶爾會卡住；逾時已經放寬到 300 秒並重試三次，還是卡就先把殘留的 `--headless` 程序清掉再跑。
 - **`fonts/` 別進 git。** 四個字型加起來二十幾 MB，用 `fetch_fonts.py` 生就好。
+
+## 柔邊不要用半透明的 `box-shadow`
+
+Chrome 印 PDF 的時候，**半透明的 `box-shadow`**（有模糊，或只有擴散的那種）會被寫成帶
+Luminosity 軟遮罩的 `ExtGState`。macOS 的「預覽程式」和 PDFKit **不套用那個遮罩**，
+陰影就整塊糊成一個實心正方形——圓形頭像背後忽然多一塊方形底色，就是這個原因。
+在 Chrome 裡看、用 Chrome 重新截圖都正常，只有拿去 Preview 開才會看到，所以很容易漏掉。
+
+柔邊一律改用 `filter: drop-shadow()`，它不會走軟遮罩：
+
+```css
+/* ✗ 在 Preview 裡是一塊方塊 */
+box-shadow: 0 2px 10px rgba(90, 100, 163, .16);
+/* ✓ */
+filter: drop-shadow(0 2px 10px rgba(90, 100, 163, .16));
+```
+
+判斷方法：
+
+- **模糊或擴散其中一個不是 0，而且顏色是半透明的** → 走軟遮罩，Preview 會壞。
+- **模糊 0、擴散 0、顏色不透明**（`.sticker` 的紙邊、`.bubbles` 的泡泡、`.level` 的點、
+  `.beats` 的亮拍）→ Chrome 直接畫成向量，沒問題，那些留著。
+- 要一圈外框就用 `outline`：跟著 `border-radius` 走，又不影響排版。
+- `text-shadow` 沒這個問題。
+
+改完重新輸出，然後確認 PDF 裡沒有 Luminosity 軟遮罩（全部 0 就對了）：
+
+```bash
+python3 - <<'PY'
+import glob, pypdf
+for f in sorted(glob.glob('examples/*.pdf')):
+    n = sum(1 for p in pypdf.PdfReader(f).pages
+              for v in ((p.get('/Resources') or {}).get('/ExtGState') or {}).values()
+              if v.get_object().get('/SMask') and v.get_object().get('/SMask') != '/None')
+    print(f, n)
+PY
+```
